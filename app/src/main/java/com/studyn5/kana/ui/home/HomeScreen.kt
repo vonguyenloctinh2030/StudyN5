@@ -132,6 +132,7 @@ private fun AppInformation() {
         Text("Phiên bản 1.0.0 · Hoạt động offline · Không quảng cáo", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text("© 2026 Võ Nguyễn Lộc Tính · Tài khoản: TinhVNL2", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text("Principal Software Engineer · IMS · FPT Software", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("Hướng dẫn nét viết: KanjiVG · CC BY-SA 3.0", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.height(6.dp))
         Text(
             "Ứng dụng được phát triển cho mục đích học tập cá nhân, phi thương mại và không tạo doanh thu. Đây không phải sản phẩm chính thức của FPT Software.",

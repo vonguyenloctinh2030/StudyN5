@@ -37,14 +37,11 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.Kana
-import com.studyn5.kana.ui.theme.HandwritingFont
 
 @Composable
 fun KanaDetailScreen(
@@ -69,28 +66,40 @@ fun KanaDetailScreen(
             .background(MaterialTheme.colorScheme.background)
             .padding(18.dp),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+        Box(modifier = Modifier.fillMaxWidth()) {
+            IconButton(onClick = onBack, modifier = Modifier.align(Alignment.CenterStart)) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
             }
-            Column(modifier = Modifier.padding(start = 4.dp)) {
-                Text(
-                    "${kana.char} — ${kana.romaji}",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold),
-                )
-                Text(
-                    "${kana.type.label} · Hàng ${kana.group} · ${index + 1}/${kanas.size}",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-            Spacer(Modifier.weight(1f))
-            IconButton(onClick = { hidden = !hidden }) {
+            Text(
+                kana.type.label,
+                modifier = Modifier.align(Alignment.Center),
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+            )
+            IconButton(
+                onClick = { hidden = !hidden },
+                modifier = Modifier.align(Alignment.CenterEnd),
+            ) {
                 Text(if (hidden) "👁️" else "🙈", fontSize = 22.sp)
             }
         }
 
-        Spacer(Modifier.height(10.dp))
+        Text(
+            kana.romaji.uppercase(),
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            fontSize = 36.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onBackground,
+        )
+        Text(
+            "${index + 1}/${kanas.size}",
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+
+        Spacer(Modifier.height(8.dp))
 
         Box(
             modifier = Modifier
@@ -109,20 +118,9 @@ fun KanaDetailScreen(
                 }
             }
 
-            // Chữ nền font KleeOne (nét bút), mờ
+            // Chữ mẫu theo từng nét, kèm số thứ tự và mũi tên chỉ hướng.
             if (!hidden) {
-                val ctx = LocalContext.current
-                androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
-                    val paint = android.graphics.Paint().apply {
-                        typeface = HandwritingFont.get(ctx)
-                        textSize = size.width * 0.7f
-                        color = Color(0x33999999).toArgb()
-                        textAlign = android.graphics.Paint.Align.CENTER
-                    }
-                    val fm = paint.fontMetrics
-                    val y = size.height / 2f - (fm.ascent + fm.descent) / 2f
-                    drawContext.canvas.nativeCanvas.drawText(kana.char, size.width / 2f, y, paint)
-                }
+                KanaStrokeGuide(character = kana.char, modifier = Modifier.fillMaxSize())
             }
 
             // Vẽ tay realtime
