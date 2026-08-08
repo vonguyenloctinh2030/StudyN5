@@ -74,8 +74,8 @@ fun HomeScreen(
         val items = listOf(
             Triple("あ", "Bảng Hiragana", "46 chữ cơ bản") to { onOpenList(KanaType.HIRAGANA) },
             Triple("ア", "Bảng Katakana", "46 chữ phiên âm") to { onOpenList(KanaType.KATAKANA) },
-            Triple("🔊", "Phát âm", "Giọng Nhật (TTS)") to { onOpenList(KanaType.HIRAGANA) },
-            Triple("✎", "Tập viết", "Ẩn chữ & trace") to { onOpenList(KanaType.HIRAGANA) },
+            Triple("🔊", "Phát âm", "Nghe mẫu") to { onOpenList(KanaType.HIRAGANA) },
+            Triple("✎", "Tập viết", "Ẩn chữ & trace") to { onOpenPractice() },
         )
 
         LazyVerticalGrid(

@@ -1,8 +1,5 @@
 package com.studyn5.kana.ui.detail
 
-import android.graphics.Paint
-import android.graphics.Typeface
-import android.text.TextPaint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -21,8 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,18 +33,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.studyn5.kana.R
 import com.studyn5.kana.data.Kana
-import com.studyn5.kana.ui.theme.HandwritingFont
+
+private val HandFont = FontFamily(Font(R.font.kleeone))
 
 @Composable
 fun KanaDetailScreen(
@@ -62,12 +58,11 @@ fun KanaDetailScreen(
 ) {
     val kana = kanas.getOrElse(index) { kanas.first() }
     var hidden by remember(index) { mutableStateOf(false) }
-    // Mỗi nét = 1 danh sách điểm. StateList trigger recompose khi thêm nét MỚI.
-    val strokes = remember(index) { mutableStateListOf<MutableList<Offset>>() }
-    var current by remember { mutableStateOf<MutableList<Offset>?>(null) }
 
-    val ctx = LocalContext.current
-    val typeface = remember { HandwritingFont.get(ctx) }
+    // Mỗi nét = 1 mutableStateListOf<Offset> (trigger recompose khi add point)
+    val strokes = remember(index) { mutableStateListOf<MutableList<Offset>>() }
+    // Nét đang vẽ: dùng mutableStateListOf để mỗi point thêm vào đều recompose
+    var current by remember { mutableStateOf<MutableList<Offset>?>(null) }
 
     Column(
         modifier = Modifier
@@ -117,9 +112,14 @@ fun KanaDetailScreen(
 
             // Chữ nền font KleeOne (nét bút), mờ
             if (!hidden) {
+                val ctx = LocalContext.current
                 androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
-                    val paint = TextPaint().apply {
-                        this.typeface = typeface
+                    val paint = android.graphics.Paint().apply {
+                        typeface = try {
+                            android.graphics.Typeface.createFromAsset(ctx.assets, "fonts/kleeone.ttf")
+                        } catch (e: Exception) {
+                            android.graphics.Typeface.DEFAULT
+                        }
                         textSize = size.width * 0.7f
                         color = Color(0x33999999).toArgb()
                         textAlign = android.graphics.Paint.Align.CENTER
@@ -131,14 +131,16 @@ fun KanaDetailScreen(
             }
 
             // Vẽ tay realtime
+            val allStrokes = strokes + (current?.let { listOf(it) } ?: emptyList())
             androidx.compose.foundation.Canvas(
                 modifier = Modifier
                     .fillMaxSize()
                     .pointerInput(Unit) {
                         detectDragGestures(
                             onDragStart = { offset ->
-                                current = mutableListOf(offset)
-                                current?.let { strokes.add(it) }
+                                val list = mutableStateListOf(offset)
+                                current = list
+                                strokes.add(list)
                             },
                             onDrag = { change, _ ->
                                 current?.add(change.position)
@@ -147,7 +149,7 @@ fun KanaDetailScreen(
                         )
                     },
             ) {
-                strokes.forEach { stroke ->
+                allStrokes.forEach { stroke ->
                     for (i in 1 until stroke.size) {
                         drawLine(Color(0xFF2563EB), stroke[i - 1], stroke[i], strokeWidth = 5.dp.toPx())
                     }
@@ -157,7 +159,6 @@ fun KanaDetailScreen(
 
         Spacer(Modifier.height(13.dp))
 
-        // Tools
         Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
             Box(
                 modifier = Modifier
@@ -198,7 +199,6 @@ fun KanaDetailScreen(
 
         Spacer(Modifier.height(13.dp))
 
-        // Prev / Next
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Box(
                 modifier = Modifier

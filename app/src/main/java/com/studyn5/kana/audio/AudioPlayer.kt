@@ -2,11 +2,11 @@ package com.studyn5.kana.audio
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.net.Uri
 import com.studyn5.kana.data.Kana
 
 /**
- * Phát âm thanh từ file mp3 được bundle sẵn trong assets/audio/{romaji}.mp3
- * (giọng Nhật thật, offline). Thay thế TextToSpeech.
+ * Phát âm thanh từ file mp3 bundle trong assets/audio/{romaji}.mp3 (giọng Nhật thật, offline).
  */
 class AudioPlayer(context: Context) {
 
@@ -20,14 +20,14 @@ class AudioPlayer(context: Context) {
     fun play(romaji: String) {
         try {
             player?.release()
-            player = MediaPlayer().apply {
-                setDataSource(appContext.assets.openFd("$romaji.mp3"))
-                setOnPreparedListener { it.start() }
-                prepareAsync()
-            }
+            player = MediaPlayer.create(
+                appContext,
+                Uri.parse("file:///android_asset/$romaji.mp3"),
+            )
+            player?.setOnCompletionListener { it.release(); if (player == it) player = null }
+            player?.start()
         } catch (e: Exception) {
-            // File không tồn tại -> bỏ qua (không crash)
-            e.printStackTrace()
+            android.util.Log.e("AudioPlayer", "play fail: $romaji", e)
         }
     }
 
