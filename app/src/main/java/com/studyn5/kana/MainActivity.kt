@@ -2,6 +2,7 @@ package com.studyn5.kana
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -55,6 +56,23 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
     var listType by remember { mutableStateOf(KanaType.HIRAGANA) }
     var selectedList by remember { mutableStateOf<List<Kana>>(emptyList()) }
     var selectedIndex by remember { mutableStateOf(0) }
+    val practiceViewModel = remember { PracticeViewModel() }
+
+    BackHandler(enabled = route !is Screen.Home) {
+        route = when (route) {
+            is Screen.Detail -> Screen.List
+            is Screen.List, is Screen.Pronunciation -> Screen.Home
+            is Screen.Practice -> {
+                if (practiceViewModel.mode.value == "play") {
+                    practiceViewModel.backToSelect()
+                    Screen.Practice
+                } else {
+                    Screen.Home
+                }
+            }
+            is Screen.Home -> Screen.Home
+        }
+    }
 
     when (val r = route) {
         is Screen.Home -> HomeScreen(
@@ -88,7 +106,7 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
         )
 
         is Screen.Practice -> PracticeScreen(
-            viewModel = remember { PracticeViewModel() },
+            viewModel = practiceViewModel,
             onBack = { route = Screen.Home },
             onSpeak = { kana -> onSpeak(kana) },
         )

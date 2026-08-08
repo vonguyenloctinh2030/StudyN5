@@ -33,6 +33,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
@@ -142,8 +145,33 @@ fun KanaDetailScreen(
                     },
             ) {
                 strokes.forEach { stroke ->
-                    for (i in 1 until stroke.size) {
-                        drawLine(Color(0xFF2563EB), stroke[i - 1], stroke[i], strokeWidth = 5.dp.toPx())
+                    if (stroke.size == 1) {
+                        drawCircle(Color(0x26173A5E), radius = 6.5.dp.toPx(), center = stroke.first())
+                        drawCircle(Color(0xFF173A5E), radius = 5.dp.toPx(), center = stroke.first())
+                    } else {
+                        val path = Path().apply {
+                            moveTo(stroke.first().x, stroke.first().y)
+                            for (i in 1 until stroke.size) {
+                                val previous = stroke[i - 1]
+                                val point = stroke[i]
+                                val middle = Offset(
+                                    x = (previous.x + point.x) / 2f,
+                                    y = (previous.y + point.y) / 2f,
+                                )
+                                quadraticBezierTo(previous.x, previous.y, middle.x, middle.y)
+                            }
+                            lineTo(stroke.last().x, stroke.last().y)
+                        }
+                        drawPath(
+                            path = path,
+                            color = Color(0x26173A5E),
+                            style = Stroke(width = 13.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round),
+                        )
+                        drawPath(
+                            path = path,
+                            color = Color(0xFF173A5E),
+                            style = Stroke(width = 9.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round),
+                        )
                     }
                 }
             }
