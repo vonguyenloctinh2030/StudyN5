@@ -2,9 +2,6 @@ package com.studyn5.kana.ui.theme
 
 import android.content.Context
 import android.graphics.Typeface
-import androidx.compose.ui.graphics.asComposePaint
-import androidx.compose.ui.text.ExperimentalTextApi
-import androidx.compose.ui.text.platform.Typeface
 
 /**
  * Load font viết tay KleeOne (giống nét bút Nhật) từ assets.
