@@ -65,7 +65,6 @@ private fun AppNavigation(onSpeak: (String) -> Unit) {
 
         is Screen.List -> KanaListScreen(
             type = listType,
-            viewModel = remember { KanaListViewModel() },
             onBack = { route = Screen.Home },
             onSelect = { kana ->
                 selectedKana = kana
@@ -84,6 +83,7 @@ private fun AppNavigation(onSpeak: (String) -> Unit) {
         is Screen.Practice -> PracticeScreen(
             viewModel = remember { PracticeViewModel() },
             onBack = { route = Screen.Home },
+            onSpeak = { text -> onSpeak(text) },
         )
     }
 }

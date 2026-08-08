@@ -1,56 +1,44 @@
 package com.studyn5.kana.ui.practice
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
-import com.studyn5.kana.data.KanaType
-import kotlin.random.Random
-
-data class QuizState(
-    val current: Kana,
-    val options: List<String>,
-    val selected: String? = null,
-    val isCorrect: Boolean = false,
-    val score: Int = 0,
-    val total: Int = 0,
-    val useKatakana: Boolean = true,
-)
 
 class PracticeViewModel : ViewModel() {
 
-    private val all: List<Kana> = KanaData.hiragana + KanaData.katakana
+    val hiragana = KanaData.hiragana
+    val katakana = KanaData.katakana
 
-    private val _state = mutableStateOf(generate())
-    val state = _state
+    // Danh sách chữ user đã chọn để luyện
+    val selected = mutableStateListOf<Kana>()
 
-    private fun generate(): QuizState {
-        val current = all.random()
-        // Tạo 4 lựa chọn romaji, đảm bảo có đáp án đúng
-        val distractors = all.filter { it.romaji != current.romaji }
-            .shuffled()
-            .take(3)
-            .map { it.romaji }
-        val options = (listOf(current.romaji) + distractors).shuffled()
-        return QuizState(current = current, options = options)
+    private val _mode = mutableStateOf("select") // "select" | "play"
+    val mode = _mode
+
+    // Kết quả random hiện tại
+    private val _current = mutableStateOf<Kana?>(null)
+    val current = _current
+
+    fun toggle(kana: Kana) {
+        if (selected.contains(kana)) selected.remove(kana) else selected.add(kana)
     }
 
-    fun answer(romaji: String) {
-        val s = _state.value
-        val correct = romaji == s.current.romaji
-        _state.value = s.copy(
-            selected = romaji,
-            isCorrect = correct,
-            score = s.score + if (correct) 1 else 0,
-            total = s.total + 1,
-        )
+    fun start() {
+        if (selected.isNotEmpty()) {
+            _mode.value = "play"
+            next()
+        }
     }
 
     fun next() {
-        _state.value = generate()
+        if (selected.isEmpty()) return
+        _current.value = selected.random()
     }
 
-    fun reset() {
-        _state.value = generate().copy(score = 0, total = 0)
+    fun backToSelect() {
+        _mode.value = "select"
+        _current.value = null
     }
 }

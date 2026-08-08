@@ -26,21 +26,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.Kana
+import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
 
 @Composable
 fun KanaListScreen(
     type: KanaType,
-    viewModel: KanaListViewModel,
     onBack: () -> Unit,
     onSelect: (Kana) -> Unit,
 ) {
-    viewModel.setType(type)
-    val list = viewModel.currentList()
+    val list = if (type == KanaType.HIRAGANA) KanaData.hiragana else KanaData.katakana
 
     Column(
         modifier = Modifier
@@ -77,7 +77,7 @@ fun KanaListScreen(
                     modifier = Modifier
                         .aspectRatio(1f)
                         .clip(RoundedCornerShape(14.dp))
-                        .background(androidx.compose.ui.graphics.Color.White)
+                        .background(Color.White)
                         .clickable { onSelect(kana) }
                         .padding(4.dp),
                     contentAlignment = Alignment.Center,

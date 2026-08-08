@@ -2,7 +2,6 @@ package com.studyn5.kana.ui.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -47,7 +47,8 @@ fun KanaDetailScreen(
     onBack: () -> Unit,
 ) {
     var hidden by remember { mutableStateOf(false) }
-    val paths = remember { mutableListOf<Path>() }
+    // Dùng stateList để Compose recompose khi thêm/xóa nét
+    val paths = remember { mutableStateListOf<Path>() }
     var currentPath by remember { mutableStateOf<Path?>(null) }
 
     Column(
@@ -56,7 +57,6 @@ fun KanaDetailScreen(
             .background(MaterialTheme.colorScheme.background)
             .padding(18.dp),
     ) {
-        // Top bar
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -80,7 +80,6 @@ fun KanaDetailScreen(
 
         Spacer(Modifier.height(10.dp))
 
-        // Stage
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -93,22 +92,19 @@ fun KanaDetailScreen(
             androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
                 val step = size.width / 4
                 for (i in 1 until 4) {
-                    drawLine(
-                        color = Color(0x1AD64545),
-                        start = Offset(step * i, 0f),
-                        end = Offset(step * i, size.height),
-                        strokeWidth = 1.dp.toPx(),
-                    )
-                    drawLine(
-                        color = Color(0x1AD64545),
-                        start = Offset(0f, step * i),
-                        end = Offset(size.width, step * i),
-                        strokeWidth = 1.dp.toPx(),
-                    )
+                    drawLine(Color(0x1AD64545), Offset(step * i, 0f), Offset(step * i, size.height), Stroke(1.dp.toPx()))
+                    drawLine(Color(0x1AD64545), Offset(0f, step * i), Offset(size.width, step * i), Stroke(1.dp.toPx()))
                 }
             }
 
-            // Handwriting paths
+            // Chữ mờ sẵn (nền mờ để tập viết đè lên); ẩn khi bật Ẩn chữ
+            if (!hidden) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(kana.char, fontSize = 160.sp, fontWeight = FontWeight.ExtraBold, color = Color(0x33999999))
+                }
+            }
+
+            // Handwriting: nét xanh đè lên chữ mờ
             androidx.compose.foundation.Canvas(
                 modifier = Modifier
                     .fillMaxSize()
@@ -119,31 +115,19 @@ fun KanaDetailScreen(
                                 currentPath?.let { paths.add(it) }
                             },
                             onDrag = { change, _ ->
-                                val pos = change.position
-                                val path = currentPath
-                                if (path != null) {
-                                    path.lineTo(pos.x, pos.y)
-                                }
+                                currentPath?.lineTo(change.position.x, change.position.y)
                             },
                             onDragEnd = { currentPath = null },
                         )
                     },
             ) {
-                paths.forEach { drawPath(it, Color(0xFF2563EB), style = Stroke(4.dp.toPx())) }
-                currentPath?.let { drawPath(it, Color(0xFF2563EB), style = Stroke(4.dp.toPx())) }
-            }
-
-            // Big kana (hidden when toggled)
-            if (!hidden) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(kana.char, fontSize = 170.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onBackground)
-                }
+                paths.forEach { drawPath(it, Color(0xFF2563EB), style = Stroke(5.dp.toPx())) }
+                currentPath?.let { drawPath(it, Color(0xFF2563EB), style = Stroke(5.dp.toPx())) }
             }
         }
 
         Spacer(Modifier.height(13.dp))
 
-        // Tools
         Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
             Box(
                 modifier = Modifier
