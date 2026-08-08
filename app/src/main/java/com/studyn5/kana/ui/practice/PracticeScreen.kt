@@ -24,21 +24,28 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color as CColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.studyn5.kana.data.Kana
+import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
+
+enum class PracticeTab { HIRAGANA, KATAKANA, BOTH }
 
 @Composable
 fun PracticeScreen(
     viewModel: PracticeViewModel,
     onBack: () -> Unit,
-    onSpeak: (String) -> Unit,
+    onSpeak: (Kana) -> Unit,
 ) {
     if (viewModel.mode.value == "select") {
         SelectScreen(viewModel = viewModel, onBack = onBack)
@@ -49,6 +56,14 @@ fun PracticeScreen(
 
 @Composable
 private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
+    var tab by remember { mutableStateOf(PracticeTab.HIRAGANA) }
+
+    val list = when (tab) {
+        PracticeTab.HIRAGANA -> KanaData.hiragana
+        PracticeTab.KATAKANA -> KanaData.katakana
+        PracticeTab.BOTH -> KanaData.hiragana + KanaData.katakana
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -61,13 +76,38 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
             }
             Column {
                 Text("Chọn chữ luyện tập", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold))
-                Text("Nhấn chữ để chọn, rồi bấm Bắt đầu", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("Chọn chữ, rồi bấm Bắt đầu", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
 
         Spacer(Modifier.height(12.dp))
 
-        val list = viewModel.hiragana + viewModel.katakana
+        // 3 tabs
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            PracticeTab.values().forEach { t ->
+                val label = when (t) {
+                    PracticeTab.HIRAGANA -> "Hiragana"
+                    PracticeTab.KATAKANA -> "Katakana"
+                    PracticeTab.BOTH -> "Cả 2"
+                }
+                val sel = tab == t
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(if (sel) MaterialTheme.colorScheme.primary else Color.White)
+                        .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp))
+                        .clickable { tab = t }
+                        .padding(11.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(label, color = if (sel) Color.White else MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp)
+                }
+            }
+        }
+
+        Spacer(Modifier.height(12.dp))
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(5),
             verticalArrangement = Arrangement.spacedBy(9.dp),
@@ -79,15 +119,15 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
                     modifier = Modifier
                         .aspectRatio(1f)
                         .clip(RoundedCornerShape(14.dp))
-                        .background(if (isSel) MaterialTheme.colorScheme.primary else CColor.White)
+                        .background(if (isSel) MaterialTheme.colorScheme.primary else Color.White)
                         .border(1.dp, if (isSel) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, RoundedCornerShape(14.dp))
                         .clickable { viewModel.toggle(kana) }
                         .padding(4.dp),
                     contentAlignment = Alignment.Center,
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(kana.char, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = if (isSel) CColor.White else MaterialTheme.colorScheme.onSurface)
-                        Text(kana.romaji, fontSize = 10.sp, color = if (isSel) CColor.White else MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Bold)
+                        Text(kana.char, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = if (isSel) Color.White else MaterialTheme.colorScheme.onSurface)
+                        Text(kana.romaji, fontSize = 10.sp, color = if (isSel) Color.White else MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -98,14 +138,14 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
-                .background(if (viewModel.selected.isNotEmpty()) MaterialTheme.colorScheme.primary else CColor(0xFFE2E8F0))
+                .background(if (viewModel.selected.isNotEmpty()) MaterialTheme.colorScheme.primary else Color(0xFFE2E8F0))
                 .clickable(enabled = viewModel.selected.isNotEmpty()) { viewModel.start() }
                 .padding(15.dp),
             contentAlignment = Alignment.Center,
         ) {
             Text(
                 "▶ Bắt đầu (${viewModel.selected.size} chữ)",
-                color = if (viewModel.selected.isNotEmpty()) CColor.White else CColor.Gray,
+                color = if (viewModel.selected.isNotEmpty()) Color.White else Color.Gray,
                 fontWeight = FontWeight.ExtraBold,
                 fontSize = 15.sp,
             )
@@ -114,8 +154,8 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
 }
 
 @Composable
-private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (String) -> Unit) {
-    val kana = viewModel.current.value
+private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (Kana) -> Unit) {
+    val kana = viewModel.current.value ?: return
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -139,34 +179,32 @@ private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (String) -> Unit) 
                 .fillMaxWidth()
                 .aspectRatio(1f / 1.1f)
                 .clip(RoundedCornerShape(22.dp))
-                .background(CColor(0xFFFBF7EF))
+                .background(Color(0xFFFBF7EF))
                 .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(22.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            Text(kana?.char ?: "?", fontSize = 170.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onBackground)
+            Text(kana.char, fontSize = 170.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onBackground)
         }
 
         Spacer(Modifier.height(20.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            // Loa: phát âm chữ hiện tại
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .clip(RoundedCornerShape(16.dp))
                     .background(MaterialTheme.colorScheme.primary)
-                    .clickable { kana?.let { onSpeak(it.char) } }
+                    .clickable { onSpeak(kana) }
                     .padding(16.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Text("🔊", fontSize = 26.sp)
             }
-            // Kế tiếp: random chữ kế
             Box(
                 modifier = Modifier
                     .weight(2f)
                     .clip(RoundedCornerShape(16.dp))
-                    .background(CColor.White)
+                    .background(Color.White)
                     .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
                     .clickable { viewModel.next() }
                     .padding(16.dp),

@@ -12,9 +12,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.studyn5.kana.audio.AudioPlayer
 import com.studyn5.kana.data.Kana
+import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
-import com.studyn5.kana.tts.JapaneseTtsManager
 import com.studyn5.kana.ui.detail.KanaDetailScreen
 import com.studyn5.kana.ui.home.HomeScreen
 import com.studyn5.kana.ui.list.KanaListScreen
@@ -24,17 +25,17 @@ import com.studyn5.kana.ui.theme.KanaMasterTheme
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var tts: JapaneseTtsManager
+    private lateinit var audio: AudioPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tts = JapaneseTtsManager(this)
+        audio = AudioPlayer(this)
 
         setContent {
             KanaMasterTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     AppNavigation(
-                        onSpeak = { text -> tts.speak(text) },
+                        onSpeak = { kana -> audio.play(kana) },
                     )
                 }
             }
@@ -43,20 +44,23 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        tts.shutdown()
+        audio.release()
     }
 }
 
 @Composable
-private fun AppNavigation(onSpeak: (String) -> Unit) {
+private fun AppNavigation(onSpeak: (Kana) -> Unit) {
     var route by remember { mutableStateOf<Screen>(Screen.Home) }
     var listType by remember { mutableStateOf(KanaType.HIRAGANA) }
-    var selectedKana by remember { mutableStateOf<Kana?>(null) }
+    var selectedList by remember { mutableStateOf<List<Kana>>(emptyList()) }
+    var selectedIndex by remember { mutableStateOf(0) }
 
     when (val r = route) {
         is Screen.Home -> HomeScreen(
             onOpenList = { type ->
                 listType = type
+                selectedList = if (type == KanaType.HIRAGANA) KanaData.hiragana else KanaData.katakana
+                selectedIndex = 0
                 route = Screen.List
             },
             onOpenPractice = { route = Screen.Practice },
@@ -66,23 +70,25 @@ private fun AppNavigation(onSpeak: (String) -> Unit) {
             type = listType,
             onBack = { route = Screen.Home },
             onSelect = { kana ->
-                selectedKana = kana
+                selectedList = if (listType == KanaType.HIRAGANA) KanaData.hiragana else KanaData.katakana
+                selectedIndex = selectedList.indexOf(kana).coerceAtLeast(0)
                 route = Screen.Detail
             },
         )
 
-        is Screen.Detail -> selectedKana?.let { kana ->
-            KanaDetailScreen(
-                kana = kana,
-                onSpeak = { onSpeak(kana.char) },
-                onBack = { route = Screen.List },
-            )
-        }
+        is Screen.Detail -> KanaDetailScreen(
+            kanas = selectedList,
+            index = selectedIndex,
+            onSpeak = { kana -> onSpeak(kana) },
+            onBack = { route = Screen.List },
+            onPrev = { if (selectedIndex > 0) selectedIndex-- },
+            onNext = { if (selectedIndex < selectedList.size - 1) selectedIndex++ },
+        )
 
         is Screen.Practice -> PracticeScreen(
             viewModel = remember { PracticeViewModel() },
             onBack = { route = Screen.Home },
-            onSpeak = { text -> onSpeak(text) },
+            onSpeak = { kana -> onSpeak(kana) },
         )
     }
 }

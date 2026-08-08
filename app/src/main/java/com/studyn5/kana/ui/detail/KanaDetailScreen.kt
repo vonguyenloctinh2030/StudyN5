@@ -1,5 +1,8 @@
 package com.studyn5.kana.ui.detail
 
+import android.graphics.Paint
+import android.graphics.Typeface
+import android.text.TextPaint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,6 +21,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,22 +40,34 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.Kana
+import com.studyn5.kana.ui.theme.HandwritingFont
 
 @Composable
 fun KanaDetailScreen(
-    kana: Kana,
-    onSpeak: () -> Unit,
+    kanas: List<Kana>,
+    index: Int,
+    onSpeak: (Kana) -> Unit,
     onBack: () -> Unit,
+    onPrev: () -> Unit,
+    onNext: () -> Unit,
 ) {
-    var hidden by remember { mutableStateOf(false) }
-    // Dùng stateList để Compose recompose khi thêm/xóa nét
-    val paths = remember { mutableStateListOf<Path>() }
-    var currentPath by remember { mutableStateOf<Path?>(null) }
+    val kana = kanas.getOrElse(index) { kanas.first() }
+    var hidden by remember(index) { mutableStateOf(false) }
+    // Mỗi nét = 1 danh sách điểm. StateList trigger recompose khi thêm nét MỚI.
+    val strokes = remember(index) { mutableStateListOf<MutableList<Offset>>() }
+    var current by remember { mutableStateOf<MutableList<Offset>?>(null) }
+
+    val ctx = LocalContext.current
+    val typeface = remember { HandwritingFont.get(ctx) }
 
     Column(
         modifier = Modifier
@@ -65,10 +82,10 @@ fun KanaDetailScreen(
             Column(modifier = Modifier.padding(start = 4.dp)) {
                 Text(
                     "${kana.char} — ${kana.romaji}",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold),
                 )
                 Text(
-                    "${kana.type.label} · Hàng ${kana.group}",
+                    "${kana.type.label} · Hàng ${kana.group} · ${index + 1}/${kanas.size}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -89,7 +106,7 @@ fun KanaDetailScreen(
                 .background(Color(0xFFFBF7EF))
                 .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(22.dp)),
         ) {
-            // Trace grid
+            // Grid
             androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
                 val step = size.width / 4
                 for (i in 1 until 4) {
@@ -98,48 +115,60 @@ fun KanaDetailScreen(
                 }
             }
 
-            // Chữ mờ sẵn (nền mờ để tập viết đè lên); ẩn khi bật Ẩn chữ
+            // Chữ nền font KleeOne (nét bút), mờ
             if (!hidden) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(kana.char, fontSize = 160.sp, fontWeight = FontWeight.ExtraBold, color = Color(0x33999999))
+                androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
+                    val paint = TextPaint().apply {
+                        this.typeface = typeface
+                        textSize = size.width * 0.7f
+                        color = Color(0x33999999).toArgb()
+                        textAlign = android.graphics.Paint.Align.CENTER
+                    }
+                    val fm = paint.fontMetrics
+                    val y = size.height / 2f - (fm.ascent + fm.descent) / 2f
+                    drawContext.canvas.nativeCanvas.drawText(kana.char, size.width / 2f, y, paint)
                 }
             }
 
-            // Handwriting: nét xanh đè lên chữ mờ
+            // Vẽ tay realtime
             androidx.compose.foundation.Canvas(
                 modifier = Modifier
                     .fillMaxSize()
                     .pointerInput(Unit) {
                         detectDragGestures(
                             onDragStart = { offset ->
-                                currentPath = Path().apply { moveTo(offset.x, offset.y) }
-                                currentPath?.let { paths.add(it) }
+                                current = mutableListOf(offset)
+                                current?.let { strokes.add(it) }
                             },
                             onDrag = { change, _ ->
-                                currentPath?.lineTo(change.position.x, change.position.y)
+                                current?.add(change.position)
                             },
-                            onDragEnd = { currentPath = null },
+                            onDragEnd = { current = null },
                         )
                     },
             ) {
-                paths.forEach { drawPath(it, Color(0xFF2563EB), style = Stroke(5.dp.toPx())) }
-                currentPath?.let { drawPath(it, Color(0xFF2563EB), style = Stroke(5.dp.toPx())) }
+                strokes.forEach { stroke ->
+                    for (i in 1 until stroke.size) {
+                        drawLine(Color(0xFF2563EB), stroke[i - 1], stroke[i], strokeWidth = 5.dp.toPx())
+                    }
+                }
             }
         }
 
         Spacer(Modifier.height(13.dp))
 
+        // Tools
         Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .clip(RoundedCornerShape(13.dp))
                     .background(MaterialTheme.colorScheme.primary)
-                    .clickable { onSpeak() }
+                    .clickable { onSpeak(kana) }
                     .padding(12.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("🔊 Phát âm", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp)
+                Text("🔊 Phát âm", color = Color.White, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, fontSize = 13.sp)
             }
             Box(
                 modifier = Modifier
@@ -151,7 +180,7 @@ fun KanaDetailScreen(
                     .padding(12.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("👁️ Ẩn chữ", color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp)
+                Text("👁️ Ẩn chữ", color = MaterialTheme.colorScheme.secondary, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, fontSize = 13.sp)
             }
             Box(
                 modifier = Modifier
@@ -159,11 +188,40 @@ fun KanaDetailScreen(
                     .clip(RoundedCornerShape(13.dp))
                     .background(Color.White)
                     .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(13.dp))
-                    .clickable { paths.clear() }
+                    .clickable { strokes.clear() }
                     .padding(12.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("🧹 Xóa", color = MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp)
+                Text("🧹 Xóa", color = MaterialTheme.colorScheme.onSurface, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, fontSize = 13.sp)
+            }
+        }
+
+        Spacer(Modifier.height(13.dp))
+
+        // Prev / Next
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(13.dp))
+                    .background(Color.White)
+                    .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(13.dp))
+                    .clickable { onPrev() }
+                    .padding(13.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("← Lùi", color = MaterialTheme.colorScheme.onSurface, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, fontSize = 14.sp)
+            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(13.dp))
+                    .background(MaterialTheme.colorScheme.primary)
+                    .clickable { onNext() }
+                    .padding(13.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("Tiếp →", color = Color.White, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, fontSize = 14.sp)
             }
         }
     }
