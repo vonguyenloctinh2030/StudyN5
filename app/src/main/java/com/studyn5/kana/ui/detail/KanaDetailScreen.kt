@@ -53,7 +53,7 @@ fun KanaDetailScreen(
     onNext: () -> Unit,
 ) {
     val kana = kanas.getOrElse(index) { kanas.first() }
-    var hidden by remember(index) { mutableStateOf(false) }
+    var hidden by remember { mutableStateOf(false) }
 
     // Mỗi nét hoàn thành = 1 list điểm (trigger recompose khi add vào strokes)
     val strokes = remember(index) { mutableStateListOf<MutableList<Offset>>() }
@@ -173,7 +173,12 @@ fun KanaDetailScreen(
                     .padding(12.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("👁️ Ẩn chữ", color = MaterialTheme.colorScheme.secondary, fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold, fontSize = 13.sp)
+                Text(
+                    if (hidden) "👁️ Hiện chữ" else "🙈 Ẩn chữ",
+                    color = MaterialTheme.colorScheme.secondary,
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+                    fontSize = 13.sp,
+                )
             }
             Box(
                 modifier = Modifier

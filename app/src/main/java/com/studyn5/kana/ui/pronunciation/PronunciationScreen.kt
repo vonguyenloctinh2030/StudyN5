@@ -1,6 +1,7 @@
-package com.studyn5.kana.ui.list
+package com.studyn5.kana.ui.pronunciation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,11 +41,11 @@ import com.studyn5.kana.data.KanaType
 import com.studyn5.kana.ui.theme.KanaFontFamily
 
 @Composable
-fun KanaListScreen(
-    type: KanaType,
+fun PronunciationScreen(
     onBack: () -> Unit,
-    onSelect: (Kana) -> Unit,
+    onSpeak: (Kana) -> Unit,
 ) {
+    var type by remember { mutableStateOf(KanaType.HIRAGANA) }
     val list = KanaData.grid(type)
 
     Column(
@@ -51,18 +56,31 @@ fun KanaListScreen(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
             }
             Column {
-                Text(
-                    text = if (type == KanaType.HIRAGANA) "Hiragana" else "Katakana",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
-                )
-                Text(
-                    "Nhấn chữ để nghe & tập viết",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                Text("Luyện phát âm", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold))
+                Text("Chạm vào một chữ để nghe", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+
+        Spacer(Modifier.height(12.dp))
+
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            KanaType.entries.forEach { tab ->
+                val selected = type == tab
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(if (selected) MaterialTheme.colorScheme.primary else Color.White)
+                        .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp))
+                        .clickable { type = tab }
+                        .padding(12.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(tab.label, color = if (selected) Color.White else MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.Bold)
+                }
             }
         }
 
@@ -72,6 +90,7 @@ fun KanaListScreen(
             columns = GridCells.Fixed(5),
             verticalArrangement = Arrangement.spacedBy(9.dp),
             horizontalArrangement = Arrangement.spacedBy(9.dp),
+            modifier = Modifier.fillMaxWidth(),
         ) {
             items(list) { kana ->
                 if (kana == null) {
@@ -82,13 +101,13 @@ fun KanaListScreen(
                             .aspectRatio(1f)
                             .clip(RoundedCornerShape(14.dp))
                             .background(Color.White)
-                            .clickable { onSelect(kana) }
+                            .clickable { onSpeak(kana) }
                             .padding(4.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(kana.char, fontSize = 26.sp, fontFamily = KanaFontFamily)
-                            Text(kana.romaji.uppercase(), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Bold)
+                            Text(kana.char, fontSize = 25.sp, fontFamily = KanaFontFamily)
+                            Text(kana.romaji.uppercase(), fontSize = 9.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                     }
                 }

@@ -3,8 +3,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_n5"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_n5"
         android:supportsRtl="true"
         android:theme="@style/Theme.KanaMaster">
         <activity

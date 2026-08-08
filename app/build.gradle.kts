@@ -3,6 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+base {
+    archivesName.set("n5-kana-co-ban")
+}
+
 android {
     namespace = "com.studyn5.kana"
     compileSdk = 34

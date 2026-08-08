@@ -6,6 +6,20 @@ package com.studyn5.kana.data
  */
 object KanaData {
 
+    private val gridOrder = listOf(
+        listOf("a", "i", "u", "e", "o"),
+        listOf("ka", "ki", "ku", "ke", "ko"),
+        listOf("sa", "shi", "su", "se", "so"),
+        listOf("ta", "chi", "tsu", "te", "to"),
+        listOf("na", "ni", "nu", "ne", "no"),
+        listOf("ha", "hi", "fu", "he", "ho"),
+        listOf("ma", "mi", "mu", "me", "mo"),
+        listOf("ya", null, "yu", null, "yo"),
+        listOf("ra", "ri", "ru", "re", "ro"),
+        listOf("wa", null, null, null, "wo"),
+        listOf("n", null, null, null, null),
+    )
+
     private val hiraganaPairs = listOf(
         "あ" to "a", "い" to "i", "う" to "u", "え" to "e", "お" to "o",
         "か" to "ka", "き" to "ki", "く" to "ku", "け" to "ke", "こ" to "ko",
@@ -50,5 +64,12 @@ object KanaData {
 
     val katakana: List<Kana> = katakanaPairs.map { (c, r) ->
         Kana(char = c, romaji = r, group = groupOf(r), type = KanaType.KATAKANA)
+    }
+
+    /** Bảng gojūon 5 cột, giữ ô trống ở các hàng ya/wa/n. */
+    fun grid(type: KanaType): List<Kana?> {
+        val byRomaji = (if (type == KanaType.HIRAGANA) hiragana else katakana)
+            .associateBy(Kana::romaji)
+        return gridOrder.flatten().map { romaji -> romaji?.let(byRomaji::get) }
     }
 }

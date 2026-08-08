@@ -21,6 +21,7 @@ import com.studyn5.kana.ui.home.HomeScreen
 import com.studyn5.kana.ui.list.KanaListScreen
 import com.studyn5.kana.ui.practice.PracticeScreen
 import com.studyn5.kana.ui.practice.PracticeViewModel
+import com.studyn5.kana.ui.pronunciation.PronunciationScreen
 import com.studyn5.kana.ui.theme.KanaMasterTheme
 
 class MainActivity : ComponentActivity() {
@@ -64,6 +65,7 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
                 route = Screen.List
             },
             onOpenPractice = { route = Screen.Practice },
+            onOpenPronunciation = { route = Screen.Pronunciation },
         )
 
         is Screen.List -> KanaListScreen(
@@ -90,6 +92,11 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
             onBack = { route = Screen.Home },
             onSpeak = { kana -> onSpeak(kana) },
         )
+
+        is Screen.Pronunciation -> PronunciationScreen(
+            onBack = { route = Screen.Home },
+            onSpeak = { kana -> onSpeak(kana) },
+        )
     }
 }
 
@@ -98,4 +105,5 @@ private sealed class Screen {
     data object List : Screen()
     data object Detail : Screen()
     data object Practice : Screen()
+    data object Pronunciation : Screen()
 }
