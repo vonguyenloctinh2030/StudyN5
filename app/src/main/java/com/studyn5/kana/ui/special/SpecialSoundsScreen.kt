@@ -23,8 +23,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -238,11 +236,9 @@ private fun SoundRow(entry: SpecialSoundEntry, onSpeak: (String) -> Unit) {
                 .background(Color(0xFFF9DFDD)),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(
-                Icons.Filled.VolumeUp,
-                contentDescription = "Phát âm ${entry.kana}",
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(21.dp),
+            Text(
+                text = "🔊",
+                fontSize = 18.sp,
             )
         }
     }
@@ -259,11 +255,9 @@ private fun TipCard(tip: String) {
             .padding(13.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        Icon(
-            Icons.Filled.Lightbulb,
-            contentDescription = null,
-            tint = Color(0xFFC8843F),
-            modifier = Modifier.size(22.dp),
+        Text(
+            text = "💡",
+            fontSize = 19.sp,
         )
         Column {
             Text("Mẹo dễ nhớ", fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, color = Color(0xFF765638))
