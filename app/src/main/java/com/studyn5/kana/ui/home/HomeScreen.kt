@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.KanaType
+import com.studyn5.kana.ui.theme.KanaFontFamily
 
 @Composable
 fun HomeScreen(
@@ -95,7 +96,7 @@ fun HomeScreen(
                         .padding(16.dp),
                 ) {
                     Column {
-                        Text(big, fontSize = 34.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.primary)
+                        Text(big, fontSize = 34.sp, fontFamily = KanaFontFamily, color = MaterialTheme.colorScheme.primary)
                         Spacer(Modifier.height(8.dp))
                         Text(label, fontWeight = FontWeight.Bold, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface)
                         Text(desc, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)

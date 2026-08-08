@@ -2,7 +2,7 @@ package com.studyn5.kana.audio
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.net.Uri
+import android.util.Log
 import com.studyn5.kana.data.Kana
 
 /**
@@ -20,22 +20,33 @@ class AudioPlayer(context: Context) {
     fun play(romaji: String) {
         try {
             player?.release()
-            player = MediaPlayer.create(
-                appContext,
-                Uri.parse("file:///android_asset/$romaji.mp3"),
-            )
-            if (player == null) {
-                // Fallback: mở trực tiếp qua AssetFileDescriptor
-                player = MediaPlayer().apply {
-                    setDataSource(appContext.assets.openFd("$romaji.mp3"))
-                    prepare()
-                    start()
-                }
-            } else {
-                player?.start()
+            player = null
+
+            val newPlayer = MediaPlayer()
+            player = newPlayer
+            appContext.assets.openFd("audio/$romaji.mp3").use { audioFile ->
+                newPlayer.setDataSource(
+                    audioFile.fileDescriptor,
+                    audioFile.startOffset,
+                    audioFile.length,
+                )
             }
+            newPlayer.setOnCompletionListener { completedPlayer ->
+                completedPlayer.release()
+                if (player === completedPlayer) player = null
+            }
+            newPlayer.setOnErrorListener { failedPlayer, what, extra ->
+                Log.e("AudioPlayer", "play fail romaji=$romaji what=$what extra=$extra")
+                failedPlayer.release()
+                if (player === failedPlayer) player = null
+                true
+            }
+            newPlayer.prepare()
+            newPlayer.start()
         } catch (e: Exception) {
-            android.util.Log.e("AudioPlayer", "play fail romaji=$romaji : ${e.message}")
+            player?.release()
+            player = null
+            Log.e("AudioPlayer", "play fail romaji=$romaji", e)
         }
     }
 

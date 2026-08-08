@@ -16,9 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -26,7 +24,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -39,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
-import com.studyn5.kana.data.KanaType
+import com.studyn5.kana.ui.theme.KanaFontFamily
 
 enum class PracticeTab { HIRAGANA, KATAKANA, BOTH }
 
@@ -69,7 +66,6 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
             .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
     ) {
@@ -115,6 +111,7 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
             columns = GridCells.Fixed(5),
             verticalArrangement = Arrangement.spacedBy(9.dp),
             horizontalArrangement = Arrangement.spacedBy(9.dp),
+            modifier = Modifier.weight(1f),
         ) {
             items(list) { kana ->
                 val isSel = viewModel.selected.contains(kana)
@@ -129,7 +126,7 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
                     contentAlignment = Alignment.Center,
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(kana.char, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold, color = if (isSel) Color.White else MaterialTheme.colorScheme.onSurface)
+                        Text(kana.char, fontSize = 24.sp, fontFamily = KanaFontFamily, color = if (isSel) Color.White else MaterialTheme.colorScheme.onSurface)
                         Text(kana.romaji, fontSize = 10.sp, color = if (isSel) Color.White else MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Bold)
                     }
                 }
@@ -186,7 +183,7 @@ private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (Kana) -> Unit) {
                 .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(22.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            Text(kana.char, fontSize = 170.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onBackground)
+            Text(kana.char, fontSize = 170.sp, fontFamily = KanaFontFamily, color = MaterialTheme.colorScheme.onBackground)
         }
 
         Spacer(Modifier.height(20.dp))

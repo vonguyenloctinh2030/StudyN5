@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
+import com.studyn5.kana.ui.theme.KanaFontFamily
 
 @Composable
 fun KanaListScreen(
@@ -83,7 +84,7 @@ fun KanaListScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(kana.char, fontSize = 26.sp, fontWeight = FontWeight.ExtraBold)
+                        Text(kana.char, fontSize = 26.sp, fontFamily = KanaFontFamily)
                         Text(kana.romaji, fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Bold)
                     }
                 }

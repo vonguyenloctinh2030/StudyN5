@@ -38,14 +38,10 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.studyn5.kana.R
 import com.studyn5.kana.data.Kana
-
-private val HandFont = FontFamily(Font(R.font.kleeone))
+import com.studyn5.kana.ui.theme.HandwritingFont
 
 @Composable
 fun KanaDetailScreen(
@@ -115,11 +111,7 @@ fun KanaDetailScreen(
                 val ctx = LocalContext.current
                 androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
                     val paint = android.graphics.Paint().apply {
-                        typeface = try {
-                            android.graphics.Typeface.createFromAsset(ctx.assets, "fonts/kleeone.ttf")
-                        } catch (e: Exception) {
-                            android.graphics.Typeface.DEFAULT
-                        }
+                        typeface = HandwritingFont.get(ctx)
                         textSize = size.width * 0.7f
                         color = Color(0x33999999).toArgb()
                         textAlign = android.graphics.Paint.Align.CENTER
@@ -131,11 +123,10 @@ fun KanaDetailScreen(
             }
 
             // Vẽ tay realtime
-            val allStrokes = strokes + (current?.let { listOf(it) } ?: emptyList())
             androidx.compose.foundation.Canvas(
                 modifier = Modifier
                     .fillMaxSize()
-                    .pointerInput(Unit) {
+                    .pointerInput(index) {
                         detectDragGestures(
                             onDragStart = { offset ->
                                 val list = mutableStateListOf(offset)
@@ -146,10 +137,11 @@ fun KanaDetailScreen(
                                 current?.add(change.position)
                             },
                             onDragEnd = { current = null },
+                            onDragCancel = { current = null },
                         )
                     },
             ) {
-                allStrokes.forEach { stroke ->
+                strokes.forEach { stroke ->
                     for (i in 1 until stroke.size) {
                         drawLine(Color(0xFF2563EB), stroke[i - 1], stroke[i], strokeWidth = 5.dp.toPx())
                     }
