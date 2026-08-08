@@ -41,7 +41,9 @@ private object KanaStrokeRepository {
     private val cache = mutableMapOf<String, List<StrokeGuide>>()
     private val pathTagPattern = Regex("""<path\b[^>]*/>""")
     private val strokeIdPattern = Regex("""id="[^"]+-s(\d+)"""")
-    private val pathDataPattern = Regex("""d="([^"]+)"""")
+    // Require whitespace before `d` so this cannot accidentally match the
+    // trailing `d` in the preceding SVG `id="..."` attribute.
+    private val pathDataPattern = Regex("""\sd="([^"]+)"""")
     private val numberPattern = Regex(
         """<text[^>]*transform="matrix\(\s*1\s+0\s+0\s+1\s+([-\d.]+)\s+([-\d.]+)\s*\)"[^>]*>\s*(\d+)\s*</text>""",
     )
@@ -116,6 +118,23 @@ fun KanaStrokeGuide(
             textSize = 8f
             typeface = Typeface.DEFAULT_BOLD
             textAlign = Paint.Align.CENTER
+        }
+
+        if (strokes.isEmpty()) {
+            val fallbackPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                color = guideColor.toArgb()
+                textSize = size.minDimension * 0.62f
+                typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+                textAlign = Paint.Align.CENTER
+            }
+            val metrics = fallbackPaint.fontMetrics
+            drawContext.canvas.nativeCanvas.drawText(
+                character,
+                size.width / 2f,
+                size.height / 2f - (metrics.ascent + metrics.descent) / 2f,
+                fallbackPaint,
+            )
+            return@Canvas
         }
 
         withTransform({ scale(scale, scale, pivot = Offset.Zero) }) {
