@@ -41,11 +41,13 @@ fun HomeScreen(
     onOpenList: (KanaType) -> Unit,
     onOpenPractice: () -> Unit,
     onOpenPronunciation: () -> Unit,
+    onOpenSpecialSounds: () -> Unit,
 ) {
     val items = listOf(
         HomeItem("あ", "Bảng Hiragana", "46 chữ cơ bản") { onOpenList(KanaType.HIRAGANA) },
         HomeItem("ア", "Bảng Katakana", "46 chữ phiên âm") { onOpenList(KanaType.KATAKANA) },
         HomeItem("🔊", "Phát âm", "Nghe Hiragana & Katakana", onOpenPronunciation),
+        HomeItem("゛", "Âm đặc biệt", "Âm đục · ghép · dài · ngắt", onOpenSpecialSounds),
         HomeItem("🎯", "Luyện tập", "Chọn chữ & học ngẫu nhiên", onOpenPractice),
     )
 

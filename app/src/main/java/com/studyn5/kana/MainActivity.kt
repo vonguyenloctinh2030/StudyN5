@@ -23,6 +23,7 @@ import com.studyn5.kana.ui.list.KanaListScreen
 import com.studyn5.kana.ui.practice.PracticeScreen
 import com.studyn5.kana.ui.practice.PracticeViewModel
 import com.studyn5.kana.ui.pronunciation.PronunciationScreen
+import com.studyn5.kana.ui.special.SpecialSoundsScreen
 import com.studyn5.kana.ui.theme.KanaMasterTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,6 +39,7 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     AppNavigation(
                         onSpeak = { kana -> audio.play(kana) },
+                        onSpeakKey = { audioKey -> audio.play(audioKey) },
                     )
                 }
             }
@@ -51,7 +53,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun AppNavigation(onSpeak: (Kana) -> Unit) {
+private fun AppNavigation(
+    onSpeak: (Kana) -> Unit,
+    onSpeakKey: (String) -> Unit,
+) {
     var route by remember { mutableStateOf<Screen>(Screen.Home) }
     var listType by remember { mutableStateOf(KanaType.HIRAGANA) }
     var selectedList by remember { mutableStateOf<List<Kana>>(emptyList()) }
@@ -61,7 +66,7 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
     BackHandler(enabled = route !is Screen.Home) {
         route = when (route) {
             is Screen.Detail -> Screen.List
-            is Screen.List, is Screen.Pronunciation -> Screen.Home
+            is Screen.List, is Screen.Pronunciation, is Screen.SpecialSounds -> Screen.Home
             is Screen.Practice -> {
                 if (practiceViewModel.mode.value == "play") {
                     practiceViewModel.backToSelect()
@@ -84,6 +89,7 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
             },
             onOpenPractice = { route = Screen.Practice },
             onOpenPronunciation = { route = Screen.Pronunciation },
+            onOpenSpecialSounds = { route = Screen.SpecialSounds },
         )
 
         is Screen.List -> KanaListScreen(
@@ -115,6 +121,11 @@ private fun AppNavigation(onSpeak: (Kana) -> Unit) {
             onBack = { route = Screen.Home },
             onSpeak = { kana -> onSpeak(kana) },
         )
+
+        is Screen.SpecialSounds -> SpecialSoundsScreen(
+            onBack = { route = Screen.Home },
+            onSpeak = onSpeakKey,
+        )
     }
 }
 
@@ -124,4 +135,5 @@ private sealed class Screen {
     data object Detail : Screen()
     data object Practice : Screen()
     data object Pronunciation : Screen()
+    data object SpecialSounds : Screen()
 }
