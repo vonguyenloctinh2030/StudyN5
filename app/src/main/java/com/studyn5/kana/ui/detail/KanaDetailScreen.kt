@@ -2,6 +2,7 @@ package com.studyn5.kana.ui.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -92,8 +93,8 @@ fun KanaDetailScreen(
             androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
                 val step = size.width / 4
                 for (i in 1 until 4) {
-                    drawLine(Color(0x1AD64545), Offset(step * i, 0f), Offset(step * i, size.height), Stroke(1.dp.toPx()))
-                    drawLine(Color(0x1AD64545), Offset(0f, step * i), Offset(size.width, step * i), Stroke(1.dp.toPx()))
+                    drawLine(Color(0x1AD64545), Offset(step * i, 0f), Offset(step * i, size.height), strokeWidth = 1.dp.toPx())
+                    drawLine(Color(0x1AD64545), Offset(0f, step * i), Offset(size.width, step * i), strokeWidth = 1.dp.toPx())
                 }
             }
 

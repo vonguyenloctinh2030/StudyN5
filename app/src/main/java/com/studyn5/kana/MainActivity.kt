@@ -18,7 +18,6 @@ import com.studyn5.kana.tts.JapaneseTtsManager
 import com.studyn5.kana.ui.detail.KanaDetailScreen
 import com.studyn5.kana.ui.home.HomeScreen
 import com.studyn5.kana.ui.list.KanaListScreen
-import com.studyn5.kana.ui.list.KanaListViewModel
 import com.studyn5.kana.ui.practice.PracticeScreen
 import com.studyn5.kana.ui.practice.PracticeViewModel
 import com.studyn5.kana.ui.theme.KanaMasterTheme
