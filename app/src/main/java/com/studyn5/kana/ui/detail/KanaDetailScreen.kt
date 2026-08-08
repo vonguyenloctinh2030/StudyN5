@@ -59,10 +59,10 @@ fun KanaDetailScreen(
     val kana = kanas.getOrElse(index) { kanas.first() }
     var hidden by remember(index) { mutableStateOf(false) }
 
-    // Mỗi nét = 1 mutableStateListOf<Offset> (trigger recompose khi add point)
+    // Mỗi nét hoàn thành = 1 list điểm (trigger recompose khi add vào strokes)
     val strokes = remember(index) { mutableStateListOf<MutableList<Offset>>() }
-    // Nét đang vẽ: dùng mutableStateListOf để mỗi point thêm vào đều recompose
-    var current by remember { mutableStateOf<MutableList<Offset>?>(null) }
+    // Nét đang vẽ (reset theo chữ)
+    var current by remember(index) { mutableStateOf<MutableList<Offset>?>(null) }
 
     Column(
         modifier = Modifier

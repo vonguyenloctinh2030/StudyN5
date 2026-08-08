@@ -24,10 +24,18 @@ class AudioPlayer(context: Context) {
                 appContext,
                 Uri.parse("file:///android_asset/$romaji.mp3"),
             )
-            player?.setOnCompletionListener { it.release(); if (player == it) player = null }
-            player?.start()
+            if (player == null) {
+                // Fallback: mở trực tiếp qua AssetFileDescriptor
+                player = MediaPlayer().apply {
+                    setDataSource(appContext.assets.openFd("$romaji.mp3"))
+                    prepare()
+                    start()
+                }
+            } else {
+                player?.start()
+            }
         } catch (e: Exception) {
-            android.util.Log.e("AudioPlayer", "play fail: $romaji", e)
+            android.util.Log.e("AudioPlayer", "play fail romaji=$romaji : ${e.message}")
         }
     }
 
