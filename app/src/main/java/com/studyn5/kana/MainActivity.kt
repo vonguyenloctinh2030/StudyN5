@@ -13,10 +13,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import com.studyn5.kana.audio.AudioPlayer
 import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
+import com.studyn5.kana.data.PracticeData
 import com.studyn5.kana.ui.detail.KanaDetailScreen
 import com.studyn5.kana.ui.home.HomeScreen
 import com.studyn5.kana.ui.list.KanaListScreen
@@ -61,7 +63,8 @@ private fun AppNavigation(
     var listType by remember { mutableStateOf(KanaType.HIRAGANA) }
     var selectedList by remember { mutableStateOf<List<Kana>>(emptyList()) }
     var selectedIndex by remember { mutableStateOf(0) }
-    val practiceViewModel = remember { PracticeViewModel() }
+    val context = LocalContext.current
+    val practiceViewModel = remember { PracticeViewModel(PracticeData(context)) }
 
     BackHandler(enabled = route !is Screen.Home) {
         route = when (route) {
@@ -114,7 +117,7 @@ private fun AppNavigation(
         is Screen.Practice -> PracticeScreen(
             viewModel = practiceViewModel,
             onBack = { route = Screen.Home },
-            onSpeak = { kana -> onSpeak(kana) },
+            onSpeak = onSpeakKey,
         )
 
         is Screen.Pronunciation -> PronunciationScreen(
