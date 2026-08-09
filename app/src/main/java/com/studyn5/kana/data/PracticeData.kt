@@ -83,8 +83,8 @@ class PracticeData(context: Context) {
     }.distinctBy(PracticeItem::id)
 
     private fun basicItems(script: PracticeScript): List<PracticeItem> = buildList {
-        if (script != PracticeScript.KATAKANA) addAll(KanaData.hiragana.map(Kana::toPracticeItem))
-        if (script != PracticeScript.HIRAGANA) addAll(KanaData.katakana.map(Kana::toPracticeItem))
+        if (script != PracticeScript.KATAKANA) addAll(KanaData.hiragana.map { it.toPracticeItem() })
+        if (script != PracticeScript.HIRAGANA) addAll(KanaData.katakana.map { it.toPracticeItem() })
     }
 
     private fun PracticeVocabulary.toItem(index: Int, type: KanaType, display: String) = PracticeItem(
