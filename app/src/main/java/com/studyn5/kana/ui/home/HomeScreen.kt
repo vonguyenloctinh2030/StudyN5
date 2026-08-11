@@ -118,8 +118,8 @@ private fun AppIdentity() {
             Text("日", color = Color.White, fontSize = 23.sp, fontFamily = KanaFontFamily, fontWeight = FontWeight.Bold)
         }
         Column(Modifier.padding(start = 12.dp).weight(1f)) {
-            Text("N5 KANA", fontSize = 21.sp, letterSpacing = 1.2.sp, fontWeight = FontWeight.Black)
-            Text("Japanese foundations", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("N5 Kana", fontSize = 24.sp, letterSpacing = .2.sp, fontWeight = FontWeight.Black)
+            Text("Học tiếng Nhật từ nền tảng", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         Box(
             Modifier.clip(KanaSmallShape).background(MaterialTheme.colorScheme.primary).padding(horizontal = 12.dp, vertical = 8.dp),
@@ -138,9 +138,9 @@ private fun LearningOverview() {
             .background(MaterialTheme.colorScheme.primary)
             .padding(18.dp),
     ) {
-        Text("LỘ TRÌNH KANA CƠ BẢN", color = Color.White.copy(alpha = .7f), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+        Text("LỘ TRÌNH N5 CƠ BẢN", color = Color.White.copy(alpha = .7f), fontSize = 10.sp, letterSpacing = .8.sp, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(6.dp))
-        Text("Đọc · nghe · viết · phản xạ", color = Color.White, fontSize = 19.sp, fontWeight = FontWeight.ExtraBold)
+        Text("Đọc · nghe · viết · phản xạ", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
         Spacer(Modifier.height(15.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OverviewChip("92", "chữ cái", Modifier.weight(1f))
@@ -163,36 +163,38 @@ private fun OverviewChip(value: String, label: String, modifier: Modifier) {
 
 @Composable
 private fun HomeCard(item: HomeItem, modifier: Modifier = Modifier) {
-    Column(
+    Row(
         modifier
-            .height(142.dp)
-            .shadow(2.dp, KanaCardShape)
+            .height(96.dp)
+            .shadow(1.dp, KanaCardShape)
             .clip(KanaCardShape)
             .background(MaterialTheme.colorScheme.surface)
             .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaCardShape)
             .clickable(onClick = item.action)
-            .padding(15.dp),
+            .padding(horizontal = 13.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.size(43.dp).clip(CircleShape).background(item.color.copy(alpha = .11f)), contentAlignment = Alignment.Center) {
-            Text(item.symbol, fontSize = 25.sp, fontFamily = KanaFontFamily, color = item.color, fontWeight = FontWeight.Bold)
+        Box(Modifier.size(46.dp).clip(CircleShape).background(item.color.copy(alpha = .11f)), contentAlignment = Alignment.Center) {
+            Text(item.symbol, fontSize = 27.sp, fontFamily = KanaFontFamily, color = item.color, fontWeight = FontWeight.Bold)
         }
-        Spacer(Modifier.height(10.dp))
-        Text(item.title, fontWeight = FontWeight.ExtraBold, fontSize = 14.sp)
-        Text(item.description, fontSize = 11.sp, lineHeight = 15.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Column(Modifier.padding(start = 10.dp).weight(1f)) {
+            Text(item.title, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp, maxLines = 1)
+            Text(item.description, fontSize = 10.sp, lineHeight = 14.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2)
+        }
     }
 }
 
 @Composable
 private fun MainActionCard(symbol: String, title: String, description: String, background: Color, onClick: () -> Unit) {
     Row(
-        Modifier.fillMaxWidth().clip(KanaCardShape).background(background).clickable(onClick = onClick).padding(17.dp),
+        Modifier.fillMaxWidth().height(86.dp).clip(KanaCardShape).background(background).clickable(onClick = onClick).padding(horizontal = 17.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(Modifier.size(49.dp).clip(CircleShape).background(Color.White.copy(alpha = .13f)), contentAlignment = Alignment.Center) {
             Text(symbol, fontFamily = KanaFontFamily, color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Bold)
         }
         Column(Modifier.padding(horizontal = 14.dp).weight(1f)) {
-            Text(title, color = Color.White, fontSize = 17.sp, fontWeight = FontWeight.ExtraBold)
+            Text(title, color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
             Text(description, color = Color.White.copy(alpha = .75f), fontSize = 11.sp)
         }
         Text("›", color = Color.White, fontSize = 29.sp)

@@ -14,8 +14,8 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 
-val KanaCardShape = RoundedCornerShape(22.dp)
-val KanaSmallShape = RoundedCornerShape(15.dp)
+val KanaCardShape = RoundedCornerShape(18.dp)
+val KanaSmallShape = RoundedCornerShape(13.dp)
 
 /** Warm paper background with a restrained seigaiha-inspired detail. */
 @Composable
@@ -25,11 +25,11 @@ fun KanaBackground(
 ) {
     Box(modifier = modifier.background(KanaIvory)) {
         Canvas(Modifier.fillMaxSize()) {
-            val color = KanaNavy.copy(alpha = 0.035f)
-            val radius = 54.dp.toPx()
+            val color = KanaNavy.copy(alpha = 0.025f)
+            val radius = 38.dp.toPx()
             val stroke = Stroke(width = 1.2.dp.toPx(), cap = StrokeCap.Round)
             val origin = Offset(size.width - radius * 0.42f, radius * 0.12f)
-            repeat(4) { index ->
+            repeat(3) { index ->
                 val r = radius * (index + 1)
                 drawArc(
                     color = color,

@@ -2,6 +2,7 @@ package com.studyn5.kana.ui.lessons
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -33,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -54,8 +57,8 @@ fun LessonsScreen(viewModel: LessonViewModel, onBack: () -> Unit, onSpeak: (Stri
 private fun LessonList(viewModel: LessonViewModel, onBack: () -> Unit) {
     KanaBackground(Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize().padding(horizontal = 18.dp)) {
-            ScreenHeader("Lessons", "9 chặng luyện đọc · 100 từ mỗi bài", onBack)
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(11.dp)) {
+            ScreenHeader("Lessons", "9 bài · 900 từ Kana", onBack)
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(13.dp)) {
                 items(viewModel.lessons, key = LessonDefinition::id) { lesson ->
                     LessonCard(lesson) { viewModel.openLesson(lesson) }
                 }
@@ -78,33 +81,66 @@ private fun ScreenHeader(title: String, subtitle: String, onBack: () -> Unit) {
 
 @Composable
 private fun LessonCard(lesson: LessonDefinition, onClick: () -> Unit) {
-    val accent = if (lesson.id % 3 == 0) KanaRed else MaterialTheme.colorScheme.primary
+    val accent = if (lesson.id % 2 == 0) KanaRed else MaterialTheme.colorScheme.primary
     Row(
         Modifier
             .fillMaxWidth()
+            .height(118.dp)
             .shadow(2.dp, KanaCardShape)
             .clip(KanaCardShape)
             .background(MaterialTheme.colorScheme.surface)
             .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaCardShape)
             .clickable(onClick = onClick)
-            .padding(13.dp),
+            .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.size(60.dp).clip(KanaSmallShape).background(accent), contentAlignment = Alignment.Center) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("${lesson.id}", color = Color.White.copy(alpha = .68f), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                Text(lesson.symbol, color = Color.White, fontFamily = KanaFontFamily, fontSize = if (lesson.symbol.length > 1) 21.sp else 27.sp, fontWeight = FontWeight.Bold)
+        LessonBookmark(number = lesson.id, color = accent)
+        Column(Modifier.weight(1f).padding(start = 16.dp, end = 8.dp)) {
+            Text("Lesson ${lesson.id}", fontSize = 17.sp, fontWeight = FontWeight.ExtraBold)
+            Text(lesson.title, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
+            Spacer(Modifier.height(13.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("▤", fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("  100 từ", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Spacer(Modifier.weight(1f))
+                Text("Bắt đầu  ›", fontSize = 11.sp, color = accent, fontWeight = FontWeight.Bold)
             }
         }
-        Column(Modifier.weight(1f).padding(horizontal = 13.dp)) {
-            Text(lesson.title, fontSize = 15.sp, fontWeight = FontWeight.ExtraBold)
-            Spacer(Modifier.height(3.dp))
-            Text(lesson.description, fontSize = 11.sp, lineHeight = 15.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Text("100 từ · 2–8 ký tự", fontSize = 10.sp, color = accent, fontWeight = FontWeight.Bold)
+        Box(Modifier.width(62.dp), contentAlignment = Alignment.Center) {
+            Text(
+                lesson.symbol,
+                color = accent,
+                fontFamily = KanaFontFamily,
+                fontSize = if (lesson.symbol.length > 1) 36.sp else 47.sp,
+                fontWeight = FontWeight.Medium,
+                maxLines = 1,
+            )
         }
-        Box(Modifier.size(30.dp).clip(CircleShape).background(accent.copy(alpha = .1f)), contentAlignment = Alignment.Center) {
-            Text("›", fontSize = 24.sp, color = accent)
+    }
+}
+
+@Composable
+private fun LessonBookmark(number: Int, color: Color) {
+    Box(Modifier.width(52.dp).height(76.dp), contentAlignment = Alignment.TopCenter) {
+        Canvas(Modifier.fillMaxSize()) {
+            val notch = size.height * .14f
+            val path = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width, 0f)
+                lineTo(size.width, size.height)
+                lineTo(size.width / 2f, size.height - notch)
+                lineTo(0f, size.height)
+                close()
+            }
+            drawPath(path, color)
         }
+        Text(
+            number.toString(),
+            modifier = Modifier.padding(top = 12.dp),
+            color = Color.White,
+            fontSize = 23.sp,
+            fontWeight = FontWeight.ExtraBold,
+        )
     }
 }
 
