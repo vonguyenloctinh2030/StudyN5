@@ -18,10 +18,13 @@ import com.studyn5.kana.audio.AudioPlayer
 import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
+import com.studyn5.kana.data.LessonData
 import com.studyn5.kana.data.PracticeData
 import com.studyn5.kana.ui.detail.KanaDetailScreen
 import com.studyn5.kana.ui.home.HomeScreen
 import com.studyn5.kana.ui.list.KanaListScreen
+import com.studyn5.kana.ui.lessons.LessonViewModel
+import com.studyn5.kana.ui.lessons.LessonsScreen
 import com.studyn5.kana.ui.practice.PracticeScreen
 import com.studyn5.kana.ui.practice.PracticeViewModel
 import com.studyn5.kana.ui.pronunciation.PronunciationScreen
@@ -65,6 +68,7 @@ private fun AppNavigation(
     var selectedIndex by remember { mutableStateOf(0) }
     val context = LocalContext.current
     val practiceViewModel = remember { PracticeViewModel(PracticeData(context)) }
+    val lessonViewModel = remember { LessonViewModel(LessonData(context)) }
 
     BackHandler(enabled = route !is Screen.Home) {
         route = when (route) {
@@ -74,6 +78,14 @@ private fun AppNavigation(
                 if (practiceViewModel.mode.value == "play") {
                     practiceViewModel.backToSelect()
                     Screen.Practice
+                } else {
+                    Screen.Home
+                }
+            }
+            is Screen.Lessons -> {
+                if (lessonViewModel.selectedLesson.value != null) {
+                    lessonViewModel.backToLessons()
+                    Screen.Lessons
                 } else {
                     Screen.Home
                 }
@@ -91,6 +103,7 @@ private fun AppNavigation(
                 route = Screen.List
             },
             onOpenPractice = { route = Screen.Practice },
+            onOpenLessons = { route = Screen.Lessons },
             onOpenPronunciation = { route = Screen.Pronunciation },
             onOpenSpecialSounds = { route = Screen.SpecialSounds },
         )
@@ -120,6 +133,12 @@ private fun AppNavigation(
             onSpeak = onSpeakKey,
         )
 
+        is Screen.Lessons -> LessonsScreen(
+            viewModel = lessonViewModel,
+            onBack = { route = Screen.Home },
+            onSpeak = onSpeakKey,
+        )
+
         is Screen.Pronunciation -> PronunciationScreen(
             onBack = { route = Screen.Home },
             onSpeak = { kana -> onSpeak(kana) },
@@ -137,6 +156,7 @@ private sealed class Screen {
     data object List : Screen()
     data object Detail : Screen()
     data object Practice : Screen()
+    data object Lessons : Screen()
     data object Pronunciation : Screen()
     data object SpecialSounds : Screen()
 }

@@ -1,0 +1,901 @@
+lesson_id	kana	romaji	meaning_vi	audio_key	script	tags
+1	あおい	aoi	màu xanh [i-adj.]	lesson_e9b0c313e141	HIRAGANA	BASIC
+1	あか	aka	màu đỏ [danh từ]	lesson_40df09fa674c	HIRAGANA	BASIC
+1	あかい	akai	màu đỏ [i-adj.]	lesson_dd450823cddf	HIRAGANA	BASIC
+1	あかるい	akarui	sáng, nhẹ [i-adj.]	lesson_e5fff82246e9	HIRAGANA	BASIC
+1	あき	aki	mùa thu, mùa thu	lesson_4b61956523fd	HIRAGANA	BASIC
+1	あさ	asa	buổi sáng	lesson_4dcc6bc4aacb	HIRAGANA	BASIC
+1	あし	ashi	chân, bàn chân	lesson_07edf881b7d9	HIRAGANA	BASIC
+1	あした	ashita	ngày mai	lesson_542cc28807b4	HIRAGANA	BASIC
+1	あそこ	asoko	đằng kia	lesson_b1f9df0f3075	HIRAGANA	BASIC
+1	あたたかい	atatakai	ấm áp [i-adj.]	lesson_d13aa1e57ee3	HIRAGANA	BASIC
+1	あたま	atama	cái đầu	lesson_ffcae03e6057	HIRAGANA	BASIC
+1	あちら	achira	đằng kia 「	lesson_1de5a9729510	HIRAGANA	BASIC
+1	あつい	atsui	nóng [i-adj.]	lesson_f2bb1e2a7a1d	HIRAGANA	BASIC
+1	あと	ato	sau	lesson_0d930149329d	HIRAGANA	BASIC
+1	あに	ani	anh trai của tôi)	lesson_4205b176ccb4	HIRAGANA	BASIC
+1	あね	ane	chị gái của tôi)	lesson_be83b76cc2a4	HIRAGANA	BASIC
+1	あの	ano	đó	lesson_9d05d4a1b1d0	HIRAGANA	BASIC
+1	あまい	amai	ngọt ngào [i-adj.]	lesson_54a98b039322	HIRAGANA	BASIC
+1	あまり	amari	không nhiều	lesson_1d2fcffa225f	HIRAGANA	BASIC
+1	あめ	ame	mưa	lesson_d81b8564264c	HIRAGANA	BASIC
+1	あれ	are	đó (một)	lesson_01dd1d4130bb	HIRAGANA	BASIC
+1	いえ	ie	nhà ở	lesson_bf4e36ec4238	HIRAGANA	BASIC
+1	いくつ	ikutsu	bao nhiêu, bao nhiêu tuổi	lesson_0105b5ca5d3f	HIRAGANA	BASIC
+1	いくら	ikura	bao nhiêu	lesson_b90e2e1a940b	HIRAGANA	BASIC
+1	いけ	ike	ao	lesson_49a64b7c7597	HIRAGANA	BASIC
+1	いす	isu	cái ghế	lesson_c5197e840132	HIRAGANA	BASIC
+1	いたい	itai	đau đớn [i-adj.]	lesson_822eda79df50	HIRAGANA	BASIC
+1	いち	ichi	một	lesson_e0ef1ee214c0	HIRAGANA	BASIC
+1	いちにち	ichinichi	một ngày	lesson_a70466e1a280	HIRAGANA	BASIC
+1	いつ	itsu	khi nào	lesson_2d6221baa73f	HIRAGANA	BASIC
+1	いつか	itsuka	ngày thứ năm của tháng, năm ngày	lesson_325bbd592cf3	HIRAGANA	BASIC
+1	いつつ	itsutsu	năm	lesson_9a4151395fe1	HIRAGANA	BASIC
+1	いつも	itsumo	luôn luôn	lesson_f1c91811d480	HIRAGANA	BASIC
+1	いま	ima	bây giờ	lesson_23a32f106a4e	HIRAGANA	BASIC
+1	いみ	imi	ý nghĩa	lesson_344f44c618ec	HIRAGANA	BASIC
+1	いや	iya	đáng ghét, không đáng yêu, khó chịu [na-adj.]	lesson_c9177450298c	HIRAGANA	BASIC
+1	いろ	iro	màu sắc	lesson_2b4861b6770c	HIRAGANA	BASIC
+1	いろいろ	iroiro	nhiều [na-adj.]	lesson_0173abb167e5	HIRAGANA	BASIC
+1	うえ	ue	trên, trên, trên cùng	lesson_bae8a4bd8e8f	HIRAGANA	BASIC
+1	うしろ	ushiro	phía sau, đằng sau	lesson_8ee358d8870d	HIRAGANA	BASIC
+1	うすい	usui	mỏng [i-adj.]	lesson_78a4c8f4e80b	HIRAGANA	BASIC
+1	うた	uta	bài hát	lesson_47e97c8fbf0a	HIRAGANA	BASIC
+1	うち	uchi	nhà	lesson_1d25d18f1a3f	HIRAGANA	BASIC
+1	うみ	umi	biển	lesson_20efa2e0e457	HIRAGANA	BASIC
+1	うるさい	urusai	to [i-adj.]	lesson_dfd293206114	HIRAGANA	BASIC
+1	えき	eki	trạm	lesson_1f819272ac2b	HIRAGANA	BASIC
+1	おかし	okashi	bánh kẹo, bánh ngọt, kẹo, đồ ngọt	lesson_f0bfbff4725b	HIRAGANA	BASIC
+1	おかね	okane	tiền bạc	lesson_9fadedc0cac8	HIRAGANA	BASIC
+1	おくさん	okusan	vợ của ai đó	lesson_9205624fde3b	HIRAGANA	BASIC
+1	おそい	osoi	muộn [i-adj.]	lesson_d40fbf8a4594	HIRAGANA	BASIC
+1	おてあらい	otearai	nhà vệ sinh, nhà vệ sinh	lesson_8b8ccdbe3855	HIRAGANA	BASIC
+1	おとこ	otoko	nam giới	lesson_66d7061aba2f	HIRAGANA	BASIC
+1	おとこのこ	otokonoko	cậu bé	lesson_e06d5c5fd1ce	HIRAGANA	BASIC
+1	おととい	ototoi	ngày hôm kia	lesson_d236a1dc0fee	HIRAGANA	BASIC
+1	おととし	ototoshi	năm trước năm ngoái	lesson_cc8b39872172	HIRAGANA	BASIC
+1	おとな	otona	người lớn	lesson_2c340115d3b1	HIRAGANA	BASIC
+1	おなか	onaka	dạ dày	lesson_a3a37e953808	HIRAGANA	BASIC
+1	おみせ	omise	cửa hàng =	lesson_b9aa686c754a	HIRAGANA	BASIC
+1	おもい	omoi	nặng [i-adj.]	lesson_3d1f93b1214f	HIRAGANA	BASIC
+1	おもしろい	omoshiroi	vui vẻ, hài hước, thú vị [i-adj.]	lesson_e02d95623306	HIRAGANA	BASIC
+1	おんな	onna	nữ	lesson_a08f153eb608	HIRAGANA	BASIC
+1	おんなのこ	onnanoko	cô gái	lesson_1efb98c7bad0	HIRAGANA	BASIC
+1	かいもの	kaimono	mua sắm	lesson_d5e991c5fef6	HIRAGANA	BASIC
+1	かお	kao	đối mặt	lesson_0b2aa9996c59	HIRAGANA	BASIC
+1	かさ	kasa	ô	lesson_4eb7b7e8dd3a	HIRAGANA	BASIC
+1	かた	kata	người (tôn trọng)	lesson_24d7060bada9	HIRAGANA	BASIC
+1	かない	kanai	vợ của tôi	lesson_6d9ab82ea7c6	HIRAGANA	BASIC
+1	かみ	kami	giấy	lesson_8fc5be8946b3	HIRAGANA	BASIC
+1	からい	karai	nóng, cay [i-adj.]	lesson_7d2943b223c9	HIRAGANA	BASIC
+1	かるい	karui	nhẹ, không nặng [i-adj.]	lesson_07be28f2ef02	HIRAGANA	BASIC
+1	かわ	kawa	con sông	lesson_1d9015bd0f17	HIRAGANA	BASIC
+1	かんたん	kantan	dễ dàng [na-adj.]	lesson_e64cbd318df5	HIRAGANA	BASIC
+1	きた	kita	phía bắc	lesson_3fa23df0c3af	HIRAGANA	BASIC
+1	きたない	kitanai	bẩn [i-adj.]	lesson_967ca050c23e	HIRAGANA	BASIC
+1	きらい	kirai	đáng ghét, khó chịu, không đáng yêu [na-adj.]	lesson_1b81d16460de	HIRAGANA	BASIC
+1	きん	kin	thứ sáu =	lesson_e548b66f2e5c	HIRAGANA	BASIC
+1	くすり	kusuri	y học	lesson_8ab591415a2f	HIRAGANA	BASIC
+1	くち	kuchi	miệng	lesson_08c26b98ba98	HIRAGANA	BASIC
+1	くつ	kutsu	giày	lesson_412905de624a	HIRAGANA	BASIC
+1	くつした	kutsushita	vớ	lesson_8bed37e6fd35	HIRAGANA	BASIC
+1	くに	kuni	đất nước	lesson_7b473f28b399	HIRAGANA	BASIC
+1	くもり	kumori	thời tiết nhiều mây	lesson_2ea8f3e9ba90	HIRAGANA	BASIC
+1	くらい	kurai	tối [i-adj.]	lesson_63a45f719f92	HIRAGANA	BASIC
+1	くるま	kuruma	xe hơi	lesson_d4af6eb1ccdc	HIRAGANA	BASIC
+1	くろ	kuro	đen [danh từ]	lesson_cf934f3ce6a0	HIRAGANA	BASIC
+1	くろい	kuroi	đen [i-adj.]	lesson_5b0f8b645612	HIRAGANA	BASIC
+1	けさ	kesa	sáng nay	lesson_a070399dbfce	HIRAGANA	BASIC
+1	こえ	koe	giọng nói	lesson_291ce0bfd57b	HIRAGANA	BASIC
+1	ここ	koko	ở đây	lesson_c92a9d33a651	HIRAGANA	BASIC
+1	ここのか	kokonoka	ngày thứ chín của tháng, chín ngày	lesson_653cb7badef7	HIRAGANA	BASIC
+1	ここのつ	kokonotsu	chín	lesson_54178e61dc94	HIRAGANA	BASIC
+1	こたえ	kotae	câu trả lời	lesson_08e364f3e2a3	HIRAGANA	BASIC
+1	こちら	kochira	bên này, nơi này, bên này	lesson_8e357a093d6d	HIRAGANA	BASIC
+1	ことし	kotoshi	năm nay	lesson_137570996a66	HIRAGANA	BASIC
+1	この	kono	cái này	lesson_dc3e61880d43	HIRAGANA	BASIC
+1	これ	kore	cái này (một)	lesson_ac62cbc2adad	HIRAGANA	BASIC
+1	こんな	konna	kiểu này, như thế này [na-adj.]	lesson_67aae75bbf63	HIRAGANA	BASIC
+1	さかな	sakana	cá	lesson_c9a3ad83d0ca	HIRAGANA	BASIC
+1	さき	saki	trước đây, trước đó	lesson_215da46947dd	HIRAGANA	BASIC
+1	さむい	samui	lạnh (thời tiết) [i-adj.]	lesson_5ff1c21752cc	HIRAGANA	BASIC
+2	あさごはん	asagohan	bữa ăn sáng	lesson_4d59411a111e	HIRAGANA	DAKUON
+2	あぶない	abunai	nguy hiểm [i-adj.]	lesson_4fe91493828e	HIRAGANA	DAKUON
+2	いちど	ichido	một lần	lesson_ca5de0676199	HIRAGANA	DAKUON
+2	いちばん	ichiban	điều tốt nhất	lesson_419d11f5e0ff	HIRAGANA	DAKUON
+2	いりぐち	iriguchi	lối vào	lesson_43c0172ad9a5	HIRAGANA	DAKUON
+2	うわぎ	uwagi	áo khoác, áo jacket, áo khoác ngoài	lesson_33c65427683a	HIRAGANA	DAKUON
+2	おなじ	onaji	giống nhau	lesson_6c49211d949f	HIRAGANA	DAKUON
+2	おにぎり	onigiri	cơm nắm	lesson_634befb62a51	HIRAGANA	DAKUON
+2	おんがく	ongaku	âm nhạc	lesson_0c9a3f852968	HIRAGANA	DAKUON
+2	がいこく	gaikoku	nước ngoài	lesson_7892548ea0bc	HIRAGANA	DAKUON
+2	がいこくじん	gaikokujin	người nước ngoài	lesson_9ae667187f46	HIRAGANA	DAKUON
+2	かいだん	kaidan	cầu thang	lesson_0187ae27c711	HIRAGANA	DAKUON
+2	かぎ	kagi	chìa khóa	lesson_2aa878d72ad6	HIRAGANA	DAKUON
+2	かぜ	kaze	gió	lesson_eeae999e9ad7	HIRAGANA	DAKUON
+2	かぞく	kazoku	gia đình	lesson_710a4d550b6e	HIRAGANA	DAKUON
+2	かど	kado	góc	lesson_9b006a96d574	HIRAGANA	DAKUON
+2	かばん	kaban	túi	lesson_090c4c1158c0	HIRAGANA	DAKUON
+2	かびん	kabin	bình hoa	lesson_63f4a1a0a7d0	HIRAGANA	DAKUON
+2	からだ	karada	cơ thể	lesson_f81ed7a6a985	HIRAGANA	DAKUON
+2	かんじ	kanji	chữ Hán	lesson_32686218f109	HIRAGANA	DAKUON
+2	くだもの	kudamono	trái cây	lesson_f5a2cde1bf5a	HIRAGANA	DAKUON
+2	げんかん	genkan	cửa trước, lối vào phía trước	lesson_1d20a2ecf1b3	HIRAGANA	DAKUON
+2	げんき	genki	ổn [na-adj.]	lesson_8ae359757660	HIRAGANA	DAKUON
+2	ごご	gogo	buổi chiều, chiều	lesson_8338e52c2a4e	HIRAGANA	DAKUON
+2	ごぜん	gozen	sáng	lesson_172aebba3ba3	HIRAGANA	DAKUON
+2	ことば	kotoba	từ, ngôn ngữ, cụm từ	lesson_bb1285baf0fb	HIRAGANA	DAKUON
+2	こども	kodomo	đứa trẻ	lesson_bd26a6703971	HIRAGANA	DAKUON
+2	ごはん	gohan	cơm, bữa ăn	lesson_35206e78999e	HIRAGANA	DAKUON
+2	こんげつ	kongetsu	tháng này	lesson_81b989c177ad	HIRAGANA	DAKUON
+2	こんばん	konban	tối nay	lesson_a94007a0a981	HIRAGANA	DAKUON
+2	さいご	saigo	kết thúc, lần trước	lesson_384487d7298a	HIRAGANA	DAKUON
+2	さくぶん	sakubun	thành phần	lesson_b0b1f1ee874b	HIRAGANA	DAKUON
+2	じかん	jikan	thời gian	lesson_43528285458d	HIRAGANA	DAKUON
+2	しごと	shigoto	làm việc	lesson_f0b539cb324f	HIRAGANA	DAKUON
+2	しずか	shizuka	yên tĩnh [na-adj.]	lesson_75d440e93bca	HIRAGANA	DAKUON
+2	じびき	jibiki	từ điển =	lesson_10f40908ca48	HIRAGANA	DAKUON
+2	じぶん	jibun	chính mình	lesson_bcf787ffd5a9	HIRAGANA	DAKUON
+2	しんぶん	shinbun	tờ báo	lesson_4c1993fed88c	HIRAGANA	DAKUON
+2	すぐに	suguni	sớm, ngay lập tức	lesson_8aa86aa295b6	HIRAGANA	DAKUON
+2	せびろ	sebiro	áo khoác, bộ đồ	lesson_979fbb55639b	HIRAGANA	DAKUON
+2	せんげつ	sengetsu	tháng trước	lesson_4268d7bd5031	HIRAGANA	DAKUON
+2	ぜんぶ	zenbu	tất cả	lesson_dbcedef26053	HIRAGANA	DAKUON
+2	そば	soba	gần đó	lesson_aea7b4707315	HIRAGANA	DAKUON
+2	それでは	soredeha	vậy thì, được rồi	lesson_9ce951aa8e51	HIRAGANA	DAKUON
+2	だいがく	daigaku	trường đại học	lesson_04d5f579ed3d	HIRAGANA	DAKUON
+2	だいすき	daisuki	rất thích, rất thích [na-adj.]	lesson_0c82da5e8dea	HIRAGANA	DAKUON
+2	だいたい	daitai	gần như	lesson_65ede9049b5e	HIRAGANA	DAKUON
+2	だいどころ	daidokoro	nhà bếp	lesson_4ab7e0a6330a	HIRAGANA	DAKUON
+2	だから	dakara	vì vậy, do đó	lesson_c57ba9103d21	HIRAGANA	DAKUON
+2	たばこ	tabako	thuốc lá, thuốc lá	lesson_8b6b06a85157	HIRAGANA	DAKUON
+2	たぶん	tabun	có lẽ, có lẽ	lesson_fd3b626b8476	HIRAGANA	DAKUON
+2	たべもの	tabemono	thức ăn	lesson_791c549738ea	HIRAGANA	DAKUON
+2	たまご	tamago	quả trứng	lesson_7446c97eeae7	HIRAGANA	DAKUON
+2	だれ	dare	ai	lesson_2fb84bb825f8	HIRAGANA	DAKUON
+2	だんだん	dandan	dần dần, từng chút một	lesson_232cb07d995d	HIRAGANA	DAKUON
+2	ちず	chizu	bản đồ	lesson_a12b39180817	HIRAGANA	DAKUON
+2	つぎ	tsugi	tiếp theo	lesson_1863eae7cfba	HIRAGANA	DAKUON
+2	てがみ	tegami	lá thư	lesson_150b0dab8a45	HIRAGANA	DAKUON
+2	でぐち	deguchi	lối ra	lesson_3ca6e73dde08	HIRAGANA	DAKUON
+2	では	deha	vậy thì, vậy thì =	lesson_ce4a37e9b366	HIRAGANA	DAKUON
+2	でも	demo	nhưng	lesson_c1a550b9136f	HIRAGANA	DAKUON
+2	でんき	denki	điện	lesson_e9247487df58	HIRAGANA	DAKUON
+2	でんわ	denwa	điện thoại	lesson_78b47ae41b4f	HIRAGANA	DAKUON
+2	ときどき	tokidoki	đôi khi	lesson_744151957479	HIRAGANA	DAKUON
+2	どこ	doko	ở đâu	lesson_27b6a68a3360	HIRAGANA	DAKUON
+2	どこか	dokoka	ở đâu đó	lesson_81021dc6fd08	HIRAGANA	DAKUON
+2	どちら	dochira	cái nào」 「	lesson_92e9d13dac68	HIRAGANA	DAKUON
+2	どなた	donata	ai	lesson_45985db25602	HIRAGANA	DAKUON
+2	どの	dono	cái nào	lesson_88d5e5900e84	HIRAGANA	DAKUON
+2	ともだち	tomodachi	người bạn	lesson_fa04cb341f01	HIRAGANA	DAKUON
+2	えんぴつ	enpitsu	bút chì	lesson_d3d3e4e3d160	HIRAGANA	HANDAKUON
+2	さんぽ	sanpo	đi bộ	lesson_b2a2c7fef240	HIRAGANA	HANDAKUON
+2	しんぱい	shinpai	lo lắng	lesson_aa8f1a063254	HIRAGANA	HANDAKUON
+2	てんぽ	tenpo	cửa tiệm	lesson_5d3222bdec26	HIRAGANA	HANDAKUON
+2	かんぺき	kanpeki	hoàn hảo	lesson_ecbd4f007cbe	HIRAGANA	HANDAKUON
+2	げんぱつ	genpatsu	nhà máy điện hạt nhân	lesson_9d11cd2e39d6	HIRAGANA	DAKUON,HANDAKUON
+2	しんぴん	shinpin	bài viết mới	lesson_9d2e0e505794	HIRAGANA	HANDAKUON
+2	でんぱ	denpa	sóng vô tuyến	lesson_a7d045b87434	HIRAGANA	DAKUON,HANDAKUON
+2	あんぽ	anpo	an ninh (ví dụ: an ninh quốc gia)	lesson_f6405eca8588	HIRAGANA	HANDAKUON
+2	はんぱつ	hanpatsu	sự phản đối	lesson_662f4d57a31d	HIRAGANA	HANDAKUON
+2	ひんぱん	hinpan	thường xuyên	lesson_7098eace2d57	HIRAGANA	HANDAKUON
+2	こんぽん	konpon	gốc	lesson_ee0461c3e299	HIRAGANA	HANDAKUON
+2	こんぽんてき	konponteki	cơ bản	lesson_cbc39143c0c9	HIRAGANA	HANDAKUON
+2	しんぽ	shinpo	tiến bộ	lesson_cb8202e2e9c8	HIRAGANA	HANDAKUON
+2	はんぱ	hanpa	tàn dư	lesson_86b5e6b7b7ff	HIRAGANA	HANDAKUON
+2	ぜんぱん	zenpan	(cái) toàn bộ	lesson_a9f231e900ce	HIRAGANA	DAKUON,HANDAKUON
+2	べんぴ	benpi	táo bón	lesson_fcabd23b7837	HIRAGANA	DAKUON,HANDAKUON
+2	れんぱつ	renpatsu	xảy ra liên tiếp	lesson_3ba4932486dc	HIRAGANA	HANDAKUON
+2	しんぴ	shinpi	bí ẩn	lesson_8f2c473a488e	HIRAGANA	HANDAKUON
+2	しんぴてき	shinpiteki	bí ẩn	lesson_482ee8fab881	HIRAGANA	HANDAKUON
+2	きんぱつ	kinpatsu	tóc vàng	lesson_b1e6407c45fa	HIRAGANA	HANDAKUON
+2	たんぱくしつ	tanpakushitsu	chất đạm	lesson_1ebfce72a40e	HIRAGANA	HANDAKUON
+2	しんぱん	shinpan	sự phán xét	lesson_3c63e50c4543	HIRAGANA	HANDAKUON
+2	せんぱつ	senpatsu	bắt đầu trước	lesson_cee983473c26	HIRAGANA	HANDAKUON
+2	かんぱい	kanpai	chúc mừng	lesson_d2559689fa17	HIRAGANA	HANDAKUON
+2	さんぱい	sanpai	đi cầu nguyện (ở đền, chùa)	lesson_13141c51bebb	HIRAGANA	HANDAKUON
+2	たんぽ	tanpo	an ninh	lesson_416b09d7fbcc	HIRAGANA	HANDAKUON
+2	ねんぴ	nenpi	tiêu thụ nhiên liệu	lesson_cc5624906ff6	HIRAGANA	HANDAKUON
+2	たんぺん	tanpen	truyện ngắn	lesson_b32057b8a2e6	HIRAGANA	HANDAKUON
+2	ぶんぱい	bunpai	phép chia	lesson_ba760ff5f763	HIRAGANA	DAKUON,HANDAKUON
+3	あたらしい	atarashii	mới [i-adj.]	lesson_51073ad2e497	HIRAGANA	CHOUON
+3	いい	ii	tốt [i-adj.]	lesson_46b255d3a847	HIRAGANA	CHOUON
+3	いそがしい	isogashii	bận [i-adj.]	lesson_2b241e099ef8	HIRAGANA	CHOUON,DAKUON
+3	いもうと	imouto	em gái của tôi)	lesson_3f5b4e6556fa	HIRAGANA	CHOUON
+3	うれしい	ureshii	hạnh phúc, hài lòng [i-adj.]	lesson_543030e0a63b	HIRAGANA	CHOUON
+3	えいが	eiga	phim	lesson_e29f00262e76	HIRAGANA	CHOUON,DAKUON
+3	えいがかん	eigakan	rạp chiếu phim	lesson_a56d9474c7a8	HIRAGANA	CHOUON,DAKUON
+3	えいご	eigo	Tiếng Anh	lesson_b2319674cf34	HIRAGANA	CHOUON,DAKUON
+3	おいしい	oishii	ngon, ngon, ngon [i-adj.]	lesson_ac15ff145286	HIRAGANA	CHOUON
+3	おおい	ooi	rất nhiều [i-adj.]	lesson_5ab8b66eb8bf	HIRAGANA	CHOUON
+3	おおきい	ookii	lớn [i-adj.]	lesson_8638ff4445f2	HIRAGANA	CHOUON
+3	おおきな	ookina	lớn	lesson_e92155ac3ab2	HIRAGANA	CHOUON
+3	おおぜい	oozei	nhiều (người), rất nhiều (người)	lesson_a333d4ad13ab	HIRAGANA	CHOUON,DAKUON
+3	おじいさん	ojiisan	ông nội	lesson_f309e91869f7	HIRAGANA	CHOUON,DAKUON
+3	おとうと	otouto	em trai của tôi)	lesson_f4b1936b0927	HIRAGANA	CHOUON
+3	おにいさん	oniisan	anh trai của ai đó)	lesson_ecaf215b0381	HIRAGANA	CHOUON
+3	おねえさん	oneesan	chị gái của ai đó)	lesson_8cf44fafbf93	HIRAGANA	CHOUON
+3	おばあさん	obaasan	bà nội	lesson_55ab764826fe	HIRAGANA	CHOUON,DAKUON
+3	おべんとう	obentou	hộp cơm trưa	lesson_ca561a6e956c	HIRAGANA	CHOUON,DAKUON
+3	がくせい	gakusei	sinh viên	lesson_58f16b7e1247	HIRAGANA	CHOUON,DAKUON
+3	かようび	kayoubi	thứ ba	lesson_f99c2b5c538a	HIRAGANA	CHOUON,DAKUON
+3	かわいい	kawaii	xinh đẹp, ngọt ngào, dễ thương [i-adj.]	lesson_cdb471abd4fa	HIRAGANA	CHOUON
+3	きいろい	kiiroi	màu vàng [i-adj.]	lesson_8a3c3c156936	HIRAGANA	CHOUON
+3	きのう	kinou	hôm qua	lesson_c1da8370349b	HIRAGANA	CHOUON
+3	きゅう	kyuu	chín	lesson_850ea8378a58	HIRAGANA	CHOUON,YOUON
+3	ぎゅうにく	gyuuniku	thịt bò	lesson_6700b1a8c210	HIRAGANA	CHOUON,DAKUON,YOUON
+3	ぎゅうにゅう	gyuunyuu	sữa	lesson_309edf148b9c	HIRAGANA	CHOUON,DAKUON,YOUON
+3	きょう	kyou	hôm nay	lesson_858a1996f848	HIRAGANA	CHOUON,YOUON
+3	きょうしつ	kyoushitsu	lớp học	lesson_7e12821a5ba3	HIRAGANA	CHOUON,YOUON
+3	きょうだい	kyoudai	anh chị em; anh chị em ruột	lesson_8a0c119f7254	HIRAGANA	CHOUON,DAKUON,YOUON
+3	きょうと	kyouto	Kyoto [tên thành phố]	lesson_3fe44e06f2ba	HIRAGANA	CHOUON,YOUON
+3	きれい	kirei	đẹp, sạch sẽ [na-adj.]	lesson_2b8c515b4475	HIRAGANA	CHOUON
+3	ぎんこう	ginkou	ngân hàng	lesson_8ea2b1a28df9	HIRAGANA	CHOUON,DAKUON
+3	きんようび	kinyoubi	thứ sáu	lesson_0cbed1b75501	HIRAGANA	CHOUON,DAKUON
+3	げつようび	getsuyoubi	thứ hai	lesson_13856bbf7c54	HIRAGANA	CHOUON,DAKUON
+3	こうえん	kouen	công viên	lesson_89db3626278c	HIRAGANA	CHOUON
+3	こうばん	kouban	đồn cảnh sát	lesson_d0dfae87b141	HIRAGANA	CHOUON,DAKUON
+3	こんしゅう	konshuu	tuần này	lesson_c7f92dac1d13	HIRAGANA	CHOUON,YOUON
+3	さとう	satou	đường	lesson_e546ed0adf99	HIRAGANA	CHOUON
+3	じどうしゃ	jidousha	xe hơi	lesson_4da1b76781b9	HIRAGANA	CHOUON,DAKUON,YOUON
+3	しゅう	shuu	tuần	lesson_e5d40446ead1	HIRAGANA	CHOUON,YOUON
+3	じゅう	juu	mười	lesson_c3c54579ea2a	HIRAGANA	CHOUON,DAKUON,YOUON
+3	じゅぎょう	jugyou	lớp, bài học	lesson_ed45f312edd5	HIRAGANA	CHOUON,DAKUON,YOUON
+3	じょうず	jouzu	tốt, khéo léo [na-adj.]	lesson_5a563cde3c6e	HIRAGANA	CHOUON,DAKUON,YOUON
+3	じょうぶ	joubu	khỏe mạnh, mạnh mẽ, chắc chắn, bền bỉ [na-adj.]	lesson_d1e044a86f08	HIRAGANA	CHOUON,DAKUON,YOUON
+3	しょうゆ	shouyu	nước tương	lesson_317e77631478	HIRAGANA	CHOUON,YOUON
+3	しょくどう	shokudou	phòng ăn 10	lesson_813a882206dc	HIRAGANA	CHOUON,DAKUON,YOUON
+3	すいようび	suiyoubi	thứ tư	lesson_18d9cd747a1b	HIRAGANA	CHOUON,DAKUON
+3	すずしい	suzushii	mát mẻ (thời tiết) [i-adj.]	lesson_3f3faecf4445	HIRAGANA	CHOUON,DAKUON
+3	せいと	seito	sinh viên	lesson_fb40637776d9	HIRAGANA	CHOUON
+3	あさって	asatte	ngày mốt	lesson_5aa4954b69b1	HIRAGANA	SOKUON
+3	いっしょ	issho	cùng với nhau	lesson_5cd112204972	HIRAGANA	SOKUON,YOUON
+3	いっしょに	isshoni	cùng với nhau	lesson_3976ecd84121	HIRAGANA	SOKUON,YOUON
+3	がっこう	gakkou	trường học	lesson_d969bf3c1164	HIRAGANA	CHOUON,DAKUON,SOKUON
+3	きっさてん	kissaten	quán cà phê	lesson_8755c0574f02	HIRAGANA	SOKUON
+3	きって	kitte	tem	lesson_e72b7d7266eb	HIRAGANA	SOKUON
+3	きっぷ	kippu	vé	lesson_635a52a3cb17	HIRAGANA	HANDAKUON,SOKUON
+3	ざっし	zasshi	tạp chí	lesson_597e19a6ad28	HIRAGANA	DAKUON,SOKUON
+3	せっけん	sekken	xà phòng	lesson_363137950ed5	HIRAGANA	SOKUON
+3	ちょっと	chotto	một chút	lesson_f7b0201b3f0e	HIRAGANA	SOKUON,YOUON
+3	まっすぐ	massugu	thẳng [na-adj.]	lesson_3729cf98eb6d	HIRAGANA	DAKUON,SOKUON
+3	みっか	mikka	ngày thứ ba của tháng, ba ngày	lesson_94fae99f7c2c	HIRAGANA	SOKUON
+3	みっつ	mittsu	ba	lesson_a51025928299	HIRAGANA	SOKUON
+3	むっつ	muttsu	sáu	lesson_90e3a4ab0658	HIRAGANA	SOKUON
+3	もっと	motto	hơn thế nữa	lesson_2aaee3bd06df	HIRAGANA	SOKUON
+3	やっつ	yattsu	tám	lesson_88e3abac66bc	HIRAGANA	SOKUON
+3	ゆっくり	yukkuri	từ từ	lesson_1b1282bd4bad	HIRAGANA	SOKUON
+3	よっつ	yottsu	bốn	lesson_50df20e65716	HIRAGANA	SOKUON
+3	りっぱ	rippa	tốt, đẹp, đẹp mắt, lộng lẫy, tráng lệ [na-adj.]	lesson_5bb2b839dfcc	HIRAGANA	HANDAKUON,SOKUON
+3	いってきます	ittekimasu	Tôi đi đây, tôi đi đây. 1	lesson_78b86e4e9b50	HIRAGANA	SOKUON
+3	いらっしゃいませ	irasshaimase	Tôi có thể giúp gì cho bạn? (tại nhà hàng, cửa hàng) 1	lesson_97bed54b1a17	HIRAGANA	SOKUON,YOUON
+3	からって	karatte	chỉ vì	lesson_42dc7ef5eecd	HIRAGANA	SOKUON
+3	だった	datta	đã là	lesson_9cb6bd70a560	HIRAGANA	DAKUON,SOKUON
+3	ってことは	ttekotoha	đó là để nói	lesson_a7299e861852	HIRAGANA	SOKUON
+3	にってい	nittei	lịch trình	lesson_148dfdeb537f	HIRAGANA	CHOUON,SOKUON
+3	あっ	atsu	à	lesson_d9303c6e4b5a	HIRAGANA	SOKUON
+3	あっての	atteno	chỉ có thể tồn tại nhờ sự có mặt của	lesson_53645c67adc4	HIRAGANA	SOKUON
+3	にっぽん	nippon	Nhật Bản	lesson_771349cd96c6	HIRAGANA	HANDAKUON,SOKUON
+3	やった	yatta	hoan hô	lesson_40816daf6c85	HIRAGANA	SOKUON
+3	となったら	tonattara	ở đâu... có liên quan	lesson_3d362201c959	HIRAGANA	SOKUON
+3	にあっては	niatteha	trong	lesson_3441120ff1f6	HIRAGANA	SOKUON
+3	あってない	attenai	thiếu một số thuộc tính mong muốn (kích thước, tính hữu dụng, v.v.)	lesson_ed4de687f011	HIRAGANA	SOKUON
+3	やっか	yakka	giá thuốc	lesson_e2cbcbaa0c2c	HIRAGANA	SOKUON
+3	にっちゅう	nitchuu	ban ngày	lesson_0c37cc40832d	HIRAGANA	CHOUON,SOKUON,YOUON
+3	だったら	dattara	nếu đúng như vậy	lesson_2c1fd3e5e61e	HIRAGANA	DAKUON,SOKUON
+3	よっか	yokka	ngày thứ 4 của tháng	lesson_9513786f2995	HIRAGANA	SOKUON
+3	といっても	toittemo	mặc dù tôi nói	lesson_19b5ad0722ba	HIRAGANA	SOKUON
+3	かといって	katoitte	đã nói điều đó	lesson_a1f143d06666	HIRAGANA	SOKUON
+3	そういった	souitta	như thế	lesson_d1e1e556abd2	HIRAGANA	CHOUON,SOKUON
+3	やっき	yakki	tuyệt vọng	lesson_21cefe95837f	HIRAGANA	SOKUON
+3	だったりして	dattarishite	có thể là vậy	lesson_7b4e158836e6	HIRAGANA	DAKUON,SOKUON
+3	いっかい	ikkai	một lần	lesson_98af5c57e6a2	HIRAGANA	SOKUON
+3	いっぽん	ippon	một vật hình trụ dài	lesson_8680d3c18fc2	HIRAGANA	HANDAKUON,SOKUON
+3	しゅったい	shuttai	sự xuất hiện	lesson_b825acaebfeb	HIRAGANA	SOKUON,YOUON
+3	しまった	shimatta	chết tiệt!	lesson_3d1e33ba1fd9	HIRAGANA	SOKUON
+3	いって	itte	một nước đi (trong cờ vây, shogi, v.v.)	lesson_715945a59cb3	HIRAGANA	SOKUON
+3	けっか	kekka	kết quả	lesson_e39c3cc7bbcf	HIRAGANA	SOKUON
+3	にっか	nikka	thói quen hàng ngày	lesson_2f5abd1153bc	HIRAGANA	SOKUON
+3	いっこく	ikkoku	một quốc gia	lesson_8a306c22c536	HIRAGANA	SOKUON
+3	によって	niyotte	theo	lesson_73df4a2be584	HIRAGANA	SOKUON
+4	アメリカ	amerika	Hợp chủng quốc Hoa Kỳ	lesson_2dcbf2a36cf1	KATAKANA	BASIC
+4	エアコン	eakon	điều hòa không khí	lesson_53f2d6a079d3	KATAKANA	BASIC
+4	カタカナ	katakana	katakana	lesson_937f1f51e4db	KATAKANA	BASIC
+4	カメラ	kamera	máy ảnh	lesson_fb6e4872b720	KATAKANA	BASIC
+4	クラス	kurasu	lớp học	lesson_8b27332ee07f	KATAKANA	BASIC
+4	テスト	tesuto	kiểm tra	lesson_63b560db8849	KATAKANA	BASIC
+4	トイレ	toire	nhà vệ sinh, nhà vệ sinh	lesson_4bdd080a827c	KATAKANA	BASIC
+4	ナイフ	naifu	con dao	lesson_051e8f938739	KATAKANA	BASIC
+4	ネクタイ	nekutai	cà vạt	lesson_8d4ce1616a36	KATAKANA	BASIC
+4	ハンカチ	hankachi	khăn tay	lesson_a1737936a70d	KATAKANA	BASIC
+4	フィルム	firumu	phim ảnh	lesson_929226ba4118	KATAKANA	BASIC
+4	ホテル	hoteru	khách sạn	lesson_6f0b069faec6	KATAKANA	BASIC
+4	メモ	memo	bản ghi nhớ	lesson_9060a06d59ff	KATAKANA	BASIC
+4	レストラン	resutoran	nhà hàng	lesson_a4e764301cf7	KATAKANA	BASIC
+4	アニメ	anime	hoạt hình	lesson_70092af8e575	KATAKANA	BASIC
+4	サイト	saito	trang web	lesson_5df07921c74c	KATAKANA	BASIC
+4	システム	shisutemu	hệ thống	lesson_b3d83cd9d956	KATAKANA	BASIC
+4	マン	man	người đàn ông	lesson_42c5de2fad0a	KATAKANA	BASIC
+4	イヤ	iya	không thích	lesson_339a2363f6e0	KATAKANA	BASIC
+4	ファン	fan	quạt	lesson_7d0dc595181e	KATAKANA	BASIC
+4	リンク	rinku	liên kết	lesson_8fe750a53916	KATAKANA	BASIC
+4	ウソ	uso	nói dối	lesson_d17a62187144	KATAKANA	BASIC
+4	タイトル	taitoru	tiêu đề	lesson_47b4753f220d	KATAKANA	BASIC
+4	ネタ	neta	tài liệu (cho một câu chuyện, bài viết, v.v.)	lesson_b8f2b7cd7ab1	KATAKANA	BASIC
+4	キレイ	kirei	xinh đẹp	lesson_361988c46c29	KATAKANA	BASIC
+4	コメント	komento	bình luận	lesson_41a632efa308	KATAKANA	BASIC
+4	ロシア	roshia	Nga	lesson_2b63917c3632	KATAKANA	BASIC
+4	ファンサイト	fansaito	trang web dành cho người hâm mộ (trang web do người hâm mộ của một người nổi tiếng, chương trình truyền hình, v.v.) điều hành.)	lesson_fe6ddc69af54	KATAKANA	BASIC
+4	ソフト	sofuto	mềm mại	lesson_31a32890887e	KATAKANA	BASIC
+4	スマホ	sumaho	điện thoại thông minh	lesson_a221639ae81f	KATAKANA	BASIC
+4	ライン	rain	dòng	lesson_d66208e54c14	KATAKANA	BASIC
+4	ハイ	hai	cao (tinh thần)	lesson_fe532292d865	KATAKANA	BASIC
+4	ママ	mama	mẹ	lesson_14f1f19e41b4	KATAKANA	BASIC
+4	フランス	furansu	Pháp	lesson_55b4e062f966	KATAKANA	BASIC
+4	メイン	mein	chính	lesson_2a865a6304db	KATAKANA	BASIC
+4	アクセス	akusesu	truy cập (đến một địa điểm, đặc biệt là sử dụng phương tiện giao thông công cộng)	lesson_94b210729674	KATAKANA	BASIC
+4	スタイル	sutairu	hình dáng (của một người)	lesson_ccc33c6323a7	KATAKANA	BASIC
+4	サクラ	sakura	cây anh đào	lesson_c86cc9b89b6a	KATAKANA	BASIC
+4	タイム	taimu	thời gian (để, làm)	lesson_e03dc363e493	KATAKANA	BASIC
+4	リスト	risuto	danh sách	lesson_b096d1406175	KATAKANA	BASIC
+4	アイテム	aitemu	mục	lesson_e9b1131f211a	KATAKANA	BASIC
+4	ファイル	fairu	hồ sơ (để giữ giấy tờ)	lesson_6422db7e92b5	KATAKANA	BASIC
+4	リアル	riaru	thực	lesson_81f68fd11348	KATAKANA	BASIC
+4	イラスト	irasuto	hình minh họa	lesson_1232a9d8485f	KATAKANA	BASIC
+4	ワン	wan	một	lesson_1c78de4590f8	KATAKANA	BASIC
+4	フル	furu	đầy đủ	lesson_698e9aca2b16	KATAKANA	BASIC
+4	タイ	tai	cà vạt	lesson_d9b6ded59a15	KATAKANA	BASIC
+4	ミス	misu	sai lầm	lesson_edfe868e849c	KATAKANA	BASIC
+4	モノ	mono	đơn sắc	lesson_9aeb0add2768	KATAKANA	BASIC
+4	イン	in	trong (của một quả bóng; trong quần vợt, v.v.)	lesson_4483b5f331e8	KATAKANA	BASIC
+4	キス	kisu	hôn	lesson_38e8334f0533	KATAKANA	BASIC
+4	イカ	ika	mực nang	lesson_645de62e0960	KATAKANA	BASIC
+4	ライト	raito	ánh sáng	lesson_c67fa3bcb4b8	KATAKANA	BASIC
+4	ストレス	sutoresu	căng thẳng	lesson_056302b76fe8	KATAKANA	BASIC
+4	キロ	kiro	kilôgam	lesson_b3af9a7dd56d	KATAKANA	BASIC
+4	テロ	tero	khủng bố	lesson_fb3ab7e415aa	KATAKANA	BASIC
+4	リスク	risuku	rủi ro	lesson_27fef4cf26af	KATAKANA	BASIC
+4	エリア	eria	khu vực	lesson_e61e12908cd1	KATAKANA	BASIC
+4	スト	suto	đình công (tức là hành động công nghiệp)	lesson_9c2c608f3aff	KATAKANA	BASIC
+4	ミニ	mini	váy ngắn	lesson_609354b15ba6	KATAKANA	BASIC
+4	オンライン	onrain	trực tuyến	lesson_69078300f234	KATAKANA	BASIC
+4	ワイン	wain	rượu nho	lesson_176987c87c65	KATAKANA	BASIC
+4	イタリア	itaria	Ý	lesson_f043c656b4ea	KATAKANA	BASIC
+4	オタク	otaku	otaku	lesson_e8ceaa8f6b45	KATAKANA	BASIC
+4	カフェ	kafe	quán cà phê	lesson_8de76f0a3c71	KATAKANA	BASIC
+4	オフィス	ofisu	văn phòng	lesson_f713282a59b5	KATAKANA	BASIC
+4	クリスマス	kurisumasu	giáng sinh	lesson_a646289ad73a	KATAKANA	BASIC
+4	トン	ton	tấn (đặc biệt là tấn mét, tức là 1000 kg)	lesson_7b098c0deece	KATAKANA	BASIC
+4	ランク	ranku	cấp bậc	lesson_e6724c7a3509	KATAKANA	BASIC
+4	サイン	sain	chữ ký	lesson_818e2731ee93	KATAKANA	BASIC
+4	アホ	aho	ngu ngốc	lesson_1fe325ea37d9	KATAKANA	BASIC
+4	マシン	mashin	máy móc	lesson_7944ce610946	KATAKANA	BASIC
+4	アナ	ana	phát thanh viên	lesson_e9002d6345e8	KATAKANA	BASIC
+4	コスト	kosuto	chi phí	lesson_2e4db15e73eb	KATAKANA	BASIC
+4	ソロ	soro	một mình	lesson_c599b21cfb4c	KATAKANA	BASIC
+4	ケンカ	kenka	cãi nhau	lesson_d5f34b970262	KATAKANA	BASIC
+4	ハウス	hausu	nhà ở	lesson_290ce3db4e6b	KATAKANA	BASIC
+4	レス	resu	trả lời	lesson_b54be40f8196	KATAKANA	BASIC
+4	ホワイト	howaito	trắng	lesson_70952919cf78	KATAKANA	BASIC
+4	センス	sensu	hương vị (trong thời trang, âm nhạc, v.v.)	lesson_8e5e7fe8b745	KATAKANA	BASIC
+4	イケメン	ikemen	anh chàng đẹp trai	lesson_090237d3922e	KATAKANA	BASIC
+4	ニコニコ	nikoniko	với nụ cười thân thiện	lesson_fb1125f2ef88	KATAKANA	BASIC
+4	ミサイル	misairu	tên lửa	lesson_8a7227af9eac	KATAKANA	BASIC
+4	ラン	ran	chạy	lesson_f5ae0896ade5	KATAKANA	BASIC
+4	マスク	masuku	(mặt) mặt nạ	lesson_2691c20d4232	KATAKANA	BASIC
+4	メイク	meiku	trang điểm	lesson_fba47fcc8ed9	KATAKANA	BASIC
+4	オフ	ofu	(tắt) tắt	lesson_17b500293e98	KATAKANA	BASIC
+4	コマ	koma	hôn mê (của sao chổi)	lesson_5c53d02baea6	KATAKANA	BASIC
+4	クロス	kurosu	chéo	lesson_1cca5259693b	KATAKANA	BASIC
+4	コイン	koin	đồng xu	lesson_19a6922d349b	KATAKANA	BASIC
+4	メキシコ	mekishiko	México	lesson_4e5ca0c42c4b	KATAKANA	BASIC
+4	アウト	auto	ra khỏi (của một quả bóng; trong quần vợt, v.v.)	lesson_44c47a6b3d01	KATAKANA	BASIC
+4	イオン	ion	ion	lesson_90d4718c9022	KATAKANA	BASIC
+4	ライフ	raifu	cuộc sống	lesson_69500b3282aa	KATAKANA	BASIC
+4	ウイルス	uirusu	virus	lesson_fcd7a1405fb1	KATAKANA	BASIC
+4	マス	masu	khối lượng	lesson_797a48eb6e75	KATAKANA	BASIC
+4	ラスト	rasuto	cuối cùng	lesson_749963877615	KATAKANA	BASIC
+4	キリスト	kirisuto	Chúa Kitô	lesson_06d22cb0fc99	KATAKANA	BASIC
+4	タン	tan	lưỡi (thịt bò, thịt lợn, v.v.)	lesson_5974ac57bcb9	KATAKANA	BASIC
+4	テニス	tenisu	quần vợt	lesson_5f420bb5eb79	KATAKANA	BASIC
+5	ズボン	zubon	quần, quần	lesson_b80459523ee3	KATAKANA	DAKUON
+5	ゼロ	zero	không	lesson_d3a4ab7b3e1d	KATAKANA	DAKUON
+5	テレビ	terebi	truyền hình	lesson_3e5b741313bc	KATAKANA	DAKUON
+5	ドア	doa	cửa	lesson_50b943d01fa9	KATAKANA	DAKUON
+5	バス	basu	xe buýt	lesson_4018296bb921	KATAKANA	DAKUON
+5	ビル	biru	tòa nhà	lesson_203b1c40f154	KATAKANA	DAKUON
+5	ボタン	botan	nút	lesson_ad905be0f23e	KATAKANA	DAKUON
+5	ラジオ	rajio	đài phát thanh	lesson_d4729409b440	KATAKANA	DAKUON
+5	マンガ	manga	phim hoạt hình	lesson_1ea57b3ad22c	KATAKANA	DAKUON
+5	イベント	ibento	sự kiện	lesson_e18b1ea15d9c	KATAKANA	DAKUON
+5	ライブ	raibu	trực tiếp (phát sóng, âm nhạc, v.v.)	lesson_5a7f3c7a75e2	KATAKANA	DAKUON
+5	モデル	moderu	người mẫu	lesson_1e20dd673d7a	KATAKANA	DAKUON
+5	レベル	reberu	cấp độ	lesson_001bb7792848	KATAKANA	DAKUON
+5	デザイン	dezain	thiết kế	lesson_02f17fee864f	KATAKANA	DAKUON
+5	ブログ	burogu	blog	lesson_48716572b3f6	KATAKANA	DAKUON
+5	ガン	gan	súng	lesson_2836da543651	KATAKANA	DAKUON
+5	ドラマ	dorama	phim truyền hình dài tập (không phải tài liệu)	lesson_77bf3dd73ea1	KATAKANA	DAKUON
+5	アイドル	aidoru	người biểu diễn (thường là trong một nhóm nhạc nam hoặc nhóm nhạc nữ) với hình ảnh được trau dồi để thu hút lượng người hâm mộ tận tâm theo dõi	lesson_e675291623a1	KATAKANA	DAKUON
+5	ドイツ	doitsu	nước Đức	lesson_b64b40a7ec7a	KATAKANA	DAKUON
+5	ドル	doru	đô la	lesson_6959faaf507b	KATAKANA	DAKUON
+5	オリジナル	orijinaru	nguyên bản	lesson_1bf1ff0410ca	KATAKANA	DAKUON
+5	スゴイ	sugoi	khủng khiếp	lesson_d5a236033419	KATAKANA	DAKUON
+5	ランキング	rankingu	xếp hạng	lesson_50552289d30b	KATAKANA	DAKUON
+5	プレゼント	purezento	hiện tại	lesson_5a5f08df9472	KATAKANA	DAKUON,HANDAKUON
+5	メディア	media	phương tiện truyền thông	lesson_4f48dbef7425	KATAKANA	DAKUON
+5	サイズ	saizu	kích thước	lesson_cd3361122279	KATAKANA	DAKUON
+5	バンド	bando	ban nhạc (nhóm nhạc sĩ)	lesson_c098491c166e	KATAKANA	DAKUON
+5	クラブ	kurabu	hộp đêm	lesson_643d3c85a93e	KATAKANA	DAKUON
+5	ガス	gasu	khí (làm nhiên liệu)	lesson_a912f297da78	KATAKANA	DAKUON
+5	アルバム	arubamu	album	lesson_d720ac115b29	KATAKANA	DAKUON
+5	ビジネス	bijinesu	kinh doanh	lesson_5b070f57a617	KATAKANA	DAKUON
+5	プログラム	puroguramu	chương trình (sự kiện, âm nhạc, v.v.)	lesson_7d0d433e795f	KATAKANA	DAKUON,HANDAKUON
+5	ダンス	dansu	khiêu vũ	lesson_795d25e718e1	KATAKANA	DAKUON
+5	エンジン	enjin	động cơ	lesson_b31743889359	KATAKANA	DAKUON
+5	シングル	shinguru	độc thân	lesson_e1767a27436d	KATAKANA	DAKUON
+5	プロジェクト	purojiekuto	dự án	lesson_598ab78312d8	KATAKANA	DAKUON,HANDAKUON
+5	ダム	damu	con đập	lesson_7271fdbbc397	KATAKANA	DAKUON
+5	ビデオ	bideo	video (đặc biệt là một hình ảnh truyền hình)	lesson_6f08bb70da36	KATAKANA	DAKUON
+5	ベスト	besuto	tốt nhất	lesson_00d516cd674a	KATAKANA	DAKUON
+5	バイト	baito	công việc bán thời gian	lesson_ce82a9621f9a	KATAKANA	DAKUON
+5	デジタル	dejitaru	kỹ thuật số	lesson_b46daed44749	KATAKANA	DAKUON
+5	タイミング	taimingu	thời gian	lesson_d34a0b6d2153	KATAKANA	DAKUON
+5	イギリス	igirisu	Vương quốc Anh	lesson_67c73f17c865	KATAKANA	DAKUON
+5	ブランド	burando	nhãn hiệu	lesson_6330bdc01583	KATAKANA	DAKUON
+5	ボス	bosu	ông chủ	lesson_cab5ef8006c6	KATAKANA	DAKUON
+5	ドラゴン	doragon	rồng (như được mô tả trong thần thoại phương Tây)	lesson_ba8c67df93ed	KATAKANA	DAKUON
+5	ゴミ	gomi	rác rưởi	lesson_2b1c1684034a	KATAKANA	DAKUON
+5	バランス	baransu	cân bằng	lesson_b53db1eab7ce	KATAKANA	DAKUON
+5	アジア	ajia	Châu Á	lesson_84ac9b087cc0	KATAKANA	DAKUON
+5	バイク	baiku	xe gắn máy	lesson_62754c6b059d	KATAKANA	DAKUON
+5	コンビニ	konbini	cửa hàng tiện lợi	lesson_6dc0f603699b	KATAKANA	DAKUON
+5	インド	indo	Ấn Độ	lesson_b7e02fc879dc	KATAKANA	DAKUON
+5	ゲスト	gesuto	khách	lesson_896be4bc37e1	KATAKANA	DAKUON
+5	サイド	saido	bên	lesson_db0bc4b68646	KATAKANA	DAKUON
+5	マジメ	majime	nghiêm trọng	lesson_66cc84ba856f	KATAKANA	DAKUON
+5	ロンドン	rondon	Luân Đôn (Anh)	lesson_4743b0a6d9fa	KATAKANA	DAKUON
+5	タグ	tagu	gắn thẻ	lesson_26fff73dfc90	KATAKANA	DAKUON
+5	トラブル	toraburu	rắc rối	lesson_6971c1eea244	KATAKANA	DAKUON
+5	タバコ	tabako	thuốc lá	lesson_7ac1457c9543	KATAKANA	DAKUON
+5	ダウン	daun	ngã	lesson_9799a80d9a60	KATAKANA	DAKUON
+5	リング	ringu	chiếc nhẫn	lesson_a4280e468294	KATAKANA	DAKUON
+5	サブ	sabu	phụ	lesson_20f1356b4759	KATAKANA	DAKUON
+5	ドライブ	doraibu	lái xe	lesson_3aa6571a5e9f	KATAKANA	DAKUON
+5	キング	kingu	vua	lesson_e5459684c2c5	KATAKANA	DAKUON
+5	ラブ	rabu	tình yêu	lesson_354decc5da97	KATAKANA	DAKUON
+5	ガラス	garasu	kính	lesson_d3ca8a8168a8	KATAKANA	DAKUON
+5	ゴルフ	gorufu	chơi gôn	lesson_56fd6f27e8b6	KATAKANA	DAKUON
+5	ランド	rando	đất đai	lesson_1fd4c2a6bdfe	KATAKANA	DAKUON
+5	ジム	jimu	phòng tập thể dục	lesson_4099fd9114e8	KATAKANA	DAKUON
+5	バン	ban	búi tóc (kiểu tóc)	lesson_d0078b258bcd	KATAKANA	DAKUON
+5	パン	pan	bánh mì	lesson_7fc267f6fbea	KATAKANA	HANDAKUON
+5	ペン	pen	cây bút	lesson_93943573d27f	KATAKANA	HANDAKUON
+5	アプリ	apuri	ứng dụng	lesson_c6ae2b3d5bc2	KATAKANA	HANDAKUON
+5	プロ	puro	chuyên nghiệp	lesson_af693cf16867	KATAKANA	HANDAKUON
+5	ポイント	pointo	điểm (của một câu chuyện, lập luận, v.v.)	lesson_81299e6a6858	KATAKANA	HANDAKUON
+5	タイプ	taipu	loại	lesson_3fc53d516938	KATAKANA	HANDAKUON
+5	プレイ	purei	chơi	lesson_4b346b942f50	KATAKANA	HANDAKUON
+5	パンツ	pantsu	quần lót	lesson_fe643b80ac5c	KATAKANA	HANDAKUON
+5	パソコン	pasokon	máy tính cá nhân	lesson_8082c61fad55	KATAKANA	HANDAKUON
+5	ポスト	posuto	hộp thư	lesson_9eb7a5c4903d	KATAKANA	HANDAKUON
+5	フランスパン	furansupan	Bánh mì Pháp (đặc biệt là baguette)	lesson_bdb3536006d8	KATAKANA	HANDAKUON
+5	パリ	pari	Paris (Pháp)	lesson_3c54998e7749	KATAKANA	HANDAKUON
+5	パパ	papa	bố	lesson_cbf0cb2ae688	KATAKANA	HANDAKUON
+5	ピン	pin	ghim (ví dụ: kẹp tóc, ghim an toàn)	lesson_7711ed0df6ee	KATAKANA	HANDAKUON
+5	ピンク	pinku	màu hồng	lesson_caaf2acdb25e	KATAKANA	HANDAKUON
+5	プラス	purasu	dương (số)	lesson_7751d5a1a705	KATAKANA	HANDAKUON
+5	スペイン	supein	Tây Ban Nha	lesson_6c29d6fd0a2c	KATAKANA	HANDAKUON
+5	ピアノ	piano	đàn piano (nhạc cụ)	lesson_64c024120119	KATAKANA	HANDAKUON
+5	プレミアム	puremiamu	phí bảo hiểm	lesson_6be90d6a4ff5	KATAKANA	HANDAKUON
+5	パス	pasu	vượt qua (một cuộc kiểm tra, kiểm tra, v.v.)	lesson_3b14402093fc	KATAKANA	HANDAKUON
+5	サンプル	sanpuru	mẫu vật	lesson_b80f059f7c63	KATAKANA	HANDAKUON
+5	ピンポイント	pinpointo	xác định chính xác	lesson_56791b19aed7	KATAKANA	HANDAKUON
+5	レイプ	reipu	hiếp dâm	lesson_906e32e497c5	KATAKANA	HANDAKUON
+5	シンプル	shinpuru	đơn giản	lesson_f58ac571c92e	KATAKANA	HANDAKUON
+5	ピザ	piza	pizza	lesson_f1281d45e2c3	KATAKANA	DAKUON,HANDAKUON
+5	コスプレ	kosupure	cosplay (hóa trang thành nhân vật trong anime, manga, trò chơi điện tử, v.v.)	lesson_90e43b3e7ff5	KATAKANA	HANDAKUON
+5	パイ	pai	chiếc bánh	lesson_3d41c7aa7c96	KATAKANA	HANDAKUON
+5	プラン	puran	kế hoạch	lesson_8eec3c602a26	KATAKANA	HANDAKUON
+5	スタンプ	sutanpu	tem	lesson_79a934542e7d	KATAKANA	HANDAKUON
+5	スパイ	supai	điệp viên	lesson_cc3fa48c03d2	KATAKANA	HANDAKUON
+6	アパート	apaato	căn hộ	lesson_410cbef3e768	KATAKANA	CHOUON,HANDAKUON
+6	エレベーター	erebeetaa	thang máy, thang máy	lesson_6bc049363dc1	KATAKANA	CHOUON,DAKUON
+6	カレンダー	karendaa	lịch	lesson_340ba3962c52	KATAKANA	CHOUON,DAKUON
+6	ギター	gitaa	đàn ghi-ta	lesson_b072d58a68ef	KATAKANA	CHOUON,DAKUON
+6	ケーキ	keeki	bánh ngọt	lesson_c973e21d6d52	KATAKANA	CHOUON
+6	コート	kooto	áo khoác	lesson_9cfa0ecabe92	KATAKANA	CHOUON
+6	コーヒー	koohii	cà phê	lesson_cab9ec7ba27d	KATAKANA	CHOUON
+6	コピー	kopii	sao chép	lesson_e94c21076629	KATAKANA	CHOUON,HANDAKUON
+6	シャワー	shawaa	tắm	lesson_73c3d99c8ce8	KATAKANA	CHOUON,YOUON
+6	ジュース	juusu	nước trái cây	lesson_08a070c801ee	KATAKANA	CHOUON,DAKUON,YOUON
+6	スカート	sukaato	váy	lesson_6fb93ec6c83f	KATAKANA	CHOUON
+6	ストーブ	sutoobu	bếp lò, lò sưởi	lesson_8582db604d3c	KATAKANA	CHOUON,DAKUON
+6	スプーン	supuun	cái thìa	lesson_7b890f2a0d04	KATAKANA	CHOUON,HANDAKUON
+6	スポーツ	supootsu	các môn thể thao	lesson_fa5e8912c738	KATAKANA	CHOUON,HANDAKUON
+6	セーター	seetaa	áo len	lesson_0fbaf7026687	KATAKANA	CHOUON
+6	タクシー	takushii	taxi	lesson_efd84ccbf402	KATAKANA	CHOUON
+6	テープ	teepu	băng	lesson_199f0632b83c	KATAKANA	CHOUON,HANDAKUON
+6	テーブル	teeburu	bàn	lesson_ad4232da13b0	KATAKANA	CHOUON,DAKUON
+6	デパート	depaato	cửa hàng bách hóa	lesson_ba46c84a5750	KATAKANA	CHOUON,DAKUON,HANDAKUON
+6	ニュース	nyuusu	tin tức	lesson_68cd1ffec81d	KATAKANA	CHOUON,YOUON
+6	ノート	nooto	sổ tay	lesson_ac3e6d2e7121	KATAKANA	CHOUON
+6	パーティー	paateii	bữa tiệc	lesson_8d91280aeecd	KATAKANA	CHOUON,HANDAKUON
+6	バター	bataa	bơ	lesson_07507f45f253	KATAKANA	CHOUON,DAKUON
+6	プール	puuru	bể bơi	lesson_8075af292874	KATAKANA	CHOUON,HANDAKUON
+6	フォーク	fooku	cái nĩa	lesson_664380bd2dbd	KATAKANA	CHOUON
+6	ページ	peeji	trang 53	lesson_b4f80c74188e	KATAKANA	CHOUON,DAKUON,HANDAKUON
+6	ボールペン	boorupen	bút bi	lesson_76ff250bb776	KATAKANA	CHOUON,DAKUON,HANDAKUON
+6	メートル	meetoru	mét	lesson_daa50ee18b1d	KATAKANA	CHOUON
+6	ラーメン	raamen	ramen, mì	lesson_9dadb366aba9	KATAKANA	CHOUON
+6	レコード	rekoodo	ghi lại	lesson_fe4e4afd0115	KATAKANA	CHOUON,DAKUON
+6	ゲーム	geemu	trò chơi	lesson_3081d7739206	KATAKANA	CHOUON,DAKUON
+6	チーム	chiimu	đội	lesson_d873d27b1c25	KATAKANA	CHOUON
+6	カード	kaado	thẻ (thông tin, hồ sơ, vv)	lesson_ab1110fbbc07	KATAKANA	CHOUON,DAKUON
+6	シリーズ	shiriizu	loạt	lesson_593c55136d82	KATAKANA	CHOUON,DAKUON
+6	テレビゲーム	terebigeemu	trò chơi điện tử (chơi trên bảng điều khiển gia đình)	lesson_e2f5563d5ceb	KATAKANA	CHOUON,DAKUON
+6	イメージ	imeeji	hình ảnh (trong tâm trí của một người)	lesson_0ece1be953d7	KATAKANA	CHOUON,DAKUON
+6	サービス	saabisu	dịch vụ	lesson_2dd5ca6b6bfa	KATAKANA	CHOUON,DAKUON
+6	データ	deeta	dữ liệu	lesson_d4d63da93d12	KATAKANA	CHOUON,DAKUON
+6	メール	meeru	email	lesson_32ed60ff9f0c	KATAKANA	CHOUON
+6	メンバー	menbaa	thành viên	lesson_b3085a2dbe76	KATAKANA	CHOUON,DAKUON
+6	カードゲーム	kaadogeemu	trò chơi bài	lesson_533451c87ecb	KATAKANA	CHOUON,DAKUON
+6	グループ	guruupu	nhóm (thông thường là người)	lesson_7769eea4413b	KATAKANA	CHOUON,DAKUON,HANDAKUON
+6	センター	sentaa	trung tâm	lesson_13b32f26115b	KATAKANA	CHOUON
+6	シーン	shiin	bối cảnh	lesson_9feee177dcf2	KATAKANA	CHOUON
+6	スーパー	suupaa	siêu thị	lesson_39c9d3da59ba	KATAKANA	CHOUON,HANDAKUON
+6	コード	koodo	mã	lesson_31c02c9bf671	KATAKANA	CHOUON,DAKUON
+6	ツアー	tsuaa	chuyến tham quan	lesson_ae0748603257	KATAKANA	CHOUON
+6	テーマ	teema	chủ đề	lesson_4561c17e3b38	KATAKANA	CHOUON
+6	ユーザー	yuuzaa	người dùng	lesson_e6073ae328e6	KATAKANA	CHOUON,DAKUON
+6	スタート	sutaato	bắt đầu	lesson_a4f8bdbf55ea	KATAKANA	CHOUON
+6	コップ	koppu	ly, cốc uống nước	lesson_d6a3164cd40d	KATAKANA	HANDAKUON,SOKUON
+6	サッカー	sakkaa	bóng đá, bóng đá	lesson_5c7866a75081	KATAKANA	CHOUON,SOKUON
+6	スリッパ	surippa	dép đi trong nhà	lesson_82c521a5c3a4	KATAKANA	HANDAKUON,SOKUON
+6	ベッド	beddo	giường	lesson_de92f995f049	KATAKANA	DAKUON,SOKUON
+6	ポケット	poketto	túi	lesson_eeac642c9f10	KATAKANA	HANDAKUON,SOKUON
+6	マッチ	matchi	trận đấu	lesson_edcf5ff7a041	KATAKANA	SOKUON
+6	ネット	netto	mạng lưới	lesson_2339adb8d9ba	KATAKANA	SOKUON
+6	チェック	chekku	kiểm tra (mẫu)	lesson_0e9a2e499f0c	KATAKANA	SOKUON
+6	セット	setto	bộ (của sự vật)	lesson_4f70eee769de	KATAKANA	SOKUON
+6	アップ	appu	tăng lên	lesson_56ec2320ba54	KATAKANA	HANDAKUON,SOKUON
+6	トップ	toppu	hàng đầu	lesson_5307be4b4d7e	KATAKANA	HANDAKUON,SOKUON
+6	セックス	sekkusu	tình dục	lesson_f8d4c83a4941	KATAKANA	SOKUON
+6	スタッフ	sutaffu	nhân viên	lesson_3ec1136d47b2	KATAKANA	SOKUON
+6	ロック	rokku	khóa	lesson_609429c5872d	KATAKANA	SOKUON
+6	カップ	kappu	cốc (bình uống nước, thước đo, yếm, giải thưởng, v.v.)	lesson_bb67d4e49d91	KATAKANA	HANDAKUON,SOKUON
+6	メッセージ	messeeji	tin nhắn	lesson_6640e4a39293	KATAKANA	CHOUON,DAKUON,SOKUON
+6	ブラック	burakku	màu đen	lesson_07bf02eea47f	KATAKANA	DAKUON,SOKUON
+6	バック	bakku	trở lại	lesson_067328416c99	KATAKANA	DAKUON,SOKUON
+6	ブロック	burokku	khối (vật liệu rắn)	lesson_65f1a4621d9f	KATAKANA	DAKUON,SOKUON
+6	エッチ	etchi	H	lesson_e148396ef480	KATAKANA	SOKUON
+6	ロボット	robotto	người máy	lesson_10f3e14d0162	KATAKANA	DAKUON,SOKUON
+6	インターネット	intaanetto	Internet	lesson_d987d4b7cab4	KATAKANA	CHOUON,SOKUON
+6	オリンピック	orinpikku	Thế vận hội	lesson_8674d24e69d0	KATAKANA	HANDAKUON,SOKUON
+6	ティーバック	teiibakku	lưng chữ T	lesson_5b4854ead152	KATAKANA	CHOUON,DAKUON,SOKUON
+6	トラック	torakku	xe tải	lesson_590c50ab363b	KATAKANA	SOKUON
+6	ヒット	hitto	đánh	lesson_f5c94c17e24e	KATAKANA	SOKUON
+6	ダイエット	daietto	chế độ ăn uống	lesson_5f8e507f935f	KATAKANA	DAKUON,SOKUON
+6	レッド	reddo	màu đỏ	lesson_97397cc2e0a7	KATAKANA	DAKUON,SOKUON
+6	バックネット	bakkunetto	chặn lại	lesson_033a8e3ecf00	KATAKANA	DAKUON,SOKUON
+6	ラインアップ	rain'appu	đội hình (của người chơi, sản phẩm, v.v.)	lesson_3eab81dd9dfe	KATAKANA	HANDAKUON,SOKUON
+6	カット	katto	cắt	lesson_6c1ad4cc68fb	KATAKANA	SOKUON
+6	グッズ	guzzu	hàng hóa	lesson_1dacfa28b6d7	KATAKANA	DAKUON,SOKUON
+6	トップスター	toppusutaa	ngôi sao hàng đầu (đặc biệt là vai nam chính trong đoàn kịch toàn nữ Takarazuka)	lesson_6b67197da4ca	KATAKANA	CHOUON,HANDAKUON,SOKUON
+6	コーヒーカップ	koohiikappu	tách cà phê	lesson_f3593b14c488	KATAKANA	CHOUON,HANDAKUON,SOKUON
+6	コミック	komikku	truyện tranh	lesson_e71ef87caab6	KATAKANA	SOKUON
+6	ショップ	shoppu	cửa tiệm	lesson_73b87d6b76c9	KATAKANA	HANDAKUON,SOKUON,YOUON
+6	ショック	shokku	sốc (cảm xúc)	lesson_0dd5e6f4f047	KATAKANA	SOKUON,YOUON
+6	ボックス	bokkusu	cái hộp	lesson_6e41e1488337	KATAKANA	DAKUON,SOKUON
+6	ヨーロッパ	yooroppa	Châu Âu	lesson_e19ae381618a	KATAKANA	CHOUON,HANDAKUON,SOKUON
+6	ネットワーク	nettowaaku	mạng lưới	lesson_12bc92db7d30	KATAKANA	CHOUON,SOKUON
+6	チケット	chiketto	vé	lesson_3549da88529b	KATAKANA	SOKUON
+6	パック	pakku	gói	lesson_707809132b6e	KATAKANA	HANDAKUON,SOKUON
+6	ユニット	yunitto	đơn vị	lesson_e49f0eb2e107	KATAKANA	SOKUON
+6	ペット	petto	thú cưng	lesson_36454dc98108	KATAKANA	HANDAKUON,SOKUON
+6	ファッション	fasshon	thời trang	lesson_fde5cffeeff2	KATAKANA	SOKUON,YOUON
+6	バッグ	baggu	túi	lesson_79694eef4281	KATAKANA	DAKUON,SOKUON
+6	ブック	bukku	cuốn sách	lesson_35e8180b6f12	KATAKANA	DAKUON,SOKUON
+6	クリック	kurikku	(chuột) nhấp chuột	lesson_599eb22f4ddc	KATAKANA	SOKUON
+6	カップル	kappuru	cặp đôi	lesson_deff1678ad25	KATAKANA	HANDAKUON,SOKUON
+6	ジャケット	jaketto	áo khoác	lesson_59eda6517d94	KATAKANA	DAKUON,SOKUON,YOUON
+7	ごしゅじん	goshujin	chồng của ai đó	lesson_bcae670a1852	HIRAGANA	DAKUON,YOUON
+7	じしょ	jisho	từ điển	lesson_97666def0ea0	HIRAGANA	DAKUON,YOUON
+7	じてんしゃ	jitensha	xe đạp	lesson_211dddf921a2	HIRAGANA	DAKUON,YOUON
+7	しゅくだい	shukudai	bài tập về nhà	lesson_fd5e3b08dbd9	HIRAGANA	DAKUON,YOUON
+7	そうじ	souji	dọn dẹp	lesson_58473c53d010	HIRAGANA	CHOUON,DAKUON
+7	だいじょうぶ	daijoubu	được rồi, không vấn đề gì [na-adj.]	lesson_54640dc1d65f	HIRAGANA	CHOUON,DAKUON,YOUON
+7	ただしい	tadashii	đúng [i-adj.]	lesson_404f9ddf84c0	HIRAGANA	CHOUON,DAKUON
+7	たんじょうび	tanjoubi	sinh nhật	lesson_099732e9eb0c	HIRAGANA	CHOUON,DAKUON,YOUON
+7	ちょうど	choudo	chỉ	lesson_c663aa8496ae	HIRAGANA	CHOUON,DAKUON,YOUON
+7	でんしゃ	densha	xe lửa	lesson_c5b48d951de5	HIRAGANA	DAKUON,YOUON
+7	でんわばんごう	denwabangou	số điện thoại	lesson_021dccf903ec	HIRAGANA	CHOUON,DAKUON
+7	どう	dou	làm thế nào	lesson_95f7d9ec06d8	HIRAGANA	CHOUON,DAKUON
+7	どうして	doushite	tại sao	lesson_0dfa61bfb6d7	HIRAGANA	CHOUON,DAKUON
+7	どうぶつ	doubutsu	động vật	lesson_13035a844ccc	HIRAGANA	CHOUON,DAKUON
+7	どようび	doyoubi	thứ bảy	lesson_d9ccde3f8f77	HIRAGANA	CHOUON,DAKUON
+7	どれ	dore	cái nào	lesson_793b833d8a25	HIRAGANA	DAKUON
+7	どんな	donna	loại gì	lesson_3b11d8fbf1d2	HIRAGANA	DAKUON
+7	ながい	nagai	dài [i-adj.]	lesson_87154448a3f5	HIRAGANA	DAKUON
+7	なんじ	nanji	mấy giờ	lesson_8acf078cd9d5	HIRAGANA	DAKUON
+7	にぎやか	nigiyaka	sống động [na-adj.]	lesson_462bd1618e91	HIRAGANA	DAKUON
+7	はっぴょう	happyou	thông báo	lesson_acc6683647ee	HIRAGANA	CHOUON,HANDAKUON,SOKUON,YOUON
+7	いっぱん	ippan	chung	lesson_42f07d37e26e	HIRAGANA	HANDAKUON,SOKUON
+7	いっぱんてき	ippanteki	chung	lesson_ea5f6eabbd0f	HIRAGANA	HANDAKUON,SOKUON
+7	やっぱり	yappari	như mong đợi	lesson_3ed5ff56d10e	HIRAGANA	HANDAKUON,SOKUON
+7	はっぴょうかい	happyoukai	(trường học) buổi biểu diễn	lesson_9de2df0ce6e9	HIRAGANA	CHOUON,HANDAKUON,SOKUON,YOUON
+7	いっぽう	ippou	một (đặc biệt là hai)	lesson_b60c856bd35a	HIRAGANA	CHOUON,HANDAKUON,SOKUON
+7	しっぱい	shippai	thất bại	lesson_389112cadc63	HIRAGANA	HANDAKUON,SOKUON
+7	いっぽうてき	ippouteki	một chiều	lesson_360282ed3ab4	HIRAGANA	CHOUON,HANDAKUON,SOKUON
+7	いっぱい	ippai	một thất bại	lesson_d2de6b00c6cf	HIRAGANA	HANDAKUON,SOKUON
+7	おっぱい	oppai	ngực	lesson_828860e753a8	HIRAGANA	HANDAKUON,SOKUON
+7	いっぱつ	ippatsu	một phát súng	lesson_71bfa9e66715	HIRAGANA	HANDAKUON,SOKUON
+7	それっぽい	soreppoi	(cái gì đó) như thế	lesson_38b08646c82a	HIRAGANA	HANDAKUON,SOKUON
+7	みはっぴょう	mihappyou	chưa được xuất bản	lesson_fd49de3401fd	HIRAGANA	CHOUON,HANDAKUON,SOKUON,YOUON
+7	いっぽ	ippo	(a) bước	lesson_b70eb89e94e0	HIRAGANA	HANDAKUON,SOKUON
+7	しゅっぱん	shuppan	công bố	lesson_20b9314c1420	HIRAGANA	HANDAKUON,SOKUON,YOUON
+7	おとなっぽい	otonappoi	trưởng thành (cách cư xử, v.v.)	lesson_d07e54eddbe3	HIRAGANA	HANDAKUON,SOKUON
+7	けんぽう	kenpou	hiến pháp	lesson_eed141366436	HIRAGANA	CHOUON,HANDAKUON
+7	さっぽろ	sapporo	Sapporo (thành phố ở Hokkaido)	lesson_21c4fcf9fe16	HIRAGANA	HANDAKUON,SOKUON
+7	しゅっぱんぶつ	shuppanbutsu	công bố	lesson_edaeb9f0a1cb	HIRAGANA	DAKUON,HANDAKUON,SOKUON,YOUON
+7	いっぴき	ippiki	một (động vật nhỏ)	lesson_be2be88286e9	HIRAGANA	HANDAKUON,SOKUON
+7	いしゃ	isha	bác sĩ =	lesson_b68960b205eb	HIRAGANA	YOUON
+7	おちゃ	ocha	trà	lesson_23d07bd2dd9e	HIRAGANA	YOUON
+7	かいしゃ	kaisha	công ty	lesson_605cbfae5612	HIRAGANA	YOUON
+7	きょねん	kyonen	năm ngoái	lesson_9f810066c735	HIRAGANA	YOUON
+7	しゃしん	shashin	bức ảnh, bức ảnh, bức ảnh	lesson_99b7c3e66e4b	HIRAGANA	YOUON
+7	せんしゅう	senshuu	tuần trước	lesson_815d3b877575	HIRAGANA	CHOUON,YOUON
+7	ちゃいろ	chairo	nâu	lesson_73e12cd2065f	HIRAGANA	YOUON
+7	ちゃわん	chawan	cơm) bát	lesson_578f0b66d9ab	HIRAGANA	YOUON
+7	とうきょう	toukyou	Tokyo	lesson_058b6f147da6	HIRAGANA	CHOUON,YOUON
+7	としょかん	toshokan	thư viện	lesson_36f9f83211c1	HIRAGANA	YOUON
+7	ひゃく	hyaku	trăm	lesson_1119c7bdbd3b	HIRAGANA	YOUON
+7	びょういん	byouin	bệnh viện	lesson_0cad0571d44b	HIRAGANA	CHOUON,DAKUON,YOUON
+7	びょうき	byouki	bệnh tật, căn bệnh	lesson_bae2a731c887	HIRAGANA	CHOUON,DAKUON,YOUON
+7	ぶんしょう	bunshou	văn bản	lesson_5011234a1066	HIRAGANA	CHOUON,DAKUON,YOUON
+7	まいしゅう	maishuu	mỗi tuần	lesson_e11df8f7950a	HIRAGANA	CHOUON,YOUON
+7	ゆうびんきょく	yuubinkyoku	bưu điện	lesson_022b7bdd1855	HIRAGANA	CHOUON,DAKUON,YOUON
+7	らいしゅう	raishuu	tuần tới	lesson_9d52e342379a	HIRAGANA	CHOUON,YOUON
+7	りゅうがくせい	ryuugakusei	sinh viên du học	lesson_c424b9b709c2	HIRAGANA	CHOUON,DAKUON,YOUON
+7	りょうしん	ryoushin	bố mẹ	lesson_6d01d02cd792	HIRAGANA	CHOUON,YOUON
+7	りょうり	ryouri	nấu ăn	lesson_e437be4fbe8f	HIRAGANA	CHOUON,YOUON
+7	せんせい	sensei	giáo viên	lesson_4ca0d0546bc2	HIRAGANA	CHOUON
+7	たいてい	taitei	hầu hết, thường là	lesson_94bfa2764324	HIRAGANA	CHOUON
+7	たのしい	tanoshii	thú vị, dễ chịu [i-adj.]	lesson_e2ed223cac40	HIRAGANA	CHOUON
+7	ちいさい	chiisai	nhỏ bé	lesson_c8584afcd2d0	HIRAGANA	CHOUON
+7	ちいさな	chiisana	danh từ]	lesson_4848aece109a	HIRAGANA	CHOUON
+7	とうふ	toufu	đậu phụ	lesson_ce3b2d915838	HIRAGANA	CHOUON
+7	とお	too	mười	lesson_3edf7389c1df	HIRAGANA	CHOUON
+7	とおい	tooi	xa [i-adj.]	lesson_429a9494df3b	HIRAGANA	CHOUON
+7	とおく	tooku	xa, xa [danh từ]	lesson_22a1c6bd7822	HIRAGANA	CHOUON
+7	とおか	tooka	ngày thứ mười của tháng, mười ngày	lesson_3061a0812422	HIRAGANA	CHOUON
+7	とけい	tokei	đồng hồ, đồng hồ đeo tay	lesson_554662dab345	HIRAGANA	CHOUON
+7	にちようび	nichiyoubi	chủ nhật	lesson_8254487a7be4	HIRAGANA	CHOUON,DAKUON
+7	ばんごう	bangou	con số	lesson_78fc285b999a	HIRAGANA	CHOUON,DAKUON
+7	ひこうき	hikouki	máy bay	lesson_e199a05a667b	HIRAGANA	CHOUON
+7	ふうとう	fuutou	phong bì	lesson_5a2aff2b1bbd	HIRAGANA	CHOUON
+7	ほう	hou	B là ... hơn A	lesson_061e47f77568	HIRAGANA	CHOUON
+7	ぼうし	boushi	mũ, mũ	lesson_266341094f59	HIRAGANA	CHOUON,DAKUON
+7	ほしい	hoshii	muốn (cái gì đó) [i-adj.]	lesson_833f924dd584	HIRAGANA	CHOUON
+7	ほんとう	hontou	thực sự, sự thật	lesson_06b273db9078	HIRAGANA	CHOUON
+7	むこう	mukou	đằng kia	lesson_30cf531a31f1	HIRAGANA	CHOUON
+7	にっかん	nikkan	ấn phẩm hàng ngày	lesson_31410526fc05	HIRAGANA	SOKUON
+7	だって	datte	sau tất cả	lesson_c5d3234783ab	HIRAGANA	DAKUON,SOKUON
+7	れっか	rekka	sự suy giảm (về chất lượng, hiệu suất, v.v.)	lesson_8b0a5386f335	HIRAGANA	SOKUON
+7	ことによって	kotoniyotte	qua	lesson_8a83bcd039b7	HIRAGANA	SOKUON
+7	じゅうよっか	juuyokka	Ngày 14 của tháng	lesson_106d2b4de8d2	HIRAGANA	CHOUON,DAKUON,SOKUON,YOUON
+7	にっき	nikki	nhật ký	lesson_a0f3d8b3b731	HIRAGANA	SOKUON
+7	によってことなる	niyottekotonaru	khác nhau tùy theo...	lesson_d63a096f8fa7	HIRAGANA	SOKUON
+7	ぜったい	zettai	tuyệt đối	lesson_489e273678c4	HIRAGANA	DAKUON,SOKUON
+7	ぜったいに	zettaini	tuyệt đối	lesson_40e80b93bf9c	HIRAGANA	DAKUON,SOKUON
+7	いってん	itten	điểm	lesson_1389d5cc52e2	HIRAGANA	SOKUON
+7	じっさい	jissai	thực tế	lesson_b62f4fbfc3c4	HIRAGANA	DAKUON,SOKUON
+7	じっさいは	jissaiha	thực tế	lesson_af79ada3d83a	HIRAGANA	DAKUON,SOKUON
+7	ごっかん	gokkan	cực lạnh	lesson_6f4be337245e	HIRAGANA	DAKUON,SOKUON
+7	もってくる	mottekuru	mang theo (cái gì)	lesson_365e2b765cff	HIRAGANA	SOKUON
+7	けっこん	kekkon	hôn nhân	lesson_392da4e7d891	HIRAGANA	SOKUON
+7	あっというま	attoiuma	ngay lập tức	lesson_f38f447e81d3	HIRAGANA	SOKUON
+7	あっというまに	attoiumani	ngay lập tức	lesson_08eae7b159e9	HIRAGANA	SOKUON
+7	ずっと	zutto	liên tục	lesson_48f70ea252b7	HIRAGANA	DAKUON,SOKUON
+7	いっきょく	ikkyoku	giai điệu (giai điệu, đoạn nhạc)	lesson_3387b73100a8	HIRAGANA	SOKUON,YOUON
+7	ぜったいてき	zettaiteki	tuyệt đối	lesson_ba82c74dd079	HIRAGANA	DAKUON,SOKUON
+8	ボール	booru	trái bóng	lesson_04e9ee8d4ac8	KATAKANA	CHOUON,DAKUON
+8	ベース	beesu	căn cứ	lesson_871d5ba3d946	KATAKANA	CHOUON,DAKUON
+8	エネルギー	enerugii	năng lượng	lesson_578325b56bfa	KATAKANA	CHOUON,DAKUON
+8	ステージ	suteeji	sân khấu (sân khấu)	lesson_382a75488bd1	KATAKANA	CHOUON,DAKUON
+8	バー	baa	thanh	lesson_625f9648bf11	KATAKANA	CHOUON,DAKUON
+8	デビュー	debyuu	ra mắt	lesson_a708ccd767b1	KATAKANA	CHOUON,DAKUON,YOUON
+8	デート	deeto	hẹn hò (với ai đó)	lesson_71911cd8dbd2	KATAKANA	CHOUON,DAKUON
+8	ビール	biiru	bia	lesson_4c341ae8e8e9	KATAKANA	CHOUON,DAKUON
+8	カバー	kabaa	che	lesson_7d9a21b27aaa	KATAKANA	CHOUON,DAKUON
+8	シーズン	shiizun	mùa giải (thời gian diễn ra các trận đấu được quy định)	lesson_1839816e329f	KATAKANA	CHOUON,DAKUON
+8	モード	moodo	chế độ (ví dụ: của máy)	lesson_97d717916b30	KATAKANA	CHOUON,DAKUON
+8	タイゲーム	taigeemu	trò chơi buộc	lesson_5bec4d3e1ccf	KATAKANA	CHOUON,DAKUON
+8	バスツアー	basutsuaa	chuyến tham quan bằng xe buýt	lesson_aecaac86ab2c	KATAKANA	CHOUON,DAKUON
+8	インタビュー	intabyuu	cuộc phỏng vấn (trên truyền hình, trên báo, v.v.)	lesson_073eafeb0c95	KATAKANA	CHOUON,DAKUON,YOUON
+8	ブルー	buruu	màu xanh	lesson_96aea44a0c8f	KATAKANA	CHOUON,DAKUON
+8	リーダー	riidaa	lãnh đạo	lesson_2fa6e1dccb15	KATAKANA	CHOUON,DAKUON
+8	バージョン	baajon	phiên bản	lesson_7b193c28d422	KATAKANA	CHOUON,DAKUON,YOUON
+8	ジャンル	janru	thể loại	lesson_e38ec79f98f6	KATAKANA	DAKUON,YOUON
+8	ダウンロード	daunroodo	tải về	lesson_bc3a85876c88	KATAKANA	CHOUON,DAKUON
+8	ロード	roodo	đường	lesson_c83820992b47	KATAKANA	CHOUON,DAKUON
+8	オープン	oopun	khai trương (một cửa hàng mới, sân golf, đường băng, v.v.)	lesson_265f036d1e69	KATAKANA	CHOUON,HANDAKUON
+8	パワー	pawaa	quyền lực	lesson_4c0c4a4c87b9	KATAKANA	CHOUON,HANDAKUON
+8	キャンペーン	kyanpeen	(bán hàng) khuyến mại	lesson_2032565a4d98	KATAKANA	CHOUON,HANDAKUON,YOUON
+8	サポート	sapooto	hỗ trợ	lesson_449c69d77701	KATAKANA	CHOUON,HANDAKUON
+8	パターン	pataan	hoa văn	lesson_c5b3b4a7db05	KATAKANA	CHOUON,HANDAKUON
+8	プレイヤー	pureiyaa	người chơi	lesson_197f0ff2bea0	KATAKANA	CHOUON,HANDAKUON
+8	マンパワー	manpawaa	nhân lực	lesson_b044b8fc49bc	KATAKANA	CHOUON,HANDAKUON
+8	スペース	supeesu	không gian	lesson_8c8ed585f93c	KATAKANA	CHOUON,HANDAKUON
+8	スペシャル	supesharu	đặc biệt	lesson_051c07cfc82e	KATAKANA	HANDAKUON,YOUON
+8	ジャンプ	janpu	nhảy	lesson_72846f25bfe6	KATAKANA	DAKUON,HANDAKUON,YOUON
+8	スピード	supiido	tốc độ	lesson_b69cc9df9747	KATAKANA	CHOUON,DAKUON,HANDAKUON
+8	プロフィール	purofiiru	hồ sơ	lesson_0190762129db	KATAKANA	CHOUON,HANDAKUON
+8	コンピュータ	konpyuuta	máy tính	lesson_b4d5f27f8efc	KATAKANA	CHOUON,HANDAKUON,YOUON
+8	ポール	pooru	cực	lesson_fc1a6f099b2b	KATAKANA	CHOUON,HANDAKUON
+8	パートナー	paatonaa	(khiêu vũ) bạn nhảy	lesson_51c6ed0e175b	KATAKANA	CHOUON,HANDAKUON
+8	パート	paato	một phần	lesson_0ce32fe62c0a	KATAKANA	CHOUON,HANDAKUON
+8	ホームページ	hoomupeeji	trang chủ (của một trang web hoặc trình duyệt)	lesson_c4526dbf0967	KATAKANA	CHOUON,DAKUON,HANDAKUON
+8	パーツ	paatsu	một phần	lesson_2ec7f8ee96d7	KATAKANA	CHOUON,HANDAKUON
+8	ジャパン	japan	Nhật Bản	lesson_a4d9ee79af54	KATAKANA	DAKUON,HANDAKUON,YOUON
+8	パー	paa	ngang bằng	lesson_6d4dea10b203	KATAKANA	CHOUON,HANDAKUON
+8	シャツ	shatsu	áo sơ mi	lesson_b0b79149886d	KATAKANA	YOUON
+8	ワイシャツ	waishatsu	Y	lesson_6b7abebc15c6	KATAKANA	YOUON
+8	キャラ	kyara	(hư cấu) nhân vật	lesson_10014a4d6804	KATAKANA	YOUON
+8	キャラクター	kyarakutaa	nhân vật	lesson_614189b3887e	KATAKANA	CHOUON,YOUON
+8	チャンス	chansu	cơ hội	lesson_fd395d8bb214	KATAKANA	YOUON
+8	ティーシャツ	teiishatsu	áo phông	lesson_49b7a88032b4	KATAKANA	CHOUON,YOUON
+8	ニューヨーク	nyuuyooku	New York	lesson_ae4521e86845	KATAKANA	CHOUON,YOUON
+8	ショー	shoo	hiển thị	lesson_86567ad7887d	KATAKANA	CHOUON,YOUON
+8	ニュー	nyuu	mới	lesson_bf9e9455afde	KATAKANA	CHOUON,YOUON
+8	チャンネル	channeru	kênh	lesson_fcdd051bf770	KATAKANA	YOUON
+8	レビュー	rebyuu	đánh giá	lesson_3c5ba2f1b6be	KATAKANA	CHOUON,DAKUON,YOUON
+8	コミュニティ	komyunitei	cộng đồng	lesson_53b17bf60b04	KATAKANA	YOUON
+8	アクション	akushon	hành động	lesson_faedd7eb6ac9	KATAKANA	YOUON
+8	キャリア	kyaria	sự nghiệp	lesson_c21c17c0c51d	KATAKANA	YOUON
+8	チャレンジ	charenji	tham gia (một thử thách)	lesson_6722041428da	KATAKANA	DAKUON,YOUON
+8	キャスト	kyasuto	dàn diễn viên (của một bộ phim, vở kịch...)	lesson_43559b6cb29c	KATAKANA	YOUON
+8	メニュー	menyuu	thực đơn	lesson_8f99b5f7c588	KATAKANA	CHOUON,YOUON
+8	フィギュア	figyua	hình	lesson_9dec44a3aaa7	KATAKANA	DAKUON,YOUON
+8	コレクション	korekushon	bộ sưu tập (tác phẩm nghệ thuật, tem, v.v.)	lesson_a669a8902635	KATAKANA	YOUON
+8	セキュリティ	sekyuritei	an ninh	lesson_81b9e6929d22	KATAKANA	YOUON
+8	メーカー	meekaa	nhà sản xuất (đặc biệt là một công ty lớn)	lesson_ec092a4eff87	KATAKANA	CHOUON
+8	コース	koosu	khóa học	lesson_7ce7d5b637b4	KATAKANA	CHOUON
+8	フリー	furii	tự do (kiềm chế, kiểm soát, v.v.)	lesson_c55126c0d67b	KATAKANA	CHOUON
+8	スター	sutaa	ngôi sao (diễn viên, vận động viên, v.v.)	lesson_b9d21fe93fad	KATAKANA	CHOUON
+8	カラー	karaa	màu sắc	lesson_121ae791f11b	KATAKANA	CHOUON
+8	レース	reesu	cuộc đua	lesson_38dba9d52bab	KATAKANA	CHOUON
+8	キー	kii	chìa khóa (để mở khóa)	lesson_c4ad48954bd3	KATAKANA	CHOUON
+8	マーク	maaku	đánh dấu	lesson_f54fcf00b776	KATAKANA	CHOUON
+8	ルール	ruuru	cai trị	lesson_fafa32e8be5b	KATAKANA	CHOUON
+8	ケース	keesu	thùng (hộp đựng)	lesson_8662c94b2692	KATAKANA	CHOUON
+8	リリース	ririisu	phát hành (phim, sản phẩm...)	lesson_938d86a39fd7	KATAKANA	CHOUON
+8	ストーリー	sutoorii	câu chuyện	lesson_3bc4f7683cbd	KATAKANA	CHOUON
+8	ホーム	hoomu	nền tảng	lesson_ed28cf13bde2	KATAKANA	CHOUON
+8	ロー	roo	thấp	lesson_0e2867a917da	KATAKANA	CHOUON
+8	カレー	karee	cà ri (đặc biệt là cà ri Nhật Bản)	lesson_c14314827041	KATAKANA	CHOUON
+8	マスター	masutaa	thành thạo (một kỹ năng)	lesson_518467dd8f62	KATAKANA	CHOUON
+8	ノー	noo	không	lesson_e1b5ca38504f	KATAKANA	CHOUON
+8	スーツ	suutsu	bộ đồ (quần áo)	lesson_d36caa93b02a	KATAKANA	CHOUON
+8	カー	kaa	xe hơi	lesson_f4adebf88871	KATAKANA	CHOUON
+8	モンスター	monsutaa	quái vật	lesson_8d5ea4070479	KATAKANA	CHOUON
+8	ミッション	misshon	sứ mệnh	lesson_56250a10c40f	KATAKANA	SOKUON,YOUON
+8	スイッチ	suitchi	chuyển đổi	lesson_b3a79104b385	KATAKANA	SOKUON
+8	コーヒーショップ	koohiishoppu	quán cà phê	lesson_e271b7838f80	KATAKANA	CHOUON,HANDAKUON,SOKUON,YOUON
+8	ハッピー	happii	hạnh phúc	lesson_c763f8f361a1	KATAKANA	CHOUON,HANDAKUON,SOKUON
+8	パッケージ	pakkeeji	gói	lesson_cb0581d4a2a9	KATAKANA	CHOUON,DAKUON,HANDAKUON,SOKUON
+8	ビッグ	biggu	lớn	lesson_167b0d570274	KATAKANA	DAKUON,SOKUON
+8	ジャック	jakku	giắc cắm	lesson_eefc4dec9fb2	KATAKANA	DAKUON,SOKUON,YOUON
+8	チャット	chatto	trò chuyện	lesson_ab9f7ee6f8b0	KATAKANA	SOKUON,YOUON
+8	バッテリー	batterii	pin	lesson_7ce2ea1162a1	KATAKANA	CHOUON,DAKUON,SOKUON
+8	パイロット	pairotto	phi công	lesson_b37df19ef8ff	KATAKANA	HANDAKUON,SOKUON
+8	ハードトップ	haadotoppu	mui cứng	lesson_4bc4b758bda3	KATAKANA	CHOUON,DAKUON,HANDAKUON,SOKUON
+8	マップ	mappu	bản đồ	lesson_5408c1debd59	KATAKANA	HANDAKUON,SOKUON
+8	メリット	meritto	lợi thế	lesson_56aad9db8d26	KATAKANA	SOKUON
+8	ビット	bitto	chút	lesson_e00af408596a	KATAKANA	DAKUON,SOKUON
+8	ショット	shotto	bắn	lesson_0c9d82c268c6	KATAKANA	SOKUON,YOUON
+8	ハードロック	haadorokku	đá cứng	lesson_2c57d78178eb	KATAKANA	CHOUON,DAKUON,SOKUON
+8	メイクアップ	meikuappu	trang điểm	lesson_845a201b3180	KATAKANA	HANDAKUON,SOKUON
+8	チェックアウト	chekkuauto	trả phòng (của một khách sạn)	lesson_39fd54168731	KATAKANA	SOKUON
+8	ヘッド	heddo	cái đầu	lesson_31b6a2608bf5	KATAKANA	DAKUON,SOKUON
+8	ラップ	rappu	bọc nhựa	lesson_fbc2acbe7b2f	KATAKANA	HANDAKUON,SOKUON
+9	にほんご	nihongo	tiếng nhật	lesson_f31040750b56	HIRAGANA	DAKUON
+9	はいざら	haizara	cái gạt tàn	lesson_38daef150e9b	HIRAGANA	DAKUON
+9	はがき	hagaki	bưu thiếp	lesson_d9fce18767bd	HIRAGANA	DAKUON
+9	はじめに	hajimeni	lúc đầu	lesson_46a7f4db6a6b	HIRAGANA	DAKUON
+9	はじめて	hajimete	lần đầu tiên	lesson_69873d7587ac	HIRAGANA	DAKUON
+9	ばん	ban	buổi tối, đêm	lesson_0f3003428c75	HIRAGANA	DAKUON
+9	ばんごはん	bangohan	bữa tối	lesson_4486b10e4fb7	HIRAGANA	DAKUON
+9	はんぶん	hanbun	một nửa	lesson_71dd0cb1d284	HIRAGANA	DAKUON
+9	ひがし	higashi	phía đông	lesson_bdd2e2e80aee	HIRAGANA	DAKUON
+9	ひだり	hidari	trái	lesson_162849cc94da	HIRAGANA	DAKUON
+9	しゅっぱんしゃ	shuppansha	nhà xuất bản	lesson_25e5a28aa404	HIRAGANA	HANDAKUON,SOKUON,YOUON
+9	しゅっぱつ	shuppatsu	khởi hành	lesson_33422fb46dfd	HIRAGANA	HANDAKUON,SOKUON,YOUON
+9	いっぴょう	ippyou	một phiếu bầu	lesson_dfd529198318	HIRAGANA	CHOUON,HANDAKUON,SOKUON,YOUON
+9	れんぽう	renpou	liên bang (của các tiểu bang)	lesson_2f15e41b50d8	HIRAGANA	CHOUON,HANDAKUON
+9	とっぱ	toppa	đột phá	lesson_210c015b8496	HIRAGANA	HANDAKUON,SOKUON
+9	たっぷり	tappuri	lỏng lẻo	lesson_7df1abada6fd	HIRAGANA	HANDAKUON,SOKUON
+9	ぴったり	pittari	chặt chẽ	lesson_6f838db84fdb	HIRAGANA	HANDAKUON,SOKUON
+9	しゅっぴん	shuppin	trưng bày	lesson_ddc23bd989d8	HIRAGANA	HANDAKUON,SOKUON,YOUON
+9	いっぱんじん	ippanjin	người bình thường	lesson_9e135f790c5a	HIRAGANA	DAKUON,HANDAKUON,SOKUON
+9	さっぱり	sappari	cảm thấy sảng khoái	lesson_4cbf6176d6d6	HIRAGANA	HANDAKUON,SOKUON
+9	りょこうがいしゃ	ryokougaisha	đại lý du lịch	lesson_0953a0d98d1a	HIRAGANA	CHOUON,DAKUON,YOUON
+9	れんしゅう	renshuu	luyện tập	lesson_e9f587e0d42e	HIRAGANA	CHOUON,YOUON
+9	じゃ	ja	vậy thì, à, vậy thì, nếu vậy, trong trường hợp này. 4	lesson_d91490197bd6	HIRAGANA	DAKUON,YOUON
+9	じゃあ	jaa	vậy thì, à, vậy thì, nếu vậy, trong trường hợp này. 2	lesson_0cfb0ce96c37	HIRAGANA	CHOUON,DAKUON,YOUON
+9	じゃない	janai	không phải	lesson_df09232e1b61	HIRAGANA	DAKUON,YOUON
+9	ちゅう	chuu	trung bình (kích thước)	lesson_87ec648aebd6	HIRAGANA	CHOUON,YOUON
+9	じゃないか	janaika	phải không?	lesson_8898abe455e5	HIRAGANA	DAKUON,YOUON
+9	でしょ	desho	có vẻ như	lesson_9c052912e842	HIRAGANA	DAKUON,YOUON
+9	それじゃ	soreja	à,...	lesson_2a4a34c25c5b	HIRAGANA	DAKUON,YOUON
+9	でしょう	deshou	có vẻ như	lesson_b314e514298a	HIRAGANA	CHOUON,DAKUON,YOUON
+9	むずかしい	muzukashii	khó [i-adj.]	lesson_a5ccde9361fb	HIRAGANA	CHOUON,DAKUON
+9	もう	mou	đã, chưa	lesson_1b7f8e02008e	HIRAGANA	CHOUON
+9	もくようび	mokuyoubi	thứ năm	lesson_561867c6f768	HIRAGANA	CHOUON,DAKUON
+9	やさしい	yasashii	dễ dàng, tốt bụng/tốt bụng/ngọt ngào/dịu dàng [i-adj.]	lesson_c8368ca4826b	HIRAGANA	CHOUON
+9	ゆうがた	yuugata	đầu giờ tối	lesson_81feba2dc169	HIRAGANA	CHOUON,DAKUON
+9	ゆうめい	yuumei	nổi tiếng [na-adj.]	lesson_c829449c5bdd	HIRAGANA	CHOUON
+9	ようか	youka	tám ngày trong tháng, tám ngày	lesson_fd475f59137b	HIRAGANA	CHOUON
+9	ようふく	youfuku	phương Tây) quần áo	lesson_fbed71840904	HIRAGANA	CHOUON
+9	れい	rei	ví dụ	lesson_0754a262e6a3	HIRAGANA	CHOUON
+9	れいぞうこ	reizouko	tủ lạnh	lesson_276531918947	HIRAGANA	CHOUON,DAKUON
+9	もっていく	motteiku	mang (cái gì) theo	lesson_78b5f0b70e69	HIRAGANA	CHOUON,SOKUON
+9	よかったら	yokattara	nếu bạn thích	lesson_08ffbf813190	HIRAGANA	SOKUON
+9	せってい	settei	thành lập	lesson_93152d314b90	HIRAGANA	CHOUON,SOKUON
+9	にじゅうよっか	nijuuyokka	Ngày 24 của tháng	lesson_474ea60ffd92	HIRAGANA	CHOUON,DAKUON,SOKUON,YOUON
+9	いっけん	ikken	(một) vấn đề	lesson_ffbe69ee1d1c	HIRAGANA	SOKUON
+9	にとって	nitotte	đến	lesson_664bf8ee2acd	HIRAGANA	SOKUON
+9	いったりきたり	ittarikitari	đi đi lại lại	lesson_7ae3aa962201	HIRAGANA	SOKUON
+9	こういった	kouitta	kiểu này	lesson_48c9fbeca873	HIRAGANA	CHOUON,SOKUON
+9	けってい	kettei	quyết định	lesson_51c75c0e1825	HIRAGANA	CHOUON,SOKUON
+9	いつになったら	itsuninattara	khi nào	lesson_e3c0250eb75a	HIRAGANA	SOKUON
+9	ダメージ	dameeji	thiệt hại	lesson_8a7be7760a76	KATAKANA	CHOUON,DAKUON
+9	グリーン	guriin	màu xanh lá cây (màu)	lesson_031e9b20e80b	KATAKANA	CHOUON,DAKUON
+9	リーグ	riigu	giải đấu	lesson_4d68ece4421a	KATAKANA	CHOUON,DAKUON
+9	サービスエリア	saabisueria	khu vực dịch vụ	lesson_401d22dc26db	KATAKANA	CHOUON,DAKUON
+9	ニーズ	niizu	nhu cầu	lesson_ed3b38ff233e	KATAKANA	CHOUON,DAKUON
+9	チーズ	chiizu	phô mai	lesson_32c454c2e582	KATAKANA	CHOUON,DAKUON
+9	ナンバー	nanbaa	con số	lesson_0b0b26867771	KATAKANA	CHOUON,DAKUON
+9	ハード	haado	cứng	lesson_725db6034ada	KATAKANA	CHOUON,DAKUON
+9	ドライバー	doraibaa	người lái xe (của một phương tiện)	lesson_e91cfd8d4d5b	KATAKANA	CHOUON,DAKUON
+9	フリーダム	furiidamu	sự tự do	lesson_bce137e1c69c	KATAKANA	CHOUON,DAKUON
+9	クーポン	kuupon	phiếu giảm giá	lesson_d9831c64a804	KATAKANA	CHOUON,HANDAKUON
+9	パフォーマンス	pafoomansu	biểu diễn (ví dụ: âm nhạc, khiêu vũ, kịch)	lesson_6e9c211d064f	KATAKANA	CHOUON,HANDAKUON
+9	レポート	repooto	báo cáo	lesson_a3406f8e7887	KATAKANA	CHOUON,HANDAKUON
+9	アピール	apiiru	kháng cáo (ví dụ: vì hòa bình)	lesson_965f29228331	KATAKANA	CHOUON,HANDAKUON
+9	エピソード	episoodo	tập phim	lesson_c55e82e928d9	KATAKANA	CHOUON,DAKUON,HANDAKUON
+9	キャンプ	kyanpu	trại	lesson_9d73266cbc88	KATAKANA	HANDAKUON,YOUON
+9	プロパー	puropaa	thích hợp	lesson_5e4ff67fb22f	KATAKANA	CHOUON,HANDAKUON
+9	ポケットサイズ	pokettosaizu	cỡ bỏ túi	lesson_b98a4b347f1f	KATAKANA	DAKUON,HANDAKUON,SOKUON
+9	スープ	suupu	(phương Tây) súp	lesson_562296554811	KATAKANA	CHOUON,HANDAKUON
+9	パーティ	paatei	bữa tiệc (tụ tập xã hội)	lesson_f7d73d86e273	KATAKANA	CHOUON,HANDAKUON
+9	チョコ	choko	sô cô la	lesson_69a825a28cb9	KATAKANA	YOUON
+9	マンション	manshon	chung cư (thông thường là trung bình hoặc cao tầng)	lesson_235390f12257	KATAKANA	YOUON
+9	ニューロ	nyuuro	thần kinh-	lesson_c6dce1d1ff48	KATAKANA	CHOUON,YOUON
+9	ショート	shooto	ngắn	lesson_58dd9da25c77	KATAKANA	CHOUON,YOUON
+9	トークショー	tookushoo	chương trình trò chuyện	lesson_c14c25240eca	KATAKANA	CHOUON,YOUON
+9	ジャパンカップ	japankappu	Cúp Nhật Bản	lesson_e490c8fbde2f	KATAKANA	DAKUON,HANDAKUON,SOKUON,YOUON
+9	ニューリーダー	nyuuriidaa	lãnh đạo mới	lesson_46652958bc69	KATAKANA	CHOUON,DAKUON,YOUON
+9	ギャル	gyaru	gyaru	lesson_dc4380d53d28	KATAKANA	DAKUON,YOUON
+9	ギリシャ	girisha	Hy Lạp	lesson_85e1cefb868f	KATAKANA	DAKUON,YOUON
+9	メジャー	mejaa	chính	lesson_aa37bbeafb3b	KATAKANA	CHOUON,DAKUON,YOUON
+9	トーク	tooku	nói chuyện (đặc biệt bởi người dẫn chương trình trò chuyện hoặc bởi một nhạc sĩ sân khấu với khán giả giữa các bài hát)	lesson_72a37744b648	KATAKANA	CHOUON
+9	コーナー	koonaa	góc	lesson_939a9d6b0588	KATAKANA	CHOUON
+9	ホール	hooru	hội trường (khiêu vũ, buổi hòa nhạc, v.v.)	lesson_3c92df23adf5	KATAKANA	CHOUON
+9	アート	aato	nghệ thuật	lesson_4c5076d73958	KATAKANA	CHOUON
+9	コントロール	kontorooru	kiểm soát	lesson_20dc27435f4a	KATAKANA	CHOUON
+9	ルート	ruuto	tuyến đường	lesson_ea0043a2d1cd	KATAKANA	CHOUON
+9	ローン	roon	tiền vay	lesson_8739262815e0	KATAKANA	CHOUON
+9	フリースタイル	furiisutairu	tự do	lesson_210971752d5f	KATAKANA	CHOUON
+9	ハート	haato	trái tim	lesson_0f4b618a80c1	KATAKANA	CHOUON
+9	アーティスト	aateisuto	nghệ sĩ	lesson_9983f9b68ae3	KATAKANA	CHOUON
+9	デッキ	dekki	boong (của một con tàu)	lesson_fc21effe4d1d	KATAKANA	DAKUON,SOKUON
+9	ターゲット	taagetto	mục tiêu	lesson_0f79713f5ccc	KATAKANA	CHOUON,DAKUON,SOKUON
+9	ブックマーク	bukkumaaku	đánh dấu (trong trình duyệt)	lesson_c96bdd355730	KATAKANA	CHOUON,DAKUON,SOKUON
+9	チップ	chippu	tiền boa	lesson_3f5e52f8355c	KATAKANA	HANDAKUON,SOKUON
+9	ホット	hotto	nóng bức	lesson_698fcb76445c	KATAKANA	SOKUON
+9	スポット	supotto	chỗ	lesson_2c07ba92cd74	KATAKANA	HANDAKUON,SOKUON
+9	ショッピング	shoppingu	mua sắm	lesson_97940c41904c	KATAKANA	DAKUON,HANDAKUON,SOKUON,YOUON
+9	ジェット	jietto	máy bay phản lực	lesson_9047a1ea4f64	KATAKANA	DAKUON,SOKUON
+9	マッサージ	massaaji	xoa bóp	lesson_b62b6f9bda9f	KATAKANA	CHOUON,DAKUON,SOKUON
+9	タッチ	tatchi	chạm vào	lesson_3b559e6d9c37	KATAKANA	SOKUON

@@ -40,6 +40,7 @@ private data class HomeItem(
 fun HomeScreen(
     onOpenList: (KanaType) -> Unit,
     onOpenPractice: () -> Unit,
+    onOpenLessons: () -> Unit,
     onOpenPronunciation: () -> Unit,
     onOpenSpecialSounds: () -> Unit,
 ) {
@@ -50,6 +51,7 @@ fun HomeScreen(
         HomeItem("゛", "Âm đặc biệt", "Âm đục · ghép · dài · ngắt", onOpenSpecialSounds),
         HomeItem("🎯", "Luyện tập", "Chọn chữ & học ngẫu nhiên", onOpenPractice),
     )
+    val lessonsItem = HomeItem("📚", "Lessons", "9 bài luyện đọc · 900 từ Kana", onOpenLessons)
 
     Column(
         modifier = Modifier
@@ -95,6 +97,9 @@ fun HomeScreen(
             }
             Spacer(Modifier.height(13.dp))
         }
+
+        HomeCard(item = lessonsItem, modifier = Modifier.fillMaxWidth())
+        Spacer(Modifier.height(13.dp))
 
         AppInformation()
         Spacer(Modifier.height(12.dp))
