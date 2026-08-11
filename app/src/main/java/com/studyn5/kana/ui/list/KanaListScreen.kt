@@ -2,6 +2,7 @@ package com.studyn5.kana.ui.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +36,8 @@ import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
 import com.studyn5.kana.ui.theme.KanaFontFamily
+import com.studyn5.kana.ui.theme.KanaBackground
+import com.studyn5.kana.ui.theme.KanaSmallShape
 
 @Composable
 fun KanaListScreen(
@@ -43,20 +47,17 @@ fun KanaListScreen(
 ) {
     val list = KanaData.grid(type)
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-    ) {
+    KanaBackground(Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = MaterialTheme.colorScheme.primary)
             }
             Column {
                 Text(
                     text = if (type == KanaType.HIRAGANA) "Hiragana" else "Katakana",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Black,
                 )
                 Text(
                     "Nhấn chữ để nghe & tập viết",
@@ -80,8 +81,10 @@ fun KanaListScreen(
                     Box(
                         modifier = Modifier
                             .aspectRatio(1f)
-                            .clip(RoundedCornerShape(14.dp))
-                            .background(Color.White)
+                            .shadow(1.dp, KanaSmallShape)
+                            .clip(KanaSmallShape)
+                            .background(MaterialTheme.colorScheme.surface)
+                            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaSmallShape)
                             .clickable { onSelect(kana) }
                             .padding(4.dp),
                         contentAlignment = Alignment.Center,
@@ -94,5 +97,6 @@ fun KanaListScreen(
                 }
             }
         }
+    }
     }
 }

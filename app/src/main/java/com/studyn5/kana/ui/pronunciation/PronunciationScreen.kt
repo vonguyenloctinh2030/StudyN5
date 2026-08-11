@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,6 +40,8 @@ import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
 import com.studyn5.kana.ui.theme.KanaFontFamily
+import com.studyn5.kana.ui.theme.KanaBackground
+import com.studyn5.kana.ui.theme.KanaSmallShape
 
 @Composable
 fun PronunciationScreen(
@@ -48,18 +51,14 @@ fun PronunciationScreen(
     var type by remember { mutableStateOf(KanaType.HIRAGANA) }
     val list = KanaData.grid(type)
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-    ) {
+    KanaBackground(Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại", tint = MaterialTheme.colorScheme.primary)
             }
             Column {
-                Text("Luyện phát âm", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold))
+                Text("Luyện phát âm", fontSize = 22.sp, fontWeight = FontWeight.Black)
                 Text("Chạm vào một chữ để nghe", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
@@ -72,9 +71,9 @@ fun PronunciationScreen(
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(if (selected) MaterialTheme.colorScheme.primary else Color.White)
-                        .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp))
+                        .clip(KanaSmallShape)
+                        .background(if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface)
+                        .border(1.dp, if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, KanaSmallShape)
                         .clickable { type = tab }
                         .padding(12.dp),
                     contentAlignment = Alignment.Center,
@@ -99,8 +98,10 @@ fun PronunciationScreen(
                     Box(
                         modifier = Modifier
                             .aspectRatio(1f)
-                            .clip(RoundedCornerShape(14.dp))
-                            .background(Color.White)
+                            .shadow(1.dp, KanaSmallShape)
+                            .clip(KanaSmallShape)
+                            .background(MaterialTheme.colorScheme.surface)
+                            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaSmallShape)
                             .clickable { onSpeak(kana) }
                             .padding(4.dp),
                         contentAlignment = Alignment.Center,
@@ -113,5 +114,6 @@ fun PronunciationScreen(
                 }
             }
         }
+    }
     }
 }

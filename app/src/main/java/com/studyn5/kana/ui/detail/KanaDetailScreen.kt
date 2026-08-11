@@ -42,6 +42,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.studyn5.kana.data.Kana
+import com.studyn5.kana.ui.theme.KanaCardShape
+import com.studyn5.kana.ui.theme.KanaNavy
+import com.studyn5.kana.ui.theme.KanaRed
+import com.studyn5.kana.ui.theme.KanaSmallShape
 
 @Composable
 fun KanaDetailScreen(
@@ -71,9 +75,10 @@ fun KanaDetailScreen(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
             }
             Text(
-                kana.type.label,
+                "LUYỆN VIẾT",
                 modifier = Modifier.align(Alignment.Center),
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.ExtraBold, letterSpacing = 1.sp),
+                color = KanaRed,
             )
             IconButton(
                 onClick = { hidden = !hidden },
@@ -87,12 +92,12 @@ fun KanaDetailScreen(
             kana.romaji.uppercase(),
             modifier = Modifier.fillMaxWidth(),
             textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-            fontSize = 36.sp,
-            fontWeight = FontWeight.Bold,
+            fontSize = 39.sp,
+            fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.onBackground,
         )
         Text(
-            "${index + 1}/${kanas.size}",
+            "${kana.type.label}  ·  ${index + 1}/${kanas.size}",
             modifier = Modifier.fillMaxWidth(),
             textAlign = androidx.compose.ui.text.style.TextAlign.Center,
             style = MaterialTheme.typography.bodySmall,
@@ -105,16 +110,16 @@ fun KanaDetailScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f)
-                .clip(RoundedCornerShape(22.dp))
-                .background(Color(0xFFFBF7EF))
-                .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(22.dp)),
+                .clip(KanaCardShape)
+                .background(MaterialTheme.colorScheme.surface)
+                .border(1.dp, MaterialTheme.colorScheme.outline, KanaCardShape),
         ) {
             // Grid
             androidx.compose.foundation.Canvas(modifier = Modifier.fillMaxSize()) {
                 val step = size.width / 4
                 for (i in 1 until 4) {
-                    drawLine(Color(0x1AD64545), Offset(step * i, 0f), Offset(step * i, size.height), strokeWidth = 1.dp.toPx())
-                    drawLine(Color(0x1AD64545), Offset(0f, step * i), Offset(size.width, step * i), strokeWidth = 1.dp.toPx())
+                    drawLine(KanaRed.copy(alpha = .12f), Offset(step * i, 0f), Offset(step * i, size.height), strokeWidth = 1.dp.toPx())
+                    drawLine(KanaRed.copy(alpha = .12f), Offset(0f, step * i), Offset(size.width, step * i), strokeWidth = 1.dp.toPx())
                 }
             }
 
@@ -144,8 +149,8 @@ fun KanaDetailScreen(
             ) {
                 strokes.forEach { stroke ->
                     if (stroke.size == 1) {
-                        drawCircle(Color(0x26173A5E), radius = 6.5.dp.toPx(), center = stroke.first())
-                        drawCircle(Color(0xFF173A5E), radius = 5.dp.toPx(), center = stroke.first())
+                        drawCircle(KanaNavy.copy(alpha = .15f), radius = 6.5.dp.toPx(), center = stroke.first())
+                        drawCircle(KanaNavy, radius = 5.dp.toPx(), center = stroke.first())
                     } else {
                         val path = Path().apply {
                             moveTo(stroke.first().x, stroke.first().y)
@@ -162,12 +167,12 @@ fun KanaDetailScreen(
                         }
                         drawPath(
                             path = path,
-                            color = Color(0x26173A5E),
+                            color = KanaNavy.copy(alpha = .15f),
                             style = Stroke(width = 13.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round),
                         )
                         drawPath(
                             path = path,
-                            color = Color(0xFF173A5E),
+                            color = KanaNavy,
                             style = Stroke(width = 9.5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round),
                         )
                     }
@@ -181,7 +186,7 @@ fun KanaDetailScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
+                    .clip(KanaSmallShape)
                     .background(MaterialTheme.colorScheme.primary)
                     .clickable { onSpeak(kana) }
                     .padding(12.dp),
@@ -192,9 +197,9 @@ fun KanaDetailScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
-                    .background(Color.White)
-                    .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(13.dp))
+                    .clip(KanaSmallShape)
+                    .background(MaterialTheme.colorScheme.surface)
+                    .border(1.dp, MaterialTheme.colorScheme.primary, KanaSmallShape)
                     .clickable { hidden = !hidden }
                     .padding(12.dp),
                 contentAlignment = Alignment.Center,
@@ -209,9 +214,9 @@ fun KanaDetailScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
-                    .background(Color.White)
-                    .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(13.dp))
+                    .clip(KanaSmallShape)
+                    .background(MaterialTheme.colorScheme.surface)
+                    .border(1.dp, MaterialTheme.colorScheme.outline, KanaSmallShape)
                     .clickable { strokes.clear() }
                     .padding(12.dp),
                 contentAlignment = Alignment.Center,
@@ -226,9 +231,9 @@ fun KanaDetailScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
-                    .background(Color.White)
-                    .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(13.dp))
+                    .clip(KanaSmallShape)
+                    .background(MaterialTheme.colorScheme.surface)
+                    .border(1.dp, MaterialTheme.colorScheme.primary, KanaSmallShape)
                     .clickable { onPrev() }
                     .padding(13.dp),
                 contentAlignment = Alignment.Center,
@@ -238,8 +243,8 @@ fun KanaDetailScreen(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
-                    .background(MaterialTheme.colorScheme.primary)
+                    .clip(KanaSmallShape)
+                    .background(KanaRed)
                     .clickable { onNext() }
                     .padding(13.dp),
                 contentAlignment = Alignment.Center,

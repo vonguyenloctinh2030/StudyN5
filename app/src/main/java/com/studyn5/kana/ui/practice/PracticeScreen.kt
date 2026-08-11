@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,6 +41,10 @@ import com.studyn5.kana.data.PracticeCategory
 import com.studyn5.kana.data.PracticeItem
 import com.studyn5.kana.data.PracticeScript
 import com.studyn5.kana.ui.theme.KanaFontFamily
+import com.studyn5.kana.ui.theme.KanaBackground
+import com.studyn5.kana.ui.theme.KanaCardShape
+import com.studyn5.kana.ui.theme.KanaRed
+import com.studyn5.kana.ui.theme.KanaSmallShape
 
 @Composable
 fun PracticeScreen(
@@ -59,18 +64,14 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
     val list = viewModel.available
     val isBasic = viewModel.category.value == PracticeCategory.BASIC
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-    ) {
+    KanaBackground(Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại", tint = MaterialTheme.colorScheme.primary)
             }
             Column {
-                Text("Chọn nội dung luyện tập", fontWeight = FontWeight.ExtraBold, fontSize = 18.sp)
+                Text("Luyện tập", fontWeight = FontWeight.Black, fontSize = 22.sp)
                 Text(
                     if (isBasic) "Chọn Kana cần học · tự thêm âm đục và bán đục"
                     else "Danh sách được chọn sẵn · mỗi mục chỉ xuất hiện một lần/vòng",
@@ -130,6 +131,7 @@ private fun SelectScreen(viewModel: PracticeViewModel, onBack: () -> Unit) {
             )
         }
     }
+    }
 }
 
 @Composable
@@ -145,9 +147,9 @@ private fun <T> FilterRow(
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(11.dp))
-                    .background(if (active) MaterialTheme.colorScheme.primary else Color.White)
-                    .border(1.dp, if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, RoundedCornerShape(11.dp))
+                    .clip(KanaSmallShape)
+                    .background(if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface)
+                    .border(1.dp, if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, KanaSmallShape)
                     .clickable { onSelect(value) }
                     .padding(horizontal = 3.dp, vertical = 10.dp),
                 contentAlignment = Alignment.Center,
@@ -167,12 +169,12 @@ private fun <T> FilterRow(
 
 @Composable
 private fun PracticeChoice(item: PracticeItem, selected: Boolean, compact: Boolean, onClick: () -> Unit) {
-    val shape = RoundedCornerShape(14.dp)
+    val shape = KanaSmallShape
     Box(
         modifier = Modifier
             .then(if (compact) Modifier.aspectRatio(1f) else Modifier.height(78.dp))
             .clip(shape)
-            .background(if (selected) MaterialTheme.colorScheme.primary else Color.White)
+            .background(if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface)
             .border(1.dp, if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, shape)
             .clickable(onClick = onClick)
             .padding(5.dp),
@@ -208,7 +210,7 @@ private fun ActionButton(
     val background = when {
         !enabled -> Color(0xFFE2E8F0)
         filled -> MaterialTheme.colorScheme.primary
-        else -> Color.White
+        else -> MaterialTheme.colorScheme.surface
     }
     Box(
         modifier = modifier
@@ -235,15 +237,11 @@ private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (String) -> Unit) 
     var showMeaning by remember(item.id) { mutableStateOf(false) }
     val isWord = item.meaning != null
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(18.dp),
-    ) {
+    KanaBackground(Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().padding(18.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = viewModel::backToSelect) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại", tint = MaterialTheme.colorScheme.primary)
             }
             Column {
                 Text("Luyện ${viewModel.category.value.label}", fontWeight = FontWeight.ExtraBold, fontSize = 18.sp)
@@ -256,9 +254,10 @@ private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (String) -> Unit) 
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f / 1.02f)
-                .clip(RoundedCornerShape(22.dp))
-                .background(Color(0xFFFBF7EF))
-                .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(22.dp))
+                .shadow(3.dp, KanaCardShape)
+                .clip(KanaCardShape)
+                .background(MaterialTheme.colorScheme.surface)
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaCardShape)
                 .padding(20.dp),
             contentAlignment = Alignment.Center,
         ) {
@@ -271,11 +270,17 @@ private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (String) -> Unit) 
                     color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center,
                 )
-                if (showMeaning) {
-                    Spacer(Modifier.height(18.dp))
-                    Text(item.romaji, fontSize = 19.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.secondary)
-                    Text(item.meaning.orEmpty(), fontSize = 17.sp, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
+            }
+        }
+
+        if (showMeaning) {
+            Spacer(Modifier.height(10.dp))
+            Column(
+                Modifier.fillMaxWidth().clip(KanaCardShape).background(MaterialTheme.colorScheme.tertiaryContainer).padding(15.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(item.romaji, fontSize = 19.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onTertiaryContainer)
+                Text(item.meaning.orEmpty(), fontSize = 16.sp, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onTertiaryContainer)
             }
         }
 
@@ -292,6 +297,10 @@ private fun PlayScreen(viewModel: PracticeViewModel, onSpeak: (String) -> Unit) 
             }
         }
         Spacer(Modifier.height(10.dp))
-        ActionButton("Tiếp theo →", true, false, Modifier.fillMaxWidth(), viewModel::next)
+        Box(
+            Modifier.fillMaxWidth().clip(KanaSmallShape).background(KanaRed).clickable(onClick = viewModel::next).padding(15.dp),
+            contentAlignment = Alignment.Center,
+        ) { Text("Tiếp theo  →", color = Color.White, fontWeight = FontWeight.ExtraBold) }
+    }
     }
 }

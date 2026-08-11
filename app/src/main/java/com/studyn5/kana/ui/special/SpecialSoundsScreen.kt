@@ -44,6 +44,10 @@ import com.studyn5.kana.data.SpecialSoundData
 import com.studyn5.kana.data.SpecialSoundEntry
 import com.studyn5.kana.data.SpecialSoundLesson
 import com.studyn5.kana.ui.theme.KanaFontFamily
+import com.studyn5.kana.ui.theme.KanaBackground
+import com.studyn5.kana.ui.theme.KanaCardShape
+import com.studyn5.kana.ui.theme.KanaRed
+import com.studyn5.kana.ui.theme.KanaSmallShape
 
 @Composable
 fun SpecialSoundsScreen(
@@ -59,11 +63,8 @@ fun SpecialSoundsScreen(
         listState.scrollToItem(0)
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-    ) {
+    KanaBackground(Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -71,10 +72,10 @@ fun SpecialSoundsScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Quay lại", tint = MaterialTheme.colorScheme.primary)
             }
             Column {
-                Text("Âm đặc biệt", fontSize = 22.sp, fontWeight = FontWeight.ExtraBold)
+                Text("Âm đặc biệt", fontSize = 22.sp, fontWeight = FontWeight.Black)
                 Text(
                     "Nhìn quy tắc · nghe âm · nhớ qua ví dụ",
                     fontSize = 12.sp,
@@ -95,7 +96,7 @@ fun SpecialSoundsScreen(
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(50))
-                        .background(if (selected) MaterialTheme.colorScheme.primary else Color.White)
+                        .background(if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface)
                         .border(
                             width = 1.dp,
                             color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
@@ -120,6 +121,7 @@ fun SpecialSoundsScreen(
             listState = listState,
             modifier = Modifier.weight(1f),
         )
+    }
     }
 }
 
@@ -163,8 +165,8 @@ private fun RuleCard(lesson: SpecialSoundLesson) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
-            .background(Color(0xFFF4EBDD))
+            .clip(KanaCardShape)
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(16.dp),
     ) {
         Text(lesson.title, fontSize = 16.sp, fontWeight = FontWeight.ExtraBold)
@@ -193,7 +195,7 @@ private fun RuleValue(text: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(13.dp))
-            .background(Color(0xFFFFFBF5))
+            .background(MaterialTheme.colorScheme.surface)
             .padding(horizontal = 8.dp, vertical = 13.dp),
         contentAlignment = Alignment.Center,
     ) {
@@ -206,9 +208,9 @@ private fun SoundRow(entry: SpecialSoundEntry, onSpeak: (String) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(15.dp))
-            .background(Color.White)
-            .border(1.dp, Color(0xFFE9DED1), RoundedCornerShape(15.dp))
+            .clip(KanaSmallShape)
+            .background(MaterialTheme.colorScheme.surface)
+            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaSmallShape)
             .clickable { onSpeak(entry.audioKey) }
             .padding(start = 14.dp, top = 10.dp, end = 10.dp, bottom = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -233,7 +235,7 @@ private fun SoundRow(entry: SpecialSoundEntry, onSpeak: (String) -> Unit) {
             modifier = Modifier
                 .size(38.dp)
                 .clip(CircleShape)
-                .background(Color(0xFFF9DFDD)),
+                .background(KanaRed.copy(alpha = .12f)),
             contentAlignment = Alignment.Center,
         ) {
             Text(
@@ -250,8 +252,8 @@ private fun TipCard(tip: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 5.dp)
-            .clip(RoundedCornerShape(15.dp))
-            .background(Color(0xFFFFF3DF))
+            .clip(KanaSmallShape)
+            .background(MaterialTheme.colorScheme.tertiaryContainer)
             .padding(13.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
@@ -260,9 +262,9 @@ private fun TipCard(tip: String) {
             fontSize = 19.sp,
         )
         Column {
-            Text("Mẹo dễ nhớ", fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, color = Color(0xFF765638))
+            Text("Mẹo dễ nhớ", fontSize = 13.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onTertiaryContainer)
             Spacer(Modifier.height(2.dp))
-            Text(tip, fontSize = 12.sp, lineHeight = 17.sp, color = Color(0xFF765638))
+            Text(tip, fontSize = 12.sp, lineHeight = 17.sp, color = MaterialTheme.colorScheme.onTertiaryContainer)
         }
     }
 }
