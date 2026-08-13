@@ -6,6 +6,7 @@ enum class SpecialSoundCategory(val label: String) {
     YOUON("Âm ghép"),
     CHOUON("Trường âm"),
     SOKUON("Âm ngắt"),
+    GAIRAIGO("Âm ngoại lai"),
 }
 
 data class SpecialSoundEntry(
@@ -146,6 +147,15 @@ object SpecialSoundData {
                 )),
             ),
             tip = "Không đọc っ thành “tsu”. Hãy dừng đúng một nhịp rồi bật phụ âm kế tiếp: ki-(dừng)-te.",
+        ),
+        SpecialSoundLesson(
+            category = SpecialSoundCategory.GAIRAIGO,
+            title = "Katakana mở rộng",
+            explanation = "Các tổ hợp dùng để phiên âm gần với âm của từ nước ngoài",
+            ruleBefore = "フ + ァ nhỏ",
+            ruleAfter = "ファ  fa",
+            groups = emptyList(),
+            tip = "Học theo nhóm âm, sau đó nhớ bằng từ ví dụ.",
         ),
     )
 }
