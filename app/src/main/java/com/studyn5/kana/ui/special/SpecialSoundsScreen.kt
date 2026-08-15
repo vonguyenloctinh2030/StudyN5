@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -25,6 +26,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -274,7 +276,7 @@ private fun SoundGrid(sounds: List<ForeignSound>, onSpeak: (String) -> Unit) {
 @Composable
 private fun SoundTile(sound: ForeignSound, modifier: Modifier, onSpeak: (String) -> Unit) {
     Column(
-        modifier.height(118.dp).clip(KanaSmallShape).background(MaterialTheme.colorScheme.surface)
+        modifier.height(132.dp).clip(KanaSmallShape).background(MaterialTheme.colorScheme.surface)
             .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaSmallShape)
             .clickable { onSpeak(sound.audioKey) }.padding(vertical = 9.dp, horizontal = 3.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -282,7 +284,7 @@ private fun SoundTile(sound: ForeignSound, modifier: Modifier, onSpeak: (String)
         Text(sound.kana, fontFamily = KanaFontFamily, fontSize = 25.sp)
         Text(sound.romaji, color = KanaRed, fontWeight = FontWeight.ExtraBold, fontSize = 13.sp)
         Text(sound.formation, fontSize = 8.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(6.dp))
         SpeakerButton { onSpeak(sound.audioKey) }
     }
 }
@@ -310,7 +312,12 @@ private fun SpeakerButton(onClick: () -> Unit) {
         Modifier.size(36.dp).clip(CircleShape).background(KanaRed.copy(alpha = .11f)).clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
-        Text("♪", color = KanaRed, fontSize = 19.sp, fontWeight = FontWeight.Bold)
+        Icon(
+            imageVector = Icons.Filled.VolumeUp,
+            contentDescription = "Phát âm",
+            modifier = Modifier.size(20.dp),
+            tint = KanaRed,
+        )
     }
 }
 
@@ -387,7 +394,7 @@ private fun ForeignPracticeScreen(group: ForeignSoundGroup, onSpeak: (String) ->
             }
             Spacer(Modifier.height(14.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
-                PracticeButton("♪  Nghe âm", false, Modifier.weight(1f)) { onSpeak(word.audioKey) }
+                PracticeButton("Nghe âm", false, Modifier.weight(1f), leadingSpeaker = true) { onSpeak(word.audioKey) }
                 PracticeButton(if (showMeaning) "Ẩn nghĩa" else "Hiện nghĩa", false, Modifier.weight(1f)) { showMeaning = !showMeaning }
             }
             Spacer(Modifier.height(10.dp))
@@ -397,14 +404,31 @@ private fun ForeignPracticeScreen(group: ForeignSoundGroup, onSpeak: (String) ->
 }
 
 @Composable
-private fun PracticeButton(text: String, filled: Boolean, modifier: Modifier, onClick: () -> Unit) {
+private fun PracticeButton(
+    text: String,
+    filled: Boolean,
+    modifier: Modifier,
+    leadingSpeaker: Boolean = false,
+    onClick: () -> Unit,
+) {
     val color = if (filled) KanaRed else MaterialTheme.colorScheme.primary
     Box(
         modifier.clip(KanaSmallShape).background(if (filled) color else MaterialTheme.colorScheme.surface)
             .border(1.dp, color, KanaSmallShape).clickable(onClick = onClick).padding(vertical = 14.dp, horizontal = 8.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, color = if (filled) Color.White else color, fontSize = 14.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+            if (leadingSpeaker) {
+                Icon(
+                    imageVector = Icons.Filled.VolumeUp,
+                    contentDescription = null,
+                    modifier = Modifier.size(19.dp),
+                    tint = if (filled) Color.White else color,
+                )
+                Spacer(Modifier.width(7.dp))
+            }
+            Text(text, color = if (filled) Color.White else color, fontSize = 14.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
+        }
     }
 }
 
