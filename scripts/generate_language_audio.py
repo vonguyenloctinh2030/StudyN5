@@ -56,6 +56,7 @@ def collect_texts() -> list[str]:
     countries = ["ベトナム", "にほん", "かんこく", "ちゅうごく", "アメリカ", "イギリス", "イタリア", "フランス", "ドイツ", "タイ"]
     nationalities = ["ベトナムじん", "にほんじん", "かんこくじん", "ちゅうごくじん", "アメリカじん", "イギリスじん", "イタリアじん", "フランスじん", "ドイツじん", "タイじん"]
     languages = ["ベトナムご", "にほんご", "かんこくご", "ちゅうごくご", "えいご", "イタリアご", "フランスご", "ドイツご", "タイご"]
+    country_languages = ["ベトナムご", "にほんご", "かんこくご", "ちゅうごくご", "えいご", "えいご", "イタリアご", "フランスご", "ドイツご", "タイご"]
     for value in countries:
         texts.update((value, f"{value}からです。"))
     for value in nationalities:
@@ -64,48 +65,82 @@ def collect_texts() -> list[str]:
         texts.update((value, f"{value}ができます。", f"{value}ができますか。"))
 
     names = ["マイ", "ティン", "キム", "カーラ", "アン"]
-    jobs = ["ソフトウェアエンジニア", "かいはつしゃ", "きょうし", "がくせい", "かいしゃいん", "いしゃ", "エンジニア", "ぎんこういん"]
+    jobs = ["ソフトウェアエンジニア", "かいはつしゃ", "きょうし", "がくせい", "かいしゃいん", "ぎんこういん", "いしゃ", "こうむいん", "しゅふ"]
+    cities = ["ホーチミン", "とうきょう", "ソウル", "ペキン", "ニューヨーク", "ロンドン", "ローマ", "パリ", "ベルリン", "バンコク"]
     family = ["ちち", "はは", "あに", "あね", "おとうと"]
     for name in names:
-        texts.add(f"はじめまして。わたしは{name}です。")
+        texts.update((
+            f"はじめまして。わたしは{name}です。",
+            f"はじめまして。{name}です。",
+            f"{name}です。",
+            f"わたしは{name}です。おなまえはなんですか。",
+            f"はい、げんきです。{name}さんは。",
+            f"すみません、{name}さんですか。",
+            f"いいえ、{name}です。",
+            f"すみません。わたしは{name}です。",
+            f"はい、{name}です。よろしくおねがいします。",
+            f"はじめまして。{name}です。どちらからですか。",
+            f"はい、そうです。{name}さんは。",
+        ))
     for job in jobs:
-        texts.add(f"{job}です。")
+        texts.update((f"{job}です。", f"{job}です。あなたは。", f"{job}です。どちらからですか。"))
+        for other_job in jobs:
+            texts.add(f"{job}です。おかあさんは{other_job}です。")
     for member in family:
-        texts.add(f"わたしの{member}です。")
+        texts.update((f"わたしの{member}です。", f"はい、{member}がいます。"))
+    for city in cities:
+        texts.update((f"{city}です。", f"{city}にすんでいます。", f"{city}にいます。"))
+
+    for country, nationality, language in zip(countries, nationalities, country_languages):
+        texts.update((
+            f"{country}からです。",
+            f"わたしは{nationality}です。",
+            f"いいえ、にほんじんじゃないです。{nationality}です。",
+            f"{language}ができます。",
+            f"{language}ができますか。",
+            f"いいえ、{language}はできません。",
+            f"はい、{language}ができます。",
+            f"{language}がわかりますか。",
+            f"{language}ができます。あなたは。",
+            f"{language}とえいごができます。",
+            f"{country}からです。{language}とえいごができます。",
+        ))
+
+    for name in names:
+        for country, nationality in zip(countries, nationalities):
+            texts.add(f"{name}さんは{nationality}ですか。")
+        for language in languages:
+            texts.add(f"{language}ができます。{name}さんは。")
+        for job in jobs:
+            texts.add(f"{job}です。{name}さんは。")
 
     def age_text(age: int) -> str:
-        return "はたち" if age == 20 else f"{japanese_number(age)}さい"
+        return "はたち" if age == 20 else f"{hiragana_number(age)}さい"
+
+    def people_text(people: int) -> str:
+        if people == 1:
+            return "ひとり"
+        if people == 2:
+            return "ふたり"
+        if people == 4:
+            return "よにん"
+        return f"{hiragana_number(people)}にん"
 
     for age in range(20, 50):
-        texts.add(f"{age_text(age)}です。")
-    for people in range(3, 9):
-        texts.add(f"{japanese_number(people)}にんです。")
+        texts.update((f"{age_text(age)}です。", f"{age_text(age)}です。あなたは。"))
+    for people in range(1, 9):
+        texts.update((f"{people_text(people)}です。", f"{people_text(people)}です。あなたのかぞくは。"))
+    for number in range(1, 101):
+        kana = hiragana_number(number)
+        texts.update((
+            f"{kana}ばんです。", f"{kana}ばんですね。", f"{kana}ページです。",
+            f"{kana}てんでした。",
+        ))
 
-    # Full-dialogue buttons speak one prepared utterance, not stitched syllables.
+    # Literal lines are collected directly. Dynamic variants above are generated
+    # explicitly so every speaker button and sequential full-dialogue playback is offline.
     dialogue_lines = re.findall(r'e\("([^"$]+[。！？])",\s*"', source)
     texts.update(dialogue_lines)
-
-    # Exact whole-dialogue audio used by the "Nghe toàn đoạn" action.
-    for index in range(25):
-        name = names[index % len(names)]
-        other_name = names[(index // len(names) + 1) % len(names)]
-        texts.add(" ".join((
-            f"はじめまして。わたしは{name}です。",
-            f"はじめまして。わたしは{other_name}です。",
-            "どうぞよろしくおねがいします。",
-        )))
-        country = countries[index % len(countries)]
-        language = languages[index % len(languages)]
-        job = jobs[index % 5]
-        texts.add(f"はじめまして。{other_name}です。")
-        texts.add(" ".join((f"はじめまして。{other_name}です。", "どちらからですか。", f"{country}からです。", "おしごとはなんですか。", f"{job}です。", f"{language}ができますか。")))
-        age = 20 + index
-        people = 3 + index % 6
-        texts.add(" ".join(("なんさいですか。", f"{age_text(age)}です。", "かぞくはなんにんですか。", f"{japanese_number(people)}にんです。")))
-        member = family[index % len(family)]
-        family_job = ["いしゃ", "きょうし", "エンジニア", "かいしゃいん", "ぎんこういん"][index % 5]
-        family_age = 25 + index
-        texts.add(" ".join(("このひとはだれですか。", f"わたしの{member}です。", "おしごとはなんですか。", f"{family_job}です。", f"{age_text(family_age)}です。")))
     return sorted(texts)
 
 

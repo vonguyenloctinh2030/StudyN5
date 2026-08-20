@@ -133,6 +133,12 @@ object LanguageLearningData {
             v("から", "kara", "từ", "Trợ từ", "ベトナムからです。", "Betonamu kara desu.", "Tôi đến từ Việt Nam."),
             v("できます", "dekimasu", "có thể, biết", "Khả năng", "にほんごができます。", "Nihon-go ga dekimasu.", "Tôi biết tiếng Nhật."),
             v("できません", "dekimasen", "không thể, không biết", "Khả năng", "かんこくごはできません。", "Kankoku-go wa dekimasen.", "Tôi không biết tiếng Hàn."),
+            v("わかります", "wakarimasu", "hiểu", "Khả năng", "にほんごがすこしわかります。", "Nihon-go ga sukoshi wakarimasu.", "Tôi hiểu một chút tiếng Nhật."),
+            v("わかりません", "wakarimasen", "không hiểu", "Khả năng", "すみません、わかりません。", "Sumimasen, wakarimasen.", "Xin lỗi, tôi không hiểu."),
+            v("すこし", "sukoshi", "một chút", "Mức độ", "にほんごがすこしできます。", "Nihon-go ga sukoshi dekimasu.", "Tôi biết một chút tiếng Nhật."),
+            v("よく", "yoku", "tốt, rõ; thường", "Mức độ", "えいごがよくわかります。", "Eigo ga yoku wakarimasu.", "Tôi hiểu tiếng Anh khá rõ."),
+            v("あまり", "amari", "không… lắm", "Mức độ", "にほんごはあまりできません。", "Nihon-go wa amari dekimasen.", "Tôi không giỏi tiếng Nhật lắm."),
+            v("ぜんぜん", "zenzen", "hoàn toàn không", "Mức độ", "ドイツごはぜんぜんわかりません。", "Doitsu-go wa zenzen wakarimasen.", "Tôi hoàn toàn không hiểu tiếng Đức."),
         ))
     }
 
@@ -143,6 +149,8 @@ object LanguageLearningData {
         GrammarPattern("Ngôn ngữ", "Tên nước + ご", "Nhiều tên ngôn ngữ dùng ～ご. Tiếng Anh là えいご, không phải アメリカご hay イギリスご.", listOf(e("にほんごをべんきょうします。", "Nihon-go o benkyou shimasu.", "Tôi học tiếng Nhật."), e("えいごができます。", "Eigo ga dekimasu.", "Tôi biết tiếng Anh."))),
         GrammarPattern("Nói khả năng", "N1 は N2 が できます", "N2 là ngôn ngữ hoặc kỹ năng mà N1 có thể thực hiện.", listOf(e("わたしはベトナムごができます。", "Watashi wa Betonamu-go ga dekimasu.", "Tôi biết tiếng Việt."), e("ティンさんはにほんごができますか。", "Tinh-san wa Nihon-go ga dekimasu ka.", "Anh Tính biết tiếng Nhật không?"))),
         GrammarPattern("Phủ định khả năng", "N2 は できません", "Dùng できません để nói không thể hoặc chưa biết một kỹ năng.", listOf(e("いいえ、できません。", "Iie, dekimasen.", "Không, tôi không biết."), e("かんこくごはできません。", "Kankoku-go wa dekimasen.", "Tôi không biết tiếng Hàn."))),
+        GrammarPattern("Nói mức độ khả năng", "すこし／あまり／ぜんぜん + できます／できません", "すこし đi với câu khẳng định; あまり và ぜんぜん thường đi với câu phủ định.", listOf(e("にほんごがすこしできます。", "Nihon-go ga sukoshi dekimasu.", "Tôi biết một chút tiếng Nhật."), e("にほんごはあまりできません。", "Nihon-go wa amari dekimasen.", "Tôi không giỏi tiếng Nhật lắm."), e("ドイツごはぜんぜんできません。", "Doitsu-go wa zenzen dekimasen.", "Tôi hoàn toàn không biết tiếng Đức."))),
+        GrammarPattern("Nói hiểu hoặc không hiểu", "N が わかります／わかりません", "Dùng わかります khi hiểu nội dung; khác với できます là có khả năng thực hiện hoặc sử dụng.", listOf(e("えいごがわかります。", "Eigo ga wakarimasu.", "Tôi hiểu tiếng Anh."), e("すみません、にほんごがわかりません。", "Sumimasen, Nihon-go ga wakarimasen.", "Xin lỗi, tôi không hiểu tiếng Nhật."))),
     )
 
     private fun japaneseNumber(n: Int): Pair<String, String> {
@@ -252,49 +260,192 @@ object LanguageLearningData {
 
     fun dialogues(lesson: LanguageLesson): List<DialogueScenario> {
         val names = listOf("マイ" to "Mai", "ティン" to "Tinh", "キム" to "Kimu", "カーラ" to "Kaara", "アン" to "An")
+        val cities = listOf(
+            Triple("ホーチミン", "Hoo Chi Min", "Hồ Chí Minh"), Triple("とうきょう", "Toukyou", "Tokyo"),
+            Triple("ソウル", "Souru", "Seoul"), Triple("ペキン", "Pekin", "Bắc Kinh"),
+            Triple("ニューヨーク", "Nyuu Yooku", "New York"), Triple("ロンドン", "Rondon", "London"),
+            Triple("ローマ", "Rooma", "Rome"), Triple("パリ", "Pari", "Paris"),
+            Triple("ベルリン", "Berurin", "Berlin"), Triple("バンコク", "Bankoku", "Bangkok"),
+        )
+        val jobs = listOf(
+            Triple("ソフトウェアエンジニア", "sofutowea enjinia", "kỹ sư phần mềm"),
+            Triple("かいはつしゃ", "kaihatsusha", "lập trình viên"), Triple("きょうし", "kyoushi", "giáo viên"),
+            Triple("がくせい", "gakusei", "sinh viên"), Triple("かいしゃいん", "kaishain", "nhân viên công ty"),
+            Triple("ぎんこういん", "ginkouin", "nhân viên ngân hàng"), Triple("いしゃ", "isha", "bác sĩ"),
+            Triple("こうむいん", "koumuin", "công chức"), Triple("しゅふ", "shufu", "người nội trợ"),
+        )
         return List(25) { index ->
-            val (name, nameRomaji) = names[index % names.size]
-            val (otherName, otherNameRomaji) = names[(index / names.size + 1) % names.size]
+            val scene = index % 5
+            val variant = index / 5
+            val (name, nameRomaji) = names[(scene + variant) % names.size]
+            val (otherName, otherNameRomaji) = names[(scene + variant + 1) % names.size]
             when (lesson.id) {
-                1 -> DialogueScenario(
-                    listOf("Lần đầu gặp mặt", "Buổi sáng ở lớp", "Chào đồng nghiệp", "Tự giới thiệu", "Làm quen bạn mới")[index % 5],
-                    listOf(
-                        e("はじめまして。わたしは${name}です。", "Hajimemashite. Watashi wa $nameRomaji desu.", "Rất vui được gặp bạn. Tôi là $nameRomaji."),
-                        e("はじめまして。わたしは${otherName}です。", "Hajimemashite. Watashi wa $otherNameRomaji desu.", "Rất vui được gặp bạn. Tôi là $otherNameRomaji."),
+                1 -> when (scene) {
+                    0 -> DialogueScenario("Lần đầu gặp mặt ${index / 5 + 1}", listOf(
+                        e("こんにちは。はじめまして。", "Konnichiwa. Hajimemashite.", "Xin chào. Rất vui được gặp bạn."),
+                        e("こんにちは。はじめまして。", "Konnichiwa. Hajimemashite.", "Xin chào. Rất vui được gặp bạn."),
+                        e("わたしは${name}です。おなまえはなんですか。", "Watashi wa $nameRomaji desu. Onamae wa nan desu ka.", "Tôi là $nameRomaji. Bạn tên là gì?"),
+                        e("${otherName}です。", "$otherNameRomaji desu.", "Tôi là $otherNameRomaji."),
+                        e("おげんきですか。", "Ogenki desu ka.", "Bạn có khỏe không?"),
+                        e("はい、げんきです。${name}さんは。", "Hai, genki desu. $nameRomaji-san wa?", "Vâng, tôi khỏe. Còn bạn $nameRomaji?"),
+                        e("わたしもげんきです。", "Watashi mo genki desu.", "Tôi cũng khỏe."),
                         e("どうぞよろしくおねがいします。", "Douzo yoroshiku onegai shimasu.", "Rất mong được bạn giúp đỡ."),
-                    ),
-                )
-                2 -> {
-                    val row = countryRows[index % countryRows.size]
-                    val jobs = listOf(
-                        Triple("ソフトウェアエンジニア", "sofutowea enjinia", "kỹ sư phần mềm"),
-                        Triple("かいはつしゃ", "kaihatsusha", "lập trình viên"),
-                        Triple("きょうし", "kyoushi", "giáo viên"),
-                        Triple("がくせい", "gakusei", "sinh viên"),
-                        Triple("かいしゃいん", "kaishain", "nhân viên công ty"),
-                    )
-                    val job = jobs[index % jobs.size]
-                    DialogueScenario("Quê quán và nghề nghiệp ${index + 1}", listOf(
-                        e("はじめまして。${otherName}です。", "Hajimemashite. $otherNameRomaji desu.", "Rất vui được gặp bạn. Tôi là $otherNameRomaji."),
-                        e("どちらからですか。", "Dochira kara desu ka.", "Bạn đến từ đâu?"),
-                        e("${row[0]}からです。", "${row[1]} kara desu.", "Tôi đến từ ${row[2]}."),
-                        e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"),
-                        e("${job.first}です。", "${job.second} desu.", "Tôi là ${job.third}."),
-                        e("${row[6]}ができますか。", "${row[7]} ga dekimasu ka.", "Bạn biết ${row[8]} không?"),
+                        e("こちらこそ、よろしくおねがいします。", "Kochira koso, yoroshiku onegai shimasu.", "Chính tôi cũng rất mong được bạn giúp đỡ."),
                     ))
+                    1 -> DialogueScenario("Chưa nghe rõ tên ${index / 5 + 1}", listOf(
+                        e("すみません、おなまえはなんですか。", "Sumimasen, onamae wa nan desu ka.", "Xin lỗi, bạn tên là gì?"),
+                        e("${otherName}です。", "$otherNameRomaji desu.", "Tôi là $otherNameRomaji."),
+                        e("すみません、もういちどおねがいします。", "Sumimasen, mou ichido onegai shimasu.", "Xin lỗi, vui lòng nói lại một lần nữa."),
+                        e("${otherName}です。", "$otherNameRomaji desu.", "Tôi là $otherNameRomaji."),
+                        e("わかりました。ありがとうございます。", "Wakarimashita. Arigatou gozaimasu.", "Tôi hiểu rồi. Xin cảm ơn."),
+                        e("どういたしまして。", "Dou itashimashite.", "Không có gì."),
+                    ))
+                    2 -> DialogueScenario("Chào buổi sáng ${index / 5 + 1}", listOf(
+                        e("おはようございます。", "Ohayou gozaimasu.", "Chào buổi sáng."),
+                        e("おはようございます。おげんきですか。", "Ohayou gozaimasu. Ogenki desu ka.", "Chào buổi sáng. Bạn có khỏe không?"),
+                        e("はい、げんきです。${otherName}さんは。", "Hai, genki desu. $otherNameRomaji-san wa?", "Vâng, tôi khỏe. Còn bạn $otherNameRomaji?"),
+                        e("わたしもげんきです。", "Watashi mo genki desu.", "Tôi cũng khỏe."),
+                        e("きょうもよろしくおねがいします。", "Kyou mo yoroshiku onegai shimasu.", "Hôm nay cũng mong bạn giúp đỡ."),
+                        e("こちらこそ、よろしくおねがいします。", "Kochira koso, yoroshiku onegai shimasu.", "Chính tôi cũng mong được bạn giúp đỡ."),
+                    ))
+                    3 -> DialogueScenario("Nhầm tên ${index / 5 + 1}", listOf(
+                        e("すみません、${otherName}さんですか。", "Sumimasen, $otherNameRomaji-san desu ka.", "Xin lỗi, bạn là $otherNameRomaji phải không?"),
+                        e("いいえ、${name}です。", "Iie, $nameRomaji desu.", "Không, tôi là $nameRomaji."),
+                        e("すみません。わたしは${otherName}です。", "Sumimasen. Watashi wa $otherNameRomaji desu.", "Xin lỗi. Tôi là $otherNameRomaji."),
+                        e("はじめまして。", "Hajimemashite.", "Rất vui được gặp bạn."),
+                        e("はじめまして。どうぞよろしくおねがいします。", "Hajimemashite. Douzo yoroshiku onegai shimasu.", "Rất vui được gặp bạn. Mong được bạn giúp đỡ."),
+                        e("こちらこそ、よろしくおねがいします。", "Kochira koso, yoroshiku onegai shimasu.", "Chính tôi cũng mong được bạn giúp đỡ."),
+                    ))
+                    else -> DialogueScenario("Kết thúc buổi học ${index / 5 + 1}", listOf(
+                        e("きょうはありがとうございました。", "Kyou wa arigatou gozaimashita.", "Hôm nay xin cảm ơn bạn."),
+                        e("こちらこそ、ありがとうございました。", "Kochira koso, arigatou gozaimashita.", "Chính tôi cũng xin cảm ơn."),
+                        e("またあした。", "Mata ashita.", "Hẹn gặp lại ngày mai."),
+                        e("はい、またあした。", "Hai, mata ashita.", "Vâng, hẹn gặp lại ngày mai."),
+                        e("さようなら。", "Sayounara.", "Tạm biệt."),
+                        e("さようなら。", "Sayounara.", "Tạm biệt."),
+                    ))
+                }
+                2 -> {
+                    val row = countryRows[(scene * 2 + variant) % countryRows.size]
+                    val job = jobs[(scene + variant) % jobs.size]
+                    val otherRow = countryRows[(scene * 2 + variant + 3) % countryRows.size]
+                    val otherJob = jobs[(scene + variant + 3) % jobs.size]
+                    val city = cities[(scene * 2 + variant) % cities.size]
+                    val unknownLanguage = countryRows[(scene + variant + 1) % countryRows.size]
+                    val knownLanguage = countryRows[(scene + variant + 2) % countryRows.size]
+                    when (scene) {
+                        0 -> DialogueScenario("Làm quen toàn diện ${index / 5 + 1}", listOf(
+                            e("はじめまして。${name}です。", "Hajimemashite. $nameRomaji desu.", "Rất vui được gặp bạn. Tôi là $nameRomaji."),
+                            e("はじめまして。${otherName}です。どちらからですか。", "Hajimemashite. $otherNameRomaji desu. Dochira kara desu ka.", "Rất vui được gặp bạn. Tôi là $otherNameRomaji. Bạn đến từ đâu?"),
+                            e("${row[0]}からです。", "${row[1]} kara desu.", "Tôi đến từ ${row[2]}."),
+                            e("しゅっしんはどちらですか。", "Shusshin wa dochira desu ka.", "Quê bạn ở đâu?"),
+                            e("${city.first}です。", "${city.second} desu.", "Quê tôi ở ${city.third}."),
+                            e("${unknownLanguage[6]}ができますか。", "${unknownLanguage[7]} ga dekimasu ka.", "Bạn biết ${unknownLanguage[8]} không?"),
+                            e("いいえ、${unknownLanguage[6]}はできません。", "Iie, ${unknownLanguage[7]} wa dekimasen.", "Không, tôi không biết ${unknownLanguage[8]}."),
+                            e("${knownLanguage[6]}ができますか。", "${knownLanguage[7]} ga dekimasu ka.", "Còn bạn biết ${knownLanguage[8]} không?"),
+                            e("はい、${knownLanguage[6]}ができます。", "Hai, ${knownLanguage[7]} ga dekimasu.", "Vâng, tôi biết ${knownLanguage[8]}."),
+                            e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"),
+                            e("${job.first}です。${otherName}さんは。", "${job.second} desu. $otherNameRomaji-san wa?", "Tôi là ${job.third}. Còn bạn $otherNameRomaji?"),
+                            e("${otherJob.first}です。", "${otherJob.second} desu.", "Tôi là ${otherJob.third}."),
+                        ))
+                        1 -> DialogueScenario("Hai đồng nghiệp mới ${index / 5 + 1}", listOf(
+                            e("おはようございます。あたらしいかたですか。", "Ohayou gozaimasu. Atarashii kata desu ka.", "Chào buổi sáng. Bạn là người mới phải không?"),
+                            e("はい、${name}です。よろしくおねがいします。", "Hai, $nameRomaji desu. Yoroshiku onegai shimasu.", "Vâng, tôi là $nameRomaji. Mong được giúp đỡ."),
+                            e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"),
+                            e("${job.first}です。あなたは。", "${job.second} desu. Anata wa?", "Tôi là ${job.third}. Còn bạn?"),
+                            e("${otherJob.first}です。どちらからですか。", "${otherJob.second} desu. Dochira kara desu ka.", "Tôi là ${otherJob.third}. Bạn đến từ đâu?"),
+                            e("${row[0]}からです。${row[6]}とえいごができます。", "${row[1]} kara desu. ${row[7]} to Eigo ga dekimasu.", "Tôi đến từ ${row[2]}. Tôi biết ${row[8]} và tiếng Anh."),
+                            e("にほんごはどうですか。", "Nihon-go wa dou desu ka.", "Tiếng Nhật của bạn thế nào?"),
+                            e("にほんごはすこしできます。", "Nihon-go wa sukoshi dekimasu.", "Tôi biết một chút tiếng Nhật."),
+                        ))
+                        2 -> DialogueScenario("Giao lưu quốc tế ${index / 5 + 1}", listOf(
+                            e("${name}さんは${row[3]}ですか。", "$nameRomaji-san wa ${row[4]} desu ka.", "Bạn $nameRomaji là ${row[5]} phải không?"),
+                            e("はい、そうです。${otherName}さんは。", "Hai, sou desu. $otherNameRomaji-san wa?", "Vâng, đúng vậy. Còn bạn $otherNameRomaji?"),
+                            e("わたしは${otherRow[3]}です。", "Watashi wa ${otherRow[4]} desu.", "Tôi là ${otherRow[5]}."),
+                            e("${otherRow[6]}がわかりますか。", "${otherRow[7]} ga wakarimasu ka.", "Bạn có hiểu ${otherRow[8]} không?"),
+                            e("いいえ、ぜんぜんわかりません。", "Iie, zenzen wakarimasen.", "Không, tôi hoàn toàn không hiểu."),
+                            e("えいごはわかりますか。", "Eigo wa wakarimasu ka.", "Bạn có hiểu tiếng Anh không?"),
+                            e("はい、よくわかります。", "Hai, yoku wakarimasu.", "Vâng, tôi hiểu khá rõ."),
+                            e("そうですか。わたしはあまりわかりません。", "Sou desu ka. Watashi wa amari wakarimasen.", "Vậy à. Tôi không hiểu lắm."),
+                        ))
+                        3 -> DialogueScenario("Tìm bạn luyện ngôn ngữ ${index / 5 + 1}", listOf(
+                            e("なんごができますか。", "Nan-go ga dekimasu ka.", "Bạn biết ngôn ngữ nào?"),
+                            e("${row[6]}ができます。${name}さんは。", "${row[7]} ga dekimasu. $nameRomaji-san wa?", "Tôi biết ${row[8]}. Còn bạn $nameRomaji?"),
+                            e("${knownLanguage[6]}ができます。", "${knownLanguage[7]} ga dekimasu.", "Tôi biết ${knownLanguage[8]}."),
+                            e("にほんごもできますか。", "Nihon-go mo dekimasu ka.", "Bạn cũng biết tiếng Nhật không?"),
+                            e("いいえ、にほんごはあまりできません。", "Iie, Nihon-go wa amari dekimasen.", "Không, tôi không giỏi tiếng Nhật lắm."),
+                            e("わたしもです。いっしょにべんきょうしますか。", "Watashi mo desu. Issho ni benkyou shimasu ka.", "Tôi cũng vậy. Chúng ta học cùng nhau nhé?"),
+                            e("はい、おねがいします。", "Hai, onegai shimasu.", "Vâng, nhờ bạn nhé."),
+                            e("よろしくおねがいします。", "Yoroshiku onegai shimasu.", "Rất mong được bạn giúp đỡ."),
+                        ))
+                        else -> DialogueScenario("Đoán nhầm quốc tịch ${index / 5 + 1}", listOf(
+                            e("すみません、にほんじんですか。", "Sumimasen, Nihon-jin desu ka.", "Xin lỗi, bạn là người Nhật phải không?"),
+                            e("いいえ、にほんじんじゃないです。${row[3]}です。", "Iie, Nihon-jin ja nai desu. ${row[4]} desu.", "Không, tôi không phải người Nhật. Tôi là ${row[5]}."),
+                            e("そうですか。どこにすんでいますか。", "Sou desu ka. Doko ni sunde imasu ka.", "Vậy à. Bạn đang sống ở đâu?"),
+                            e("${city.first}にすんでいます。", "${city.second} ni sunde imasu.", "Tôi sống ở ${city.third}."),
+                            e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"),
+                            e("${job.first}です。あなたは。", "${job.second} desu. Anata wa?", "Tôi là ${job.third}. Còn bạn?"),
+                            e("${otherJob.first}です。", "${otherJob.second} desu.", "Tôi là ${otherJob.third}."),
+                            e("どうぞよろしくおねがいします。", "Douzo yoroshiku onegai shimasu.", "Rất mong được bạn giúp đỡ."),
+                        ))
+                    }
                 }
                 3 -> {
                     val age = 20 + index
                     val people = 3 + index % 6
-                    val (ageText, ageRead) = ageExpression(age)
-                    val (peopleJ, peopleR) = japaneseNumber(people)
+                    val (_, ageRead) = ageExpression(age)
+                    val ageText = if (age == 20) "はたち" else "${hiraganaNumber(age)}さい"
+                    val otherAge = age + 2
+                    val (_, otherAgeRead) = ageExpression(otherAge)
+                    val otherAgeText = "${hiraganaNumber(otherAge)}さい"
+                    val (_, peopleR) = japaneseNumber(people)
+                    val peopleText = if (people == 4) "よにん" else "${hiraganaNumber(people)}にん"
                     val peopleRead = if (people == 4) "yo-nin" else "$peopleR-nin"
-                    DialogueScenario("Tuổi và gia đình ${index + 1}", listOf(
-                        e("なんさいですか。", "Nan-sai desu ka.", "Bạn bao nhiêu tuổi?"),
-                        e("${ageText}です。", "$ageRead desu.", "Tôi $age tuổi."),
-                        e("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"),
-                        e("${peopleJ}にんです。", "$peopleRead desu.", "Có $people người."),
-                    ))
+                    val number = 11 + (index * 7) % 89
+                    val numberKana = hiraganaNumber(number)
+                    val (_, numberRomaji) = japaneseNumber(number)
+                    when (scene) {
+                        0 -> DialogueScenario("Tuổi và gia đình ${index / 5 + 1}", listOf(
+                            e("なんさいですか。", "Nan-sai desu ka.", "Bạn bao nhiêu tuổi?"),
+                            e("${ageText}です。あなたは。", "$ageRead desu. Anata wa?", "Tôi $age tuổi. Còn bạn?"),
+                            e("${otherAgeText}です。", "$otherAgeRead desu.", "Tôi $otherAge tuổi."),
+                            e("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"),
+                            e("${peopleText}です。あなたのかぞくは。", "$peopleRead desu. Anata no kazoku wa?", "Gia đình tôi có $people người. Còn gia đình bạn?"),
+                            e("ごにんです。", "Go-nin desu.", "Gia đình tôi có năm người."),
+                        ))
+                        1 -> DialogueScenario("Tìm phòng học ${index / 5 + 1}", listOf(
+                            e("すみません、きょうしつはなんばんですか。", "Sumimasen, kyoushitsu wa nan-ban desu ka.", "Xin lỗi, phòng học số mấy?"),
+                            e("${numberKana}ばんです。", "$numberRomaji-ban desu.", "Phòng số $number."),
+                            e("${numberKana}ばんですね。", "$numberRomaji-ban desu ne.", "Là phòng số $number nhỉ."),
+                            e("はい、そうです。", "Hai, sou desu.", "Vâng, đúng vậy."),
+                            e("ありがとうございます。", "Arigatou gozaimasu.", "Xin cảm ơn."),
+                            e("どういたしまして。", "Dou itashimashite.", "Không có gì."),
+                        ))
+                        2 -> DialogueScenario("Mở đúng trang sách ${index / 5 + 1}", listOf(
+                            e("なんページですか。", "Nan peeji desu ka.", "Trang bao nhiêu vậy?"),
+                            e("${numberKana}ページです。", "$numberRomaji peeji desu.", "Trang $number."),
+                            e("すみません、もういちどおねがいします。", "Sumimasen, mou ichido onegai shimasu.", "Xin lỗi, vui lòng nói lại."),
+                            e("${numberKana}ページです。", "$numberRomaji peeji desu.", "Trang $number."),
+                            e("わかりました。", "Wakarimashita.", "Tôi hiểu rồi."),
+                            e("では、はじめましょう。", "Dewa, hajimemashou.", "Vậy chúng ta bắt đầu nhé."),
+                        ))
+                        3 -> DialogueScenario("Chia nhóm ${index / 5 + 1}", listOf(
+                            e("このグループはなんにんですか。", "Kono guruupu wa nan-nin desu ka.", "Nhóm này có bao nhiêu người?"),
+                            e("${peopleText}です。", "$peopleRead desu.", "Có $people người."),
+                            e("おとこのひとはなんにんですか。", "Otoko no hito wa nan-nin desu ka.", "Có bao nhiêu nam?"),
+                            e("ふたりです。", "Futari desu.", "Có hai nam."),
+                            e("おんなのひとは。", "Onna no hito wa?", "Còn nữ thì sao?"),
+                            e("${if (people - 2 == 1) "ひとり" else hiraganaNumber(people - 2) + "にん"}です。", "${if (people - 2 == 1) "hitori" else japaneseNumber(people - 2).second + "-nin"} desu.", "Có ${people - 2} nữ."),
+                        ))
+                        else -> DialogueScenario("Kết quả bài kiểm tra ${index / 5 + 1}", listOf(
+                            e("テストはなんてんでしたか。", "Tesuto wa nan-ten deshita ka.", "Bài kiểm tra được bao nhiêu điểm?"),
+                            e("${numberKana}てんでした。", "$numberRomaji-ten deshita.", "Tôi được $number điểm."),
+                            e("すごいですね。", "Sugoi desu ne.", "Giỏi quá nhỉ."),
+                            e("ありがとうございます。あなたは。", "Arigatou gozaimasu. Anata wa?", "Cảm ơn. Còn bạn?"),
+                            e("${hiraganaNumber((number - 7).coerceAtLeast(1))}てんでした。", "${japaneseNumber((number - 7).coerceAtLeast(1)).second}-ten deshita.", "Tôi được ${(number - 7).coerceAtLeast(1)} điểm."),
+                            e("つぎもがんばりましょう。", "Tsugi mo ganbarimashou.", "Lần sau chúng ta cũng cùng cố gắng nhé."),
+                        ))
+                    }
                 }
                 else -> {
                     val members = listOf(
@@ -302,21 +453,60 @@ object LanguageLearningData {
                         Triple("あに", "ani", "anh tôi"), Triple("あね", "ane", "chị tôi"),
                         Triple("おとうと", "otouto", "em trai tôi"),
                     )
-                    val member = members[index % members.size]
-                    val job = listOf(
-                        Triple("いしゃ", "isha", "bác sĩ"), Triple("きょうし", "kyoushi", "giáo viên"),
-                        Triple("エンジニア", "enjinia", "kỹ sư"), Triple("かいしゃいん", "kaishain", "nhân viên công ty"),
-                        Triple("ぎんこういん", "ginkouin", "nhân viên ngân hàng"),
-                    )[index % 5]
+                    val member = members[(scene + variant) % members.size]
+                    val job = jobs[(scene + variant) % jobs.size]
+                    val otherJob = jobs[(scene + variant + 4) % jobs.size]
                     val age = 25 + index
-                    val (ageText, ageRead) = ageExpression(age)
-                    DialogueScenario("Giới thiệu gia đình ${index + 1}", listOf(
-                        e("このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
-                        e("わたしの${member.first}です。", "Watashi no ${member.second} desu.", "Đây là ${member.third}."),
-                        e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Người đó làm nghề gì?"),
-                        e("${job.first}です。", "${job.second} desu.", "Là ${job.third}."),
-                        e("${ageText}です。", "$ageRead desu.", "Người đó $age tuổi."),
-                    ))
+                    val (_, ageRead) = ageExpression(age)
+                    val ageText = "${hiraganaNumber(age)}さい"
+                    when (scene) {
+                        0 -> DialogueScenario("Xem ảnh gia đình ${index / 5 + 1}", listOf(
+                            e("これはかぞくのしゃしんですか。", "Kore wa kazoku no shashin desu ka.", "Đây là ảnh gia đình bạn phải không?"),
+                            e("はい、そうです。", "Hai, sou desu.", "Vâng, đúng vậy."),
+                            e("このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
+                            e("わたしの${member.first}です。", "Watashi no ${member.second} desu.", "Đây là ${member.third}."),
+                            e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Người đó làm nghề gì?"),
+                            e("${job.first}です。", "${job.second} desu.", "Là ${job.third}."),
+                            e("なんさいですか。", "Nan-sai desu ka.", "Người đó bao nhiêu tuổi?"),
+                            e("${ageText}です。", "$ageRead desu.", "Người đó $age tuổi."),
+                        ))
+                        1 -> DialogueScenario("Gia đình có những ai ${index / 5 + 1}", listOf(
+                            e("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"),
+                            e("ごにんです。", "Go-nin desu.", "Gia đình tôi có năm người."),
+                            e("だれがいますか。", "Dare ga imasu ka.", "Gia đình có những ai?"),
+                            e("ちちと ははと あねと いもうとと わたしです。", "Chichi to haha to ane to imouto to watashi desu.", "Gồm bố, mẹ, chị gái, em gái và tôi."),
+                            e("きょうだいがふたりいますね。", "Kyoudai ga futari imasu ne.", "Bạn có hai chị em nhỉ."),
+                            e("はい、あねと いもうとがいます。あなたのかぞくは。", "Hai, ane to imouto ga imasu. Anata no kazoku wa?", "Vâng, tôi có chị và em gái. Còn gia đình bạn?"),
+                            e("りょうしんと あにと わたしです。", "Ryoushin to ani to watashi desu.", "Gia đình tôi gồm bố mẹ, anh trai và tôi."),
+                        ))
+                        2 -> DialogueScenario("Nghề nghiệp của bố mẹ ${index / 5 + 1}", listOf(
+                            e("おとうさんのおしごとはなんですか。", "Otousan no oshigoto wa nan desu ka.", "Bố bạn làm nghề gì?"),
+                            e("${job.first}です。おかあさんは${otherJob.first}です。", "${job.second} desu. Okaasan wa ${otherJob.second} desu.", "Bố tôi là ${job.third}. Mẹ tôi là ${otherJob.third}."),
+                            e("そうですか。りょうしんはどこにいますか。", "Sou desu ka. Ryoushin wa doko ni imasu ka.", "Vậy à. Bố mẹ bạn đang ở đâu?"),
+                            e("${cities[(scene * 2 + variant) % cities.size].first}にいます。", "${cities[(scene * 2 + variant) % cities.size].second} ni imasu.", "Bố mẹ tôi ở ${cities[(scene * 2 + variant) % cities.size].third}."),
+                            e("あなたのりょうしんは。", "Anata no ryoushin wa?", "Còn bố mẹ bạn?"),
+                            e("ベトナムにいます。ちちはかいしゃいんで、はははきょうしです。", "Betonamu ni imasu. Chichi wa kaishain de, haha wa kyoushi desu.", "Bố mẹ tôi ở Việt Nam. Bố là nhân viên công ty và mẹ là giáo viên."),
+                        ))
+                        3 -> DialogueScenario("Anh chị em sống ở đâu ${index / 5 + 1}", listOf(
+                            e("きょうだいがいますか。", "Kyoudai ga imasu ka.", "Bạn có anh chị em không?"),
+                            e("はい、${member.first}がいます。", "Hai, ${member.second} ga imasu.", "Vâng, tôi có ${member.third}."),
+                            e("どこにいますか。", "Doko ni imasu ka.", "Người đó đang ở đâu?"),
+                            e("${cities[(scene * 2 + variant) % cities.size].first}にいます。", "${cities[(scene * 2 + variant) % cities.size].second} ni imasu.", "Người đó ở ${cities[(scene * 2 + variant) % cities.size].third}."),
+                            e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Người đó làm nghề gì?"),
+                            e("${job.first}です。", "${job.second} desu.", "Là ${job.third}."),
+                            e("なんさいですか。", "Nan-sai desu ka.", "Người đó bao nhiêu tuổi?"),
+                            e("${ageText}です。", "$ageRead desu.", "Người đó $age tuổi."),
+                        ))
+                        else -> DialogueScenario("Con cái và gia đình ${index / 5 + 1}", listOf(
+                            e("こどもがいますか。", "Kodomo ga imasu ka.", "Bạn có con không?"),
+                            e("はい、こどもがふたりいます。", "Hai, kodomo ga futari imasu.", "Vâng, tôi có hai người con."),
+                            e("むすこさんと むすめさんですか。", "Musuko-san to musume-san desu ka.", "Là một con trai và một con gái phải không?"),
+                            e("はい、そうです。むすこははっさいで、むすめはろくさいです。", "Hai, sou desu. Musuko wa hassai de, musume wa roku-sai desu.", "Vâng. Con trai tám tuổi và con gái sáu tuổi."),
+                            e("あなたはこどもがいますか。", "Anata wa kodomo ga imasu ka.", "Còn bạn có con không?"),
+                            e("いいえ、こどもはいません。", "Iie, kodomo wa imasen.", "Không, tôi chưa có con."),
+                            e("そうですか。", "Sou desu ka.", "Vậy à."),
+                        ))
+                    }
                 }
             }
         }

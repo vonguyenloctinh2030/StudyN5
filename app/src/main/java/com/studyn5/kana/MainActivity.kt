@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
                         onSpeak = { kana -> audio.play(kana) },
                         onSpeakKey = { audioKey -> audio.play(audioKey) },
                         onSpeakJapanese = { text -> audio.speakJapanese(text) },
+                        onSpeakJapaneseSequence = { texts -> audio.speakJapaneseSequence(texts) },
                     )
                 }
             }
@@ -64,6 +65,7 @@ private fun AppNavigation(
     onSpeak: (Kana) -> Unit,
     onSpeakKey: (String) -> Unit,
     onSpeakJapanese: (String) -> Unit,
+    onSpeakJapaneseSequence: (List<String>) -> Unit,
 ) {
     var route by remember { mutableStateOf<Screen>(Screen.Home) }
     var listType by remember { mutableStateOf(KanaType.HIRAGANA) }
@@ -156,6 +158,7 @@ private fun AppNavigation(
         is Screen.LanguageLearning -> LanguageLearningScreen(
             onBack = { route = Screen.Home },
             onSpeak = onSpeakJapanese,
+            onSpeakDialogue = onSpeakJapaneseSequence,
         )
     }
 }

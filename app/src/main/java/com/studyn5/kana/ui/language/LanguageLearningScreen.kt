@@ -58,7 +58,11 @@ import com.studyn5.kana.ui.theme.KanaSmallShape
 private enum class LanguagePage { LESSONS, HUB, VOCABULARY, GRAMMAR, PRACTICE, DIALOGUE }
 
 @Composable
-fun LanguageLearningScreen(onBack: () -> Unit, onSpeak: (String) -> Unit) {
+fun LanguageLearningScreen(
+    onBack: () -> Unit,
+    onSpeak: (String) -> Unit,
+    onSpeakDialogue: (List<String>) -> Unit,
+) {
     var page by remember { mutableStateOf(LanguagePage.LESSONS) }
     var lesson by remember { mutableStateOf<LanguageLesson?>(null) }
 
@@ -82,7 +86,7 @@ fun LanguageLearningScreen(onBack: () -> Unit, onSpeak: (String) -> Unit) {
         LanguagePage.VOCABULARY -> lesson?.let { VocabularyList(it, ::goBack, onSpeak) }
         LanguagePage.GRAMMAR -> lesson?.let { GrammarList(it, ::goBack, onSpeak) }
         LanguagePage.PRACTICE -> lesson?.let { QuickPractice(it, ::goBack, onSpeak) }
-        LanguagePage.DIALOGUE -> lesson?.let { DialoguePractice(it, ::goBack, onSpeak) }
+        LanguagePage.DIALOGUE -> lesson?.let { DialoguePractice(it, ::goBack, onSpeak, onSpeakDialogue) }
     }
 }
 
@@ -392,7 +396,12 @@ private fun QuickPractice(lesson: LanguageLesson, onBack: () -> Unit, onSpeak: (
 }
 
 @Composable
-private fun DialoguePractice(lesson: LanguageLesson, onBack: () -> Unit, onSpeak: (String) -> Unit) {
+private fun DialoguePractice(
+    lesson: LanguageLesson,
+    onBack: () -> Unit,
+    onSpeak: (String) -> Unit,
+    onSpeakDialogue: (List<String>) -> Unit,
+) {
     val dialogues = remember(lesson.id) { LanguageLearningData.dialogues(lesson) }
     var index by remember(lesson.id) { mutableIntStateOf(0) }
     var showMeaning by remember(index) { mutableStateOf(false) }
@@ -423,7 +432,7 @@ private fun DialoguePractice(lesson: LanguageLesson, onBack: () -> Unit, onSpeak
             }
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Box(Modifier.weight(1f).clip(KanaSmallShape).border(1.dp, MaterialTheme.colorScheme.primary, KanaSmallShape).clickable {
-                    onSpeak(dialogue.lines.joinToString(" ") { it.japanese })
+                    onSpeakDialogue(dialogue.lines.map { it.japanese })
                 }.padding(14.dp), contentAlignment = Alignment.Center) {
                     Row(verticalAlignment = Alignment.CenterVertically) { SpeakerGlyph(MaterialTheme.colorScheme.primary, Modifier.size(18.dp)); Text("  Nghe toàn đoạn", fontSize = 11.sp, fontWeight = FontWeight.Bold) }
                 }

@@ -15,6 +15,7 @@ class AudioPlayer(context: Context) {
 
     private val appContext = context.applicationContext
     private var player: MediaPlayer? = null
+    private var sequenceToken = 0
     private var ttsReady = false
     private var textToSpeech: TextToSpeech? = null
 
@@ -74,8 +75,32 @@ class AudioPlayer(context: Context) {
      * không nối các file kana rời nên trường âm và âm ngắt vẫn giữ đúng nhịp.
      */
     fun speakJapanese(text: String) {
+        sequenceToken++
         player?.release()
         player = null
+        textToSpeech?.stop()
+        if (!playBundledJapanese(text)) speakWithTts(text)
+    }
+
+    /** Phát lần lượt từng lượt nói để giữ khoảng nghỉ tự nhiên giữa hai người. */
+    fun speakJapaneseSequence(texts: List<String>) {
+        sequenceToken++
+        val token = sequenceToken
+        player?.release()
+        player = null
+        textToSpeech?.stop()
+
+        fun playAt(index: Int) {
+            if (token != sequenceToken || index >= texts.size) return
+            if (!playBundledJapanese(texts[index]) { playAt(index + 1) }) {
+                // Chỉ dùng khi APK thiếu asset: TTS đọc phần còn lại như một đoạn hoàn chỉnh.
+                speakWithTts(texts.drop(index).joinToString(" "))
+            }
+        }
+        playAt(0)
+    }
+
+    private fun playBundledJapanese(text: String, onComplete: () -> Unit = {}): Boolean {
         val key = MessageDigest.getInstance("SHA-256")
             .digest(text.toByteArray(Charsets.UTF_8))
             .joinToString("") { "%02x".format(it) }
@@ -90,14 +115,19 @@ class AudioPlayer(context: Context) {
             newPlayer.setOnCompletionListener { completed ->
                 completed.release()
                 if (player === completed) player = null
+                onComplete()
             }
             newPlayer.prepare()
             newPlayer.start()
-            return
+            return true
         } catch (_: Exception) {
             player?.release()
             player = null
+            return false
         }
+    }
+
+    private fun speakWithTts(text: String) {
         if (!ttsReady) {
             Log.w("AudioPlayer", "Japanese TTS is not ready")
             return
@@ -106,6 +136,7 @@ class AudioPlayer(context: Context) {
     }
 
     fun release() {
+        sequenceToken++
         player?.release()
         player = null
         textToSpeech?.stop()
