@@ -29,6 +29,14 @@ def japanese_number(number: int) -> str:
     return ("" if tens == 0 else "十" if tens == 1 else kanji[tens] + "十") + kanji[ones]
 
 
+def hiragana_number(number: int) -> str:
+    reading = ["", "いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう"]
+    if number == 100:
+        return "ひゃく"
+    tens, ones = divmod(number, 10)
+    return ("" if tens == 0 else "じゅう" if tens == 1 else reading[tens] + "じゅう") + reading[ones]
+
+
 def collect_texts() -> list[str]:
     source = SOURCE.read_text(encoding="utf-8")
     quoted = re.findall(r'"((?:[^"\\]|\\.)*)"', source)
@@ -39,9 +47,11 @@ def collect_texts() -> list[str]:
     }
 
     for number in range(1, 101):
-        value = japanese_number(number)
-        texts.add(value)
-        texts.add(f"ばんごうは{value}です。")
+        kanji = japanese_number(number)
+        hiragana = hiragana_number(number)
+        texts.add(kanji)
+        texts.add(hiragana)
+        texts.add(f"ばんごうは{hiragana}です。")
 
     countries = ["ベトナム", "にほん", "かんこく", "ちゅうごく", "アメリカ", "イギリス", "イタリア", "フランス", "ドイツ", "タイ"]
     nationalities = ["ベトナムじん", "にほんじん", "かんこくじん", "ちゅうごくじん", "アメリカじん", "イギリスじん", "イタリアじん", "フランスじん", "ドイツじん", "タイじん"]

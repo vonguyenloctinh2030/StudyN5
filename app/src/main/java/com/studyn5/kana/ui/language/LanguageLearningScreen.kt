@@ -241,11 +241,34 @@ private fun VocabularyCard(item: VocabularyEntry, onSpeak: (String) -> Unit) {
             .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaCardShape).padding(14.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) {
-                Text(item.japanese, fontFamily = KanaFontFamily, fontSize = 25.sp, fontWeight = FontWeight.Bold)
+            Column(Modifier.weight(1.35f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        item.japanese,
+                        fontFamily = KanaFontFamily,
+                        fontSize = when {
+                            item.japanese.length > 7 -> 16.sp
+                            item.japanese.length > 5 -> 19.sp
+                            else -> 25.sp
+                        },
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                    )
+                    item.referenceJapanese?.let { reference ->
+                        Text(
+                            reference,
+                            Modifier.padding(start = 9.dp).clip(CircleShape).background(Color(0xFFFFE7C2))
+                                .padding(horizontal = 9.dp, vertical = 4.dp),
+                            fontFamily = KanaFontFamily,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF9A5A13),
+                        )
+                    }
+                }
                 Text(item.romaji, fontSize = 12.sp, color = KanaRed, fontWeight = FontWeight.Bold)
             }
-            Text(item.meaning, Modifier.weight(1f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text(item.meaning, Modifier.weight(.65f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
             SpeakerButton { onSpeak(item.japanese) }
         }
         Spacer(Modifier.height(9.dp))
@@ -315,7 +338,27 @@ private fun QuickPractice(lesson: LanguageLesson, onBack: () -> Unit, onSpeak: (
             LinearProgressIndicator((index + 1) / 25f, Modifier.fillMaxWidth().height(5.dp).clip(CircleShape), color = KanaRed)
             Spacer(Modifier.height(18.dp))
             Column(Modifier.fillMaxWidth().clip(KanaCardShape).background(MaterialTheme.colorScheme.surface).border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaCardShape).padding(22.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(question.japanese, fontFamily = KanaFontFamily, fontSize = 42.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        question.japanese,
+                        fontFamily = KanaFontFamily,
+                        fontSize = if (question.japanese.length > 6) 27.sp else 42.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        maxLines = 1,
+                    )
+                    question.referenceJapanese?.let { reference ->
+                        Text(
+                            reference,
+                            Modifier.padding(start = 10.dp).clip(CircleShape).background(Color(0xFFFFE7C2))
+                                .padding(horizontal = 10.dp, vertical = 5.dp),
+                            fontFamily = KanaFontFamily,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF9A5A13),
+                        )
+                    }
+                }
                 Text(question.romaji, fontSize = 13.sp, color = KanaRed)
                 Spacer(Modifier.height(12.dp))
                 SpeakerButton(size = 52) { onSpeak(question.japanese) }

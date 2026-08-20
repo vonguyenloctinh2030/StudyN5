@@ -17,6 +17,7 @@ data class VocabularyEntry(
     val exampleJapanese: String,
     val exampleRomaji: String,
     val exampleMeaning: String,
+    val referenceJapanese: String? = null,
 )
 
 data class GrammarPattern(
@@ -31,8 +32,16 @@ data class LanguageExample(val japanese: String, val romaji: String, val meaning
 data class DialogueScenario(val title: String, val lines: List<LanguageExample>)
 
 object LanguageLearningData {
-    private fun v(j: String, r: String, m: String, c: String, ej: String, er: String, em: String) =
-        VocabularyEntry(j, r, m, c, ej, er, em)
+    private fun v(
+        j: String,
+        r: String,
+        m: String,
+        c: String,
+        ej: String,
+        er: String,
+        em: String,
+        reference: String? = null,
+    ) = VocabularyEntry(j, r, m, c, ej, er, em, reference)
 
     private fun e(j: String, r: String, m: String) = LanguageExample(j, r, m)
 
@@ -148,6 +157,14 @@ object LanguageLearningData {
         return j to r
     }
 
+    private fun hiraganaNumber(n: Int): String {
+        val reading = arrayOf("", "いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう")
+        if (n == 100) return "ひゃく"
+        val tens = n / 10
+        val ones = n % 10
+        return (if (tens == 0) "" else if (tens == 1) "じゅう" else reading[tens] + "じゅう") + reading[ones]
+    }
+
     private fun ageExpression(age: Int): Pair<String, String> {
         if (age == 20) return "はたち" to "hatachi"
         val (japanese, romaji) = japaneseNumber(age)
@@ -161,8 +178,18 @@ object LanguageLearningData {
     }
 
     private val numberWords = (1..100).map { number ->
-        val (j, r) = japaneseNumber(number)
-        v(j, r, number.toString(), if (number < 10) "Số cơ bản" else "Số ghép", "ばんごうは${j}です。", "Bangou wa $r desu.", "Số là $number.")
+        val (kanji, r) = japaneseNumber(number)
+        val hiragana = hiraganaNumber(number)
+        v(
+            hiragana,
+            r,
+            number.toString(),
+            if (number < 10) "Số cơ bản" else "Số ghép",
+            "ばんごうは${hiragana}です。",
+            "Bangou wa $r desu.",
+            "Số là $number.",
+            reference = kanji,
+        )
     } + listOf(
         v("ひとり", "hitori", "một người", "Đếm người", "ひとりです。", "Hitori desu.", "Có một người."),
         v("ふたり", "futari", "hai người", "Đếm người", "ふたりです。", "Futari desu.", "Có hai người."),
