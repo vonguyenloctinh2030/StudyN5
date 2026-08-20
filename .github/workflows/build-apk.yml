@@ -21,6 +21,16 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Set up Python for Japanese audio
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate and verify Japanese learning audio
+        run: |
+          python -m pip install --disable-pip-version-check edge-tts==7.2.7
+          python scripts/generate_language_audio.py
+
       - name: Build debug APK
         run: ./gradlew assembleDebug --no-daemon --stacktrace
 

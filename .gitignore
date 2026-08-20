@@ -10,3 +10,4 @@
 *.keystore
 *.jks
 /app/release/
+__pycache__/
