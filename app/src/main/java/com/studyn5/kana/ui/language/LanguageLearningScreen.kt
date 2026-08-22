@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -311,7 +312,20 @@ private fun GrammarCard(number: Int, grammar: GrammarPattern, onSpeak: (String) 
         }
         Text(grammar.formula, Modifier.fillMaxWidth().padding(vertical = 13.dp), fontFamily = KanaFontFamily, fontSize = 24.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary, textAlign = TextAlign.Center)
         Text(grammar.explanation, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        grammar.questionAnswer?.let { dialogue ->
+            Spacer(Modifier.height(12.dp))
+            Column(
+                Modifier.fillMaxWidth().clip(KanaSmallShape)
+                    .background(MaterialTheme.colorScheme.primary.copy(alpha = .07f))
+                    .padding(11.dp),
+                verticalArrangement = Arrangement.spacedBy(9.dp),
+            ) {
+                GrammarDialogueLine("HỎI", dialogue.question, KanaRed, onSpeak)
+                GrammarDialogueLine("TRẢ LỜI", dialogue.answer, KanaJade, onSpeak)
+            }
+        }
         Spacer(Modifier.height(10.dp))
+        Text("VÍ DỤ THÊM", fontSize = 9.sp, fontWeight = FontWeight.ExtraBold, color = MaterialTheme.colorScheme.onSurfaceVariant)
         grammar.examples.forEach { example ->
             Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
                 Box(Modifier.size(6.dp).clip(CircleShape).background(KanaJade))
@@ -323,6 +337,27 @@ private fun GrammarCard(number: Int, grammar: GrammarPattern, onSpeak: (String) 
                 SpeakerButton(size = 34) { onSpeak(example.japanese) }
             }
         }
+    }
+}
+
+@Composable
+private fun GrammarDialogueLine(label: String, example: com.studyn5.kana.data.LanguageExample, accent: Color, onSpeak: (String) -> Unit) {
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            label,
+            Modifier.width(58.dp).clip(CircleShape).background(accent.copy(alpha = .13f))
+                .padding(vertical = 5.dp),
+            color = accent,
+            fontSize = 8.sp,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+        )
+        Column(Modifier.weight(1f).padding(horizontal = 9.dp)) {
+            Text(example.japanese, fontFamily = KanaFontFamily, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+            Text(example.romaji, fontSize = 9.sp, color = KanaRed)
+            Text(example.meaning, fontSize = 10.sp)
+        }
+        SpeakerButton(size = 32) { onSpeak(example.japanese) }
     }
 }
 

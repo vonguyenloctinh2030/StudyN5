@@ -25,9 +25,15 @@ data class GrammarPattern(
     val formula: String,
     val explanation: String,
     val examples: List<LanguageExample>,
+    val questionAnswer: GrammarQuestionAnswer? = null,
 )
 
 data class LanguageExample(val japanese: String, val romaji: String, val meaning: String)
+
+data class GrammarQuestionAnswer(
+    val question: LanguageExample,
+    val answer: LanguageExample,
+)
 
 data class DialogueScenario(val title: String, val lines: List<LanguageExample>)
 
@@ -47,12 +53,21 @@ object LanguageLearningData {
 
     private fun e(j: String, r: String, m: String) = LanguageExample(j, r, m)
 
+    private fun qa(
+        qj: String,
+        qr: String,
+        qm: String,
+        aj: String,
+        ar: String,
+        am: String,
+    ) = GrammarQuestionAnswer(e(qj, qr, qm), e(aj, ar, am))
+
     val lessons: List<LanguageLesson> by lazy {
         listOf(
             LanguageLesson(1, "Chào hỏi & giới thiệu", "Làm quen và giới thiệu bản thân", "あ", greetings, greetingGrammar),
             LanguageLesson(2, "Quốc gia, nghề nghiệp & ngôn ngữ", "Nói về quê quán, công việc và khả năng", "国", identityWords, identityGrammar),
             LanguageLesson(3, "Số đếm 1–100", "Đếm số, tuổi và số người", "百", numberWords, numberGrammar),
-            LanguageLesson(4, "Gia đình của tôi", "Giới thiệu thành viên trong gia đình", "家", familyWords, familyGrammar),
+            LanguageLesson(4, "Gia đình, tuổi & nơi sống", "Hỏi và giới thiệu đầy đủ về gia đình", "家", familyWords, familyGrammar),
         )
     }
 
@@ -85,11 +100,11 @@ object LanguageLearningData {
     )
 
     private val greetingGrammar = listOf(
-        GrammarPattern("Khẳng định danh tính", "N1 は N2 です", "Nêu N1 là N2. Trợ từ は trong mẫu này đọc là ‘wa’.", listOf(e("わたしはティンです。", "Watashi wa Tinh desu.", "Tôi là Tính."), e("わたしはエンジニアです。", "Watashi wa enjinia desu.", "Tôi là kỹ sư."))),
-        GrammarPattern("Phủ định danh tính", "N1 は N2 じゃないです", "Nói N1 không phải là N2. Đây là cách nói lịch sự thông dụng.", listOf(e("わたしはがくせいじゃないです。", "Watashi wa gakusei ja nai desu.", "Tôi không phải là sinh viên."), e("キムさんはせんせいじゃないです。", "Kimu-san wa sensei ja nai desu.", "Chị Kim không phải là giáo viên."))),
-        GrammarPattern("Câu hỏi phải không", "N1 は N2 ですか", "Thêm か cuối câu để tạo câu hỏi.", listOf(e("ティンさんはエンジニアですか。", "Tinh-san wa enjinia desu ka.", "Anh Tính là kỹ sư phải không?"), e("マイさんはがくせいですか。", "Mai-san wa gakusei desu ka.", "Bạn Mai là sinh viên phải không?"))),
-        GrammarPattern("Hỏi thông tin", "N1 は なんですか", "Dùng なん để hỏi N1 là gì.", listOf(e("おなまえはなんですか。", "Onamae wa nan desu ka.", "Bạn tên là gì?"), e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"))),
-        GrammarPattern("Sở hữu", "N1 の N2", "の nối hai danh từ; N2 thuộc về hoặc liên quan đến N1.", listOf(e("わたしのなまえはティンです。", "Watashi no namae wa Tinh desu.", "Tên tôi là Tính."), e("わたしのくにはベトナムです。", "Watashi no kuni wa Betonamu desu.", "Đất nước của tôi là Việt Nam."))),
+        GrammarPattern("Khẳng định danh tính", "N1 は N2 です", "Nêu N1 là N2. Trợ từ は trong mẫu này đọc là ‘wa’.", listOf(e("わたしはティンです。", "Watashi wa Tinh desu.", "Tôi là Tính."), e("わたしはエンジニアです。", "Watashi wa enjinia desu.", "Tôi là kỹ sư.")), qa("おなまえはなんですか。", "Onamae wa nan desu ka.", "Bạn tên là gì?", "わたしはティンです。", "Watashi wa Tinh desu.", "Tôi là Tính.")),
+        GrammarPattern("Phủ định danh tính", "N1 は N2 じゃないです", "Nói N1 không phải là N2. Đây là cách nói lịch sự thông dụng.", listOf(e("わたしはがくせいじゃないです。", "Watashi wa gakusei ja nai desu.", "Tôi không phải là sinh viên."), e("キムさんはせんせいじゃないです。", "Kimu-san wa sensei ja nai desu.", "Chị Kim không phải là giáo viên.")), qa("がくせいですか。", "Gakusei desu ka.", "Bạn là sinh viên phải không?", "いいえ、がくせいじゃないです。", "Iie, gakusei ja nai desu.", "Không, tôi không phải là sinh viên.")),
+        GrammarPattern("Câu hỏi phải không", "N1 は N2 ですか", "Thêm か cuối câu để tạo câu hỏi.", listOf(e("ティンさんはエンジニアですか。", "Tinh-san wa enjinia desu ka.", "Anh Tính là kỹ sư phải không?"), e("マイさんはがくせいですか。", "Mai-san wa gakusei desu ka.", "Bạn Mai là sinh viên phải không?")), qa("ティンさんはエンジニアですか。", "Tinh-san wa enjinia desu ka.", "Anh Tính là kỹ sư phải không?", "はい、エンジニアです。", "Hai, enjinia desu.", "Vâng, tôi là kỹ sư.")),
+        GrammarPattern("Hỏi thông tin", "N1 は なんですか", "Dùng なん để hỏi N1 là gì.", listOf(e("おなまえはなんですか。", "Onamae wa nan desu ka.", "Bạn tên là gì?"), e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?")), qa("おなまえはなんですか。", "Onamae wa nan desu ka.", "Bạn tên là gì?", "なまえはマイです。", "Namae wa Mai desu.", "Tên tôi là Mai.")),
+        GrammarPattern("Sở hữu", "N1 の N2", "の nối hai danh từ; N2 thuộc về hoặc liên quan đến N1.", listOf(e("わたしのなまえはティンです。", "Watashi no namae wa Tinh desu.", "Tên tôi là Tính."), e("わたしのくにはベトナムです。", "Watashi no kuni wa Betonamu desu.", "Đất nước của tôi là Việt Nam.")), qa("これはだれのかばんですか。", "Kore wa dare no kaban desu ka.", "Đây là cặp của ai?", "わたしのかばんです。", "Watashi no kaban desu.", "Đây là cặp của tôi.")),
     )
 
     private val countryRows = listOf(
@@ -145,14 +160,14 @@ object LanguageLearningData {
     }
 
     private val identityGrammar = listOf(
-        GrammarPattern("Hỏi xuất thân", "どちらからですか", "Cách hỏi lịch sự ‘Bạn đến từ đâu?’; trả lời bằng địa danh + からです.", listOf(e("どちらからですか。", "Dochira kara desu ka.", "Bạn đến từ đâu?"), e("ベトナムからです。", "Betonamu kara desu.", "Tôi đến từ Việt Nam."))),
-        GrammarPattern("Hỏi nghề nghiệp", "おしごとは なんですか", "お làm câu hỏi lịch sự hơn; なん nghĩa là gì.", listOf(e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"), e("ソフトウェアエンジニアです。", "Sofutowea enjinia desu.", "Tôi là kỹ sư phần mềm."))),
-        GrammarPattern("Quốc tịch", "Tên nước + じん", "Gắn ～じん sau tên nước để nói quốc tịch hoặc người của nước đó.", listOf(e("わたしはベトナムじんです。", "Watashi wa Betonamu-jin desu.", "Tôi là người Việt Nam."), e("キムさんはかんこくじんです。", "Kimu-san wa Kankoku-jin desu.", "Chị Kim là người Hàn Quốc."))),
-        GrammarPattern("Ngôn ngữ", "Tên nước + ご", "Nhiều tên ngôn ngữ dùng ～ご. Tiếng Anh là えいご, không phải アメリカご hay イギリスご.", listOf(e("にほんごをべんきょうします。", "Nihon-go o benkyou shimasu.", "Tôi học tiếng Nhật."), e("えいごができます。", "Eigo ga dekimasu.", "Tôi biết tiếng Anh."))),
-        GrammarPattern("Nói khả năng", "N1 は N2 が できます", "N2 là ngôn ngữ hoặc kỹ năng mà N1 có thể thực hiện.", listOf(e("わたしはベトナムごができます。", "Watashi wa Betonamu-go ga dekimasu.", "Tôi biết tiếng Việt."), e("ティンさんはにほんごができますか。", "Tinh-san wa Nihon-go ga dekimasu ka.", "Anh Tính biết tiếng Nhật không?"))),
-        GrammarPattern("Phủ định khả năng", "N2 は できません", "Dùng できません để nói không thể hoặc chưa biết một kỹ năng.", listOf(e("いいえ、できません。", "Iie, dekimasen.", "Không, tôi không biết."), e("かんこくごはできません。", "Kankoku-go wa dekimasen.", "Tôi không biết tiếng Hàn."))),
-        GrammarPattern("Nói mức độ khả năng", "すこし／あまり／ぜんぜん + できます／できません", "すこし đi với câu khẳng định; あまり và ぜんぜん thường đi với câu phủ định.", listOf(e("にほんごがすこしできます。", "Nihon-go ga sukoshi dekimasu.", "Tôi biết một chút tiếng Nhật."), e("にほんごはあまりできません。", "Nihon-go wa amari dekimasen.", "Tôi không giỏi tiếng Nhật lắm."), e("ドイツごはぜんぜんできません。", "Doitsu-go wa zenzen dekimasen.", "Tôi hoàn toàn không biết tiếng Đức."))),
-        GrammarPattern("Nói hiểu hoặc không hiểu", "N が わかります／わかりません", "Dùng わかります khi hiểu nội dung; khác với できます là có khả năng thực hiện hoặc sử dụng.", listOf(e("えいごがわかります。", "Eigo ga wakarimasu.", "Tôi hiểu tiếng Anh."), e("すみません、にほんごがわかりません。", "Sumimasen, Nihon-go ga wakarimasen.", "Xin lỗi, tôi không hiểu tiếng Nhật."))),
+        GrammarPattern("Hỏi xuất thân", "どちらからですか", "Cách hỏi lịch sự ‘Bạn đến từ đâu?’; trả lời bằng địa danh + からです.", listOf(e("どちらからですか。", "Dochira kara desu ka.", "Bạn đến từ đâu?"), e("ベトナムからです。", "Betonamu kara desu.", "Tôi đến từ Việt Nam.")), qa("どちらからですか。", "Dochira kara desu ka.", "Bạn đến từ đâu?", "ベトナムからです。", "Betonamu kara desu.", "Tôi đến từ Việt Nam.")),
+        GrammarPattern("Hỏi nghề nghiệp", "おしごとは なんですか", "お làm câu hỏi lịch sự hơn; なん nghĩa là gì.", listOf(e("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"), e("ソフトウェアエンジニアです。", "Sofutowea enjinia desu.", "Tôi là kỹ sư phần mềm.")), qa("おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?", "ソフトウェアエンジニアです。", "Sofutowea enjinia desu.", "Tôi là kỹ sư phần mềm.")),
+        GrammarPattern("Quốc tịch", "Tên nước + じん", "Gắn ～じん sau tên nước để nói quốc tịch hoặc người của nước đó.", listOf(e("わたしはベトナムじんです。", "Watashi wa Betonamu-jin desu.", "Tôi là người Việt Nam."), e("キムさんはかんこくじんです。", "Kimu-san wa Kankoku-jin desu.", "Chị Kim là người Hàn Quốc.")), qa("どこのくにのひとですか。", "Doko no kuni no hito desu ka.", "Bạn là người nước nào?", "ベトナムじんです。", "Betonamu-jin desu.", "Tôi là người Việt Nam.")),
+        GrammarPattern("Ngôn ngữ", "Tên nước + ご", "Nhiều tên ngôn ngữ dùng ～ご. Tiếng Anh là えいご, không phải アメリカご hay イギリスご.", listOf(e("にほんごをべんきょうします。", "Nihon-go o benkyou shimasu.", "Tôi học tiếng Nhật."), e("えいごができます。", "Eigo ga dekimasu.", "Tôi biết tiếng Anh.")), qa("なんごをべんきょうしますか。", "Nan-go o benkyou shimasu ka.", "Bạn học ngôn ngữ nào?", "にほんごをべんきょうします。", "Nihon-go o benkyou shimasu.", "Tôi học tiếng Nhật.")),
+        GrammarPattern("Nói khả năng", "N1 は N2 が できます", "N2 là ngôn ngữ hoặc kỹ năng mà N1 có thể thực hiện.", listOf(e("わたしはベトナムごができます。", "Watashi wa Betonamu-go ga dekimasu.", "Tôi biết tiếng Việt."), e("ティンさんはにほんごができますか。", "Tinh-san wa Nihon-go ga dekimasu ka.", "Anh Tính biết tiếng Nhật không?")), qa("にほんごができますか。", "Nihon-go ga dekimasu ka.", "Bạn biết tiếng Nhật không?", "はい、すこしできます。", "Hai, sukoshi dekimasu.", "Vâng, tôi biết một chút.")),
+        GrammarPattern("Phủ định khả năng", "N2 は できません", "Dùng できません để nói không thể hoặc chưa biết một kỹ năng.", listOf(e("いいえ、できません。", "Iie, dekimasen.", "Không, tôi không biết."), e("かんこくごはできません。", "Kankoku-go wa dekimasen.", "Tôi không biết tiếng Hàn.")), qa("かんこくごができますか。", "Kankoku-go ga dekimasu ka.", "Bạn biết tiếng Hàn không?", "いいえ、できません。", "Iie, dekimasen.", "Không, tôi không biết.")),
+        GrammarPattern("Nói mức độ khả năng", "すこし／あまり／ぜんぜん + できます／できません", "すこし đi với câu khẳng định; あまり và ぜんぜん thường đi với câu phủ định.", listOf(e("にほんごがすこしできます。", "Nihon-go ga sukoshi dekimasu.", "Tôi biết một chút tiếng Nhật."), e("にほんごはあまりできません。", "Nihon-go wa amari dekimasen.", "Tôi không giỏi tiếng Nhật lắm."), e("ドイツごはぜんぜんできません。", "Doitsu-go wa zenzen dekimasen.", "Tôi hoàn toàn không biết tiếng Đức.")), qa("にほんごがどのくらいできますか。", "Nihon-go ga dono kurai dekimasu ka.", "Bạn biết tiếng Nhật ở mức nào?", "すこしできます。", "Sukoshi dekimasu.", "Tôi biết một chút.")),
+        GrammarPattern("Nói hiểu hoặc không hiểu", "N が わかります／わかりません", "Dùng わかります khi hiểu nội dung; khác với できます là có khả năng thực hiện hoặc sử dụng.", listOf(e("えいごがわかります。", "Eigo ga wakarimasu.", "Tôi hiểu tiếng Anh."), e("すみません、にほんごがわかりません。", "Sumimasen, Nihon-go ga wakarimasen.", "Xin lỗi, tôi không hiểu tiếng Nhật.")), qa("にほんごがわかりますか。", "Nihon-go ga wakarimasu ka.", "Bạn hiểu tiếng Nhật không?", "はい、すこしわかります。", "Hai, sukoshi wakarimasu.", "Vâng, tôi hiểu một chút.")),
     )
 
     private fun japaneseNumber(n: Int): Pair<String, String> {
@@ -177,14 +192,29 @@ object LanguageLearningData {
 
     private fun ageExpression(age: Int): Pair<String, String> {
         if (age == 20) return "はたち" to "hatachi"
-        val (japanese, romaji) = japaneseNumber(age)
-        val reading = when {
-            age % 10 == 1 -> romaji.removeSuffix("ichi") + "issai"
-            age % 10 == 8 -> romaji.removeSuffix("hachi") + "hassai"
-            age % 10 == 0 -> romaji.removeSuffix("juu") + "jussai"
-            else -> "$romaji-sai"
+        val kana = hiraganaNumber(age)
+        val romaji = japaneseNumber(age).second
+        if (age == 100) return "ひゃくさい" to "hyaku-sai"
+        return when (age % 10) {
+            1 -> kana.removeSuffix("いち") + "いっさい" to romaji.removeSuffix("ichi") + "issai"
+            8 -> kana.removeSuffix("はち") + "はっさい" to romaji.removeSuffix("hachi") + "hassai"
+            0 -> kana.removeSuffix("じゅう") + "じゅっさい" to romaji.removeSuffix("juu") + "jussai"
+            else -> "${kana}さい" to "$romaji-sai"
         }
-        return "${japanese}さい" to reading
+    }
+
+    private fun peopleExpression(people: Int): Pair<String, String> = when (people) {
+        1 -> "ひとり" to "hitori"
+        2 -> "ふたり" to "futari"
+        else -> {
+            val kana = hiraganaNumber(people)
+            val romaji = japaneseNumber(people).second
+            if (people % 10 == 4) {
+                kana.removeSuffix("よん") + "よにん" to romaji.removeSuffix("yon") + "yo-nin"
+            } else {
+                "${kana}にん" to "$romaji-nin"
+            }
+        }
     }
 
     private val numberWords = (1..100).map { number ->
@@ -205,24 +235,38 @@ object LanguageLearningData {
         v("ふたり", "futari", "hai người", "Đếm người", "ふたりです。", "Futari desu.", "Có hai người."),
         v("さんにん", "san-nin", "ba người", "Đếm người", "かぞくはさんにんです。", "Kazoku wa san-nin desu.", "Gia đình có ba người."),
         v("よにん", "yo-nin", "bốn người", "Đếm người", "かぞくはよにんです。", "Kazoku wa yo-nin desu.", "Gia đình có bốn người."),
+        v("ごにん", "go-nin", "năm người", "Đếm người", "かぞくはごにんです。", "Kazoku wa go-nin desu.", "Gia đình có năm người."),
+        v("ろくにん", "roku-nin", "sáu người", "Đếm người", "かぞくはろくにんです。", "Kazoku wa roku-nin desu.", "Gia đình có sáu người."),
+        v("ななにん", "nana-nin", "bảy người", "Đếm người", "グループはななにんです。", "Guruupu wa nana-nin desu.", "Nhóm có bảy người."),
+        v("はちにん", "hachi-nin", "tám người", "Đếm người", "はちにんいます。", "Hachi-nin imasu.", "Có tám người."),
+        v("きゅうにん", "kyuu-nin", "chín người", "Đếm người", "クラスにきゅうにんいます。", "Kurasu ni kyuu-nin imasu.", "Trong lớp có chín người."),
+        v("じゅうにん", "juu-nin", "mười người", "Đếm người", "チームはじゅうにんです。", "Chiimu wa juu-nin desu.", "Đội có mười người."),
         v("なんにん", "nan-nin", "bao nhiêu người", "Đếm người", "かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình có bao nhiêu người?"),
         v("さい／～さい", "sai / ~sai", "… tuổi", "Tuổi", "わたしはさんじゅっさいです。", "Watashi wa sanjussai desu.", "Tôi 30 tuổi."),
         v("なんさい", "nan-sai", "bao nhiêu tuổi", "Tuổi", "なんさいですか。", "Nan-sai desu ka.", "Bạn bao nhiêu tuổi?"),
+        v("おいくつ", "oikutsu", "bao nhiêu tuổi (lịch sự)", "Tuổi", "おいくつですか。", "Oikutsu desu ka.", "Bạn bao nhiêu tuổi?"),
+        v("じゅっさい", "jussai", "10 tuổi", "Tuổi", "おとうとはじゅっさいです。", "Otouto wa jussai desu.", "Em trai tôi 10 tuổi.", reference = "十歳"),
+        v("じゅういっさい", "juu-issai", "11 tuổi", "Tuổi", "むすこはじゅういっさいです。", "Musuko wa juu-issai desu.", "Con trai tôi 11 tuổi.", reference = "十一歳"),
+        v("じゅうごさい", "juu-go-sai", "15 tuổi", "Tuổi", "いもうとはじゅうごさいです。", "Imouto wa juu-go-sai desu.", "Em gái tôi 15 tuổi.", reference = "十五歳"),
+        v("じゅうはっさい", "juu-hassai", "18 tuổi", "Tuổi", "あにはじゅうはっさいです。", "Ani wa juu-hassai desu.", "Anh tôi 18 tuổi.", reference = "十八歳"),
         v("はたち", "hatachi", "20 tuổi", "Tuổi", "わたしははたちです。", "Watashi wa hatachi desu.", "Tôi 20 tuổi."),
+        v("にじゅうはっさい", "nijuu-hassai", "28 tuổi", "Tuổi", "あねはにじゅうはっさいです。", "Ane wa nijuu-hassai desu.", "Chị tôi 28 tuổi.", reference = "二十八歳"),
     )
 
     private val numberGrammar = listOf(
-        GrammarPattern("Tạo số 11–19", "じゅう + số", "10 đứng trước số hàng đơn vị: 11 = じゅういち.", listOf(e("じゅういち", "juu-ichi", "11"), e("じゅうきゅう", "juu-kyuu", "19"))),
-        GrammarPattern("Tạo số tròn chục", "số + じゅう", "Số hàng chục đứng trước じゅう: 30 = さんじゅう.", listOf(e("さんじゅう", "san-juu", "30"), e("きゅうじゅう", "kyuu-juu", "90"))),
-        GrammarPattern("Tạo số ghép", "hàng chục + じゅう + hàng đơn vị", "Ghép hàng chục và hàng đơn vị theo thứ tự.", listOf(e("さんじゅうろく", "san-juu-roku", "36"), e("ななじゅうよん", "nana-juu-yon", "74"))),
-        GrammarPattern("Hỏi và nói tuổi", "なんさいですか／～さいです", "Dùng ～さい sau số tuổi. 20 tuổi có cách đọc đặc biệt là はたち.", listOf(e("なんさいですか。", "Nan-sai desu ka.", "Bạn bao nhiêu tuổi?"), e("にじゅうろくさいです。", "Ni-juu-roku-sai desu.", "Tôi 26 tuổi."))),
-        GrammarPattern("Đếm người", "số + にん", "Từ ba người trở lên thường dùng số + にん; một và hai người là ngoại lệ.", listOf(e("ひとり", "hitori", "một người"), e("ふたり", "futari", "hai người"), e("ななにん", "nana-nin", "bảy người"))),
-        GrammarPattern("Hỏi số người", "なんにんですか", "Dùng なんにん để hỏi có bao nhiêu người.", listOf(e("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"), e("ろくにんです。", "Roku-nin desu.", "Có sáu người."))),
+        GrammarPattern("Tạo số 11–19", "じゅう + số", "10 đứng trước số hàng đơn vị: 11 = じゅういち.", listOf(e("じゅういち", "juu-ichi", "11"), e("じゅうきゅう", "juu-kyuu", "19")), qa("これはなんばんですか。", "Kore wa nan-ban desu ka.", "Đây là số mấy?", "じゅういちばんです。", "Juu-ichi-ban desu.", "Đây là số 11.")),
+        GrammarPattern("Tạo số tròn chục", "số + じゅう", "Số hàng chục đứng trước じゅう: 30 = さんじゅう.", listOf(e("さんじゅう", "san-juu", "30"), e("きゅうじゅう", "kyuu-juu", "90")), qa("なんばんですか。", "Nan-ban desu ka.", "Số mấy?", "さんじゅうばんです。", "San-juu-ban desu.", "Số 30.")),
+        GrammarPattern("Tạo số ghép", "hàng chục + じゅう + hàng đơn vị", "Ghép hàng chục và hàng đơn vị theo thứ tự.", listOf(e("さんじゅうろく", "san-juu-roku", "36"), e("ななじゅうよん", "nana-juu-yon", "74")), qa("なんページですか。", "Nan peeji desu ka.", "Trang bao nhiêu?", "さんじゅうろくページです。", "San-juu-roku peeji desu.", "Trang 36.")),
+        GrammarPattern("Hỏi và nói tuổi", "おいくつですか／～さいです", "おいくつですか lịch sự hơn なんさいですか. Thêm ～さい sau số tuổi; 20 tuổi đọc đặc biệt là はたち.", listOf(e("なんさいですか。", "Nan-sai desu ka.", "Bạn bao nhiêu tuổi?"), e("にじゅうろくさいです。", "Nijuu-roku-sai desu.", "Tôi 26 tuổi."), e("じゅうはっさい", "juu-hassai", "18 tuổi có biến âm はち → はっ"), e("はたち", "hatachi", "20 tuổi, cách đọc đặc biệt")), qa("おいくつですか。", "Oikutsu desu ka.", "Bạn bao nhiêu tuổi?", "にじゅうはっさいです。", "Nijuu-hassai desu.", "Tôi 28 tuổi.")),
+        GrammarPattern("Đếm người", "số + にん", "Một người là ひとり, hai người là ふたり, bốn người là よにん; các số còn lại trong bài dùng số + にん.", listOf(e("ひとり", "hitori", "một người"), e("ふたり", "futari", "hai người"), e("よにん", "yo-nin", "bốn người"), e("ななにん", "nana-nin", "bảy người")), qa("グループはなんにんですか。", "Guruupu wa nan-nin desu ka.", "Nhóm có bao nhiêu người?", "はちにんです。", "Hachi-nin desu.", "Có tám người.")),
+        GrammarPattern("Hỏi số người", "なんにんですか／～にんです", "Dùng なんにん để hỏi có bao nhiêu người và trả lời bằng số đếm người.", listOf(e("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"), e("ろくにんです。", "Roku-nin desu.", "Có sáu người.")), qa("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?", "よにんです。", "Yo-nin desu.", "Gia đình tôi có bốn người.")),
     )
 
     private val familyWords = listOf(
         v("かぞく", "kazoku", "gia đình", "Chung", "わたしのかぞくはろくにんです。", "Watashi no kazoku wa roku-nin desu.", "Gia đình tôi có sáu người."),
+        v("ごかぞく", "gokazoku", "gia đình của người khác (lịch sự)", "Gia đình người khác", "ごかぞくはなんにんですか。", "Gokazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?", reference = "ご家族"),
         v("りょうしん", "ryoushin", "bố mẹ", "Chung", "りょうしんはベトナムにいます。", "Ryoushin wa Betonamu ni imasu.", "Bố mẹ tôi ở Việt Nam."),
+        v("ごりょうしん", "goryoushin", "bố mẹ của người khác (lịch sự)", "Gia đình người khác", "ごりょうしんはどこにすんでいますか。", "Goryoushin wa doko ni sunde imasu ka.", "Bố mẹ bạn sống ở đâu?", reference = "ご両親"),
         v("ちち", "chichi", "bố của mình", "Gia đình mình", "ちちはかいしゃいんです。", "Chichi wa kaishain desu.", "Bố tôi là nhân viên công ty."),
         v("はは", "haha", "mẹ của mình", "Gia đình mình", "はははきょうしです。", "Haha wa kyoushi desu.", "Mẹ tôi là giáo viên."),
         v("あに", "ani", "anh trai của mình", "Gia đình mình", "あにはさんじゅうさいです。", "Ani wa sanjuu-sai desu.", "Anh tôi 30 tuổi."),
@@ -238,6 +282,32 @@ object LanguageLearningData {
         v("おかあさん", "okaasan", "mẹ của người khác / cách gọi mẹ", "Gia đình người khác", "おかあさんはきょうしですか。", "Okaasan wa kyoushi desu ka.", "Mẹ bạn là giáo viên phải không?"),
         v("おにいさん", "oniisan", "anh trai của người khác", "Gia đình người khác", "おにいさんはどちらですか。", "Oniisan wa dochira desu ka.", "Anh trai bạn là người nào?"),
         v("おねえさん", "oneesan", "chị gái của người khác", "Gia đình người khác", "おねえさんはかんこくにいます。", "Oneesan wa Kankoku ni imasu.", "Chị gái bạn ở Hàn Quốc."),
+        v("おとうとさん", "otouto-san", "em trai của người khác", "Gia đình người khác", "おとうとさんはなんさいですか。", "Otouto-san wa nan-sai desu ka.", "Em trai bạn bao nhiêu tuổi?"),
+        v("いもうとさん", "imouto-san", "em gái của người khác", "Gia đình người khác", "いもうとさんはがくせいですか。", "Imouto-san wa gakusei desu ka.", "Em gái bạn là học sinh phải không?"),
+        v("ごしゅじん", "goshujin", "chồng của người khác", "Gia đình người khác", "ごしゅじんはおいくつですか。", "Goshujin wa oikutsu desu ka.", "Chồng bạn bao nhiêu tuổi?"),
+        v("おくさん", "okusan", "vợ của người khác", "Gia đình người khác", "おくさんはきょうしです。", "Okusan wa kyoushi desu.", "Vợ anh ấy là giáo viên."),
+        v("おこさん", "okosan", "con của người khác", "Gia đình người khác", "おこさんはなんにんいますか。", "Okosan wa nan-nin imasu ka.", "Bạn có mấy người con?"),
+        v("むすこさん", "musuko-san", "con trai của người khác", "Gia đình người khác", "むすこさんはじゅういっさいです。", "Musuko-san wa juu-issai desu.", "Con trai bạn 11 tuổi."),
+        v("むすめさん", "musume-san", "con gái của người khác", "Gia đình người khác", "むすめさんはかわいいですね。", "Musume-san wa kawaii desu ne.", "Con gái bạn đáng yêu nhỉ."),
+        v("おとこのひと", "otoko no hito", "người đàn ông", "Người", "あのおとこのひとはだれですか。", "Ano otoko no hito wa dare desu ka.", "Người đàn ông kia là ai?", reference = "男の人"),
+        v("おんなのひと", "onna no hito", "người phụ nữ", "Người", "あのおんなのひとはわたしのあねです。", "Ano onna no hito wa watashi no ane desu.", "Người phụ nữ kia là chị tôi.", reference = "女の人"),
+        v("おとこのこ", "otoko no ko", "bé trai", "Người", "このおとこのこはむすこです。", "Kono otoko no ko wa musuko desu.", "Bé trai này là con trai tôi.", reference = "男の子"),
+        v("おんなのこ", "onna no ko", "bé gái", "Người", "このおんなのこはむすめです。", "Kono onna no ko wa musume desu.", "Bé gái này là con gái tôi.", reference = "女の子"),
+        v("このひと", "kono hito", "người này", "Người", "このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?", reference = "この人"),
+        v("このこ", "kono ko", "đứa trẻ này", "Người", "このこはだれですか。", "Kono ko wa dare desu ka.", "Đứa trẻ này là ai?", reference = "この子"),
+        v("かっこいい", "kakkoii", "ngầu, đẹp trai, phong độ", "Mô tả người", "おにいさんはかっこいいですね。", "Oniisan wa kakkoii desu ne.", "Anh trai bạn trông phong độ nhỉ."),
+        v("かわいい", "kawaii", "đáng yêu, dễ thương", "Mô tả người", "むすめさんはかわいいですね。", "Musume-san wa kawaii desu ne.", "Con gái bạn đáng yêu nhỉ."),
+        v("きれい", "kirei", "đẹp; sạch", "Mô tả người", "おねえさんはきれいですね。", "Oneesan wa kirei desu ne.", "Chị gái bạn đẹp nhỉ."),
+        v("わかい", "wakai", "trẻ, trẻ tuổi", "Mô tả người", "おとうさんはわかいですね。", "Otousan wa wakai desu ne.", "Bố bạn trông trẻ nhỉ."),
+        v("すんでいます", "sunde imasu", "đang sống, sinh sống", "Sinh sống", "わたしはベトナムにすんでいます。", "Watashi wa Betonamu ni sunde imasu.", "Tôi sống ở Việt Nam.", reference = "住んでいます"),
+        v("ひとりで", "hitori de", "một mình", "Sinh sống", "ひとりでほっかいどうにすんでいます。", "Hitori de Hokkaidou ni sunde imasu.", "Tôi sống một mình ở Hokkaido."),
+        v("どこにすんでいますか", "doko ni sunde imasu ka", "Bạn sống ở đâu?", "Cụm hỏi", "どこにすんでいますか。ホーチミンにすんでいます。", "Doko ni sunde imasu ka. Hoo Chi Min ni sunde imasu.", "Bạn sống ở đâu? Tôi sống ở Hồ Chí Minh."),
+        v("とうきょう", "Toukyou", "Tokyo", "Địa điểm", "とうきょうにすんでいます。", "Toukyou ni sunde imasu.", "Tôi sống ở Tokyo.", reference = "東京"),
+        v("おおさか", "Oosaka", "Osaka", "Địa điểm", "わたしたちはおおさかにすんでいます。", "Watashitachi wa Oosaka ni sunde imasu.", "Chúng tôi sống ở Osaka.", reference = "大阪"),
+        v("ほっかいどう", "Hokkaidou", "Hokkaido", "Địa điểm", "ほっかいどうにすんでいます。", "Hokkaidou ni sunde imasu.", "Tôi sống ở Hokkaido.", reference = "北海道"),
+        v("パリ", "Pari", "Paris", "Địa điểm", "フランスのパリにすんでいます。", "Furansu no Pari ni sunde imasu.", "Tôi sống ở Paris, Pháp."),
+        v("ホーチミン", "Hoo Chi Min", "Hồ Chí Minh", "Địa điểm", "ホーチミンにすんでいます。", "Hoo Chi Min ni sunde imasu.", "Tôi sống ở Hồ Chí Minh."),
+        v("ドンタップ", "Dontappu", "Đồng Tháp", "Địa điểm", "ちちとはははドンタップにすんでいます。", "Chichi to haha wa Dontappu ni sunde imasu.", "Bố và mẹ tôi sống ở Đồng Tháp."),
         v("います", "imasu", "có / ở (người, động vật)", "Tồn tại", "ちちと ははがいます。", "Chichi to haha ga imasu.", "Tôi có bố và mẹ."),
         v("と", "to", "và (nối danh từ)", "Trợ từ", "ちちと ははと あにがいます。", "Chichi to haha to ani ga imasu.", "Có bố, mẹ và anh trai."),
         v("だれ", "dare", "ai", "Từ để hỏi", "このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
@@ -249,12 +319,16 @@ object LanguageLearningData {
     )
 
     private val familyGrammar = listOf(
-        GrammarPattern("Nói số người trong gia đình", "かぞくは ～にんです", "Dùng số đếm người để nói quy mô gia đình.", listOf(e("わたしのかぞくはろくにんです。", "Watashi no kazoku wa roku-nin desu.", "Gia đình tôi có sáu người."), e("マイさんのかぞくはよにんです。", "Mai-san no kazoku wa yo-nin desu.", "Gia đình bạn Mai có bốn người."))),
-        GrammarPattern("Liệt kê thành viên", "N1 と N2 が います", "と nối các danh từ; います dùng cho người và động vật.", listOf(e("ちちと ははがいます。", "Chichi to haha ga imasu.", "Tôi có bố và mẹ."), e("あにと いもうとがいます。", "Ani to imouto ga imasu.", "Tôi có anh trai và em gái."))),
-        GrammarPattern("Nói mình có ai", "N が います", "Dùng がいます để nói một người hoặc con vật tồn tại/có mặt.", listOf(e("こどもがふたりいます。", "Kodomo ga futari imasu.", "Tôi có hai người con."), e("あねがいます。", "Ane ga imasu.", "Tôi có chị gái."))),
-        GrammarPattern("Hỏi người trong ảnh", "このひとは だれですか", "Dùng để hỏi người này là ai; lịch sự hơn có thể dùng どなた.", listOf(e("このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"), e("わたしのあねです。", "Watashi no ane desu.", "Đây là chị gái tôi."))),
-        GrammarPattern("Phân biệt gia đình mình/người khác", "ちち ↔ おとうさん", "Dùng ちち, はは… khi nói về gia đình mình; dùng おとうさん, おかあさん… khi nói với hoặc về gia đình người khác.", listOf(e("ちちはいしゃです。", "Chichi wa isha desu.", "Bố tôi là bác sĩ."), e("おとうさんはいしゃですか。", "Otousan wa isha desu ka.", "Bố bạn là bác sĩ phải không?"))),
-        GrammarPattern("Nói nơi đang ở", "N は địa điểm に います", "に đánh dấu nơi một người đang ở.", listOf(e("りょうしんはベトナムにいます。", "Ryoushin wa Betonamu ni imasu.", "Bố mẹ tôi ở Việt Nam."), e("あねはにほんにいます。", "Ane wa Nihon ni imasu.", "Chị tôi ở Nhật Bản."))),
+        GrammarPattern("Hỏi số người trong gia đình", "かぞくは なんにんですか／～にんです", "Dùng なんにん để hỏi quy mô gia đình và trả lời bằng số đếm người.", listOf(e("わたしのかぞくはろくにんです。", "Watashi no kazoku wa roku-nin desu.", "Gia đình tôi có sáu người."), e("マイさんのかぞくはよにんです。", "Mai-san no kazoku wa yo-nin desu.", "Gia đình bạn Mai có bốn người.")), qa("かぞくはなんにんですか。", "Kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?", "よにんです。", "Yo-nin desu.", "Gia đình tôi có bốn người.")),
+        GrammarPattern("Hỏi gia đình có những ai", "ごかぞくには だれが いますか／N が います", "います dùng để nói sự tồn tại của người hoặc động vật; が đánh dấu người đang có mặt.", listOf(e("こどもがふたりいます。", "Kodomo ga futari imasu.", "Tôi có hai người con."), e("あねがいます。", "Ane ga imasu.", "Tôi có chị gái.")), qa("ごかぞくにはだれがいますか。", "Gokazoku ni wa dare ga imasu ka.", "Gia đình bạn có những ai?", "ちちと ははと おとうとがいます。", "Chichi to haha to otouto ga imasu.", "Có bố, mẹ và em trai.")),
+        GrammarPattern("Liệt kê thành viên", "N1 と N2 と N3", "と nối các danh từ trong một danh sách xác định, mang nghĩa ‘và’.", listOf(e("ちちと ははがいます。", "Chichi to haha ga imasu.", "Tôi có bố và mẹ."), e("ちちと ははと おとうとと わたしです。", "Chichi to haha to otouto to watashi desu.", "Gồm bố, mẹ, em trai và tôi.")), qa("かぞくはだれとだれですか。", "Kazoku wa dare to dare desu ka.", "Gia đình bạn gồm những ai?", "ちちと ははと あねと わたしです。", "Chichi to haha to ane to watashi desu.", "Gồm bố, mẹ, chị gái và tôi.")),
+        GrammarPattern("Hỏi người trong ảnh", "このひとは だれですか", "このひと là ‘người này’; với trẻ em có thể dùng このこ. Lịch sự hơn だれ có thể dùng どなた.", listOf(e("このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"), e("このこはわたしのむすめです。", "Kono ko wa watashi no musume desu.", "Đứa trẻ này là con gái tôi.")), qa("このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?", "わたしのあねです。", "Watashi no ane desu.", "Đây là chị gái tôi.")),
+        GrammarPattern("Phân biệt gia đình mình/người khác", "ちち ↔ おとうさん", "Dùng ちち, はは, おっと, つま… khi nói về gia đình mình; dùng おとうさん, おかあさん, ごしゅじん, おくさん… khi nói với hoặc về gia đình người khác.", listOf(e("ちちはいしゃです。", "Chichi wa isha desu.", "Bố tôi là bác sĩ."), e("おとうさんはいしゃですか。", "Otousan wa isha desu ka.", "Bố bạn là bác sĩ phải không?")), qa("おとうさんはおいくつですか。", "Otousan wa oikutsu desu ka.", "Bố bạn bao nhiêu tuổi?", "ちちはごじゅっさいです。", "Chichi wa gojussai desu.", "Bố tôi 50 tuổi.")),
+        GrammarPattern("Hỏi và trả lời tuổi", "N は おいくつですか／～さいです", "おいくつですか là cách hỏi lịch sự; なんさいですか trực tiếp hơn và thường dùng với người nhỏ tuổi hoặc khi thân mật.", listOf(e("いもうとはじゅうごさいです。", "Imouto wa juu-go-sai desu.", "Em gái tôi 15 tuổi."), e("あねはにじゅうはっさいです。", "Ane wa nijuu-hassai desu.", "Chị tôi 28 tuổi.")), qa("おにいさんはおいくつですか。", "Oniisan wa oikutsu desu ka.", "Anh trai bạn bao nhiêu tuổi?", "にじゅうはっさいです。", "Nijuu-hassai desu.", "Anh ấy 28 tuổi.")),
+        GrammarPattern("Hỏi nghề nghiệp của người thân", "N の おしごとは なんですか", "Đặt người thân trước の để hỏi nghề nghiệp của người đó.", listOf(e("ちちはかいしゃいんです。", "Chichi wa kaishain desu.", "Bố tôi là nhân viên công ty."), e("あねはきょうしです。", "Ane wa kyoushi desu.", "Chị tôi là giáo viên.")), qa("おとうさんのおしごとはなんですか。", "Otousan no oshigoto wa nan desu ka.", "Bố bạn làm nghề gì?", "ちちはソフトウェアエンジニアです。", "Chichi wa sofutowea enjinia desu.", "Bố tôi là kỹ sư phần mềm.")),
+        GrammarPattern("Hỏi và nói nơi sinh sống", "N は địa điểm に すんでいます", "に đánh dấu nơi sinh sống; すんでいます diễn tả đang sống hoặc cư trú tại đó.", listOf(e("わたしはベトナムにすんでいます。", "Watashi wa Betonamu ni sunde imasu.", "Tôi sống ở Việt Nam."), e("いもうとはおおさかにすんでいます。", "Imouto wa Oosaka ni sunde imasu.", "Em gái tôi sống ở Osaka."), e("ひとりでほっかいどうにすんでいます。", "Hitori de Hokkaidou ni sunde imasu.", "Tôi sống một mình ở Hokkaido.")), qa("どこにすんでいますか。", "Doko ni sunde imasu ka.", "Bạn sống ở đâu?", "ホーチミンにすんでいます。", "Hoo Chi Min ni sunde imasu.", "Tôi sống ở Hồ Chí Minh.")),
+        GrammarPattern("Hỏi người thân sống ở đâu", "N は どこに すんでいますか", "Thay N bằng người thân cần hỏi; trả lời bằng địa điểm + にすんでいます.", listOf(e("ちちとはははドンタップにすんでいます。", "Chichi to haha wa Dontappu ni sunde imasu.", "Bố và mẹ tôi sống ở Đồng Tháp."), e("わたしとおとうとはホーチミンにすんでいます。", "Watashi to otouto wa Hoo Chi Min ni sunde imasu.", "Tôi và em trai sống ở Hồ Chí Minh.")), qa("ごりょうしんはどこにすんでいますか。", "Goryoushin wa doko ni sunde imasu ka.", "Bố mẹ bạn sống ở đâu?", "ドンタップにすんでいます。", "Dontappu ni sunde imasu.", "Bố mẹ tôi sống ở Đồng Tháp.")),
+        GrammarPattern("Nhận xét ngoại hình", "N は tính từ です／ですね", "ですね tạo lời nhận xét mềm và mời người nghe đồng tình. Không thêm お trước かわいい.", listOf(e("おにいさんはかっこいいですね。", "Oniisan wa kakkoii desu ne.", "Anh trai bạn trông phong độ nhỉ."), e("むすめさんはかわいいですね。", "Musume-san wa kawaii desu ne.", "Con gái bạn đáng yêu nhỉ."), e("おねえさんはきれいですね。", "Oneesan wa kirei desu ne.", "Chị gái bạn đẹp nhỉ.")), qa("おとうとはどんなひとですか。", "Otouto wa donna hito desu ka.", "Em trai bạn là người thế nào?", "わかくて、かっこいいです。", "Wakakute, kakkoii desu.", "Em ấy trẻ và phong độ.")),
     )
 
     private val foundationVocabulary = listOf(
@@ -273,12 +347,16 @@ object LanguageLearningData {
         v("お", "o", "tiền tố lịch sự", "Từ cơ bản", "おなまえはなんですか。", "Onamae wa nan desu ka.", "Bạn tên là gì?"),
         v("さん", "san", "anh/chị/bạn…; hậu tố lịch sự sau tên", "Từ cơ bản", "たなかさんはせんせいです。", "Tanaka-san wa sensei desu.", "Anh/chị Tanaka là giáo viên."),
         v("あなた", "anata", "bạn", "Từ cơ bản", "あなたのかぞくはなんにんですか。", "Anata no kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"),
+        v("わたしたち", "watashitachi", "chúng tôi, chúng ta", "Từ cơ bản", "わたしたちはおおさかにすんでいます。", "Watashitachi wa Oosaka ni sunde imasu.", "Chúng tôi sống ở Osaka."),
         v("なに／なん", "nani / nan", "gì", "Từ cơ bản", "おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"),
         v("どこ", "doko", "ở đâu", "Từ cơ bản", "どこにすんでいますか。", "Doko ni sunde imasu ka.", "Bạn sống ở đâu?"),
         v("どちら", "dochira", "đâu, phía nào; cách nói lịch sự", "Từ cơ bản", "どちらからですか。", "Dochira kara desu ka.", "Bạn đến từ đâu?"),
         v("だれ", "dare", "ai", "Từ cơ bản", "このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
         v("これ", "kore", "cái này", "Từ cơ bản", "これはかぞくのしゃしんです。", "Kore wa kazoku no shashin desu.", "Đây là ảnh gia đình."),
         v("この", "kono", "… này; đứng trước danh từ", "Từ cơ bản", "このひとはわたしのあねです。", "Kono hito wa watashi no ane desu.", "Người này là chị tôi."),
+        v("あの", "ano", "… kia; đứng trước danh từ", "Từ cơ bản", "あのひとはだれですか。", "Ano hito wa dare desu ka.", "Người kia là ai?"),
+        v("どんな", "donna", "như thế nào, loại nào", "Từ cơ bản", "おとうとはどんなひとですか。", "Otouto wa donna hito desu ka.", "Em trai bạn là người thế nào?"),
+        v("ですね", "desu ne", "… nhỉ; lời nhận xét tìm sự đồng tình", "Từ cơ bản", "かわいいですね。", "Kawaii desu ne.", "Đáng yêu nhỉ."),
         v("ひと", "hito", "người", "Từ cơ bản", "このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
     )
 
@@ -289,6 +367,8 @@ object LanguageLearningData {
         "Ngôn ngữ & khả năng",
         "Quốc gia & quốc tịch",
         "Gia đình",
+        "Mô tả người",
+        "Địa điểm & sinh sống",
         "Số đếm",
         "Từ cơ bản",
     )
@@ -300,18 +380,25 @@ object LanguageLearningData {
                 val group = when {
                     entry.japanese in basicJapanese -> "Từ cơ bản"
                     lesson.id == 1 -> "Chào hỏi & giới thiệu"
+                    lesson.id == 2 && entry.japanese == "おしごとはなんですか" -> "Nghề nghiệp"
+                    lesson.id == 2 && entry.japanese in setOf("おくにはどちらですか", "どちらからですか") -> "Quốc gia & quốc tịch"
+                    lesson.id == 2 && entry.japanese == "なんご" -> "Ngôn ngữ & khả năng"
                     lesson.id == 2 && entry.category == "Nghề nghiệp" -> "Nghề nghiệp"
                     lesson.id == 2 && entry.category in setOf("Ngôn ngữ", "Khả năng", "Mức độ") -> "Ngôn ngữ & khả năng"
-                    lesson.id == 2 && entry.category in setOf("Quốc gia", "Quốc tịch") -> "Quốc gia & quốc tịch"
+                    lesson.id == 2 && entry.category in setOf("Quốc gia", "Quốc tịch", "Khái niệm") -> "Quốc gia & quốc tịch"
+                    lesson.id == 2 && entry.category == "Quy tắc" && entry.japanese.contains("ご") -> "Ngôn ngữ & khả năng"
+                    lesson.id == 2 && entry.category == "Quy tắc" -> "Quốc gia & quốc tịch"
                     lesson.id == 3 -> "Số đếm"
-                    lesson.id == 4 && entry.category !in setOf("Trợ từ", "Từ để hỏi", "Tồn tại") -> "Gia đình"
+                    lesson.id == 4 && entry.category in setOf("Mô tả người", "Người") -> "Mô tả người"
+                    lesson.id == 4 && entry.category in setOf("Địa điểm", "Sinh sống", "Cụm hỏi") -> "Địa điểm & sinh sống"
+                    lesson.id == 4 && entry.category in setOf("Chung", "Gia đình mình", "Gia đình người khác", "Vợ chồng", "Con cái", "Họ hàng") -> "Gia đình"
                     else -> "Từ cơ bản"
                 }
                 VocabularyLibraryItem(group, entry)
             }
         }
         (foundationVocabulary.map { VocabularyLibraryItem("Từ cơ bản", it) } + imported)
-            .distinctBy { it.entry.japanese }
+            .distinctBy { it.group to it.entry.japanese }
     }
 
     fun quickPractice(lesson: LanguageLesson): List<VocabularyEntry> =
@@ -452,14 +539,10 @@ object LanguageLearningData {
                 3 -> {
                     val age = 20 + index
                     val people = 3 + index % 6
-                    val (_, ageRead) = ageExpression(age)
-                    val ageText = if (age == 20) "はたち" else "${hiraganaNumber(age)}さい"
+                    val (ageText, ageRead) = ageExpression(age)
                     val otherAge = age + 2
-                    val (_, otherAgeRead) = ageExpression(otherAge)
-                    val otherAgeText = "${hiraganaNumber(otherAge)}さい"
-                    val (_, peopleR) = japaneseNumber(people)
-                    val peopleText = if (people == 4) "よにん" else "${hiraganaNumber(people)}にん"
-                    val peopleRead = if (people == 4) "yo-nin" else "$peopleR-nin"
+                    val (otherAgeText, otherAgeRead) = ageExpression(otherAge)
+                    val (peopleText, peopleRead) = peopleExpression(people)
                     val number = 11 + (index * 7) % 89
                     val numberKana = hiraganaNumber(number)
                     val (_, numberRomaji) = japaneseNumber(number)
@@ -494,7 +577,7 @@ object LanguageLearningData {
                             e("おとこのひとはなんにんですか。", "Otoko no hito wa nan-nin desu ka.", "Có bao nhiêu nam?"),
                             e("ふたりです。", "Futari desu.", "Có hai nam."),
                             e("おんなのひとは。", "Onna no hito wa?", "Còn nữ thì sao?"),
-                            e("${if (people - 2 == 1) "ひとり" else hiraganaNumber(people - 2) + "にん"}です。", "${if (people - 2 == 1) "hitori" else japaneseNumber(people - 2).second + "-nin"} desu.", "Có ${people - 2} nữ."),
+                            e("${peopleExpression(people - 2).first}です。", "${peopleExpression(people - 2).second} desu.", "Có ${people - 2} nữ."),
                         ))
                         else -> DialogueScenario("Kết quả bài kiểm tra ${index / 5 + 1}", listOf(
                             e("テストはなんてんでしたか。", "Tesuto wa nan-ten deshita ka.", "Bài kiểm tra được bao nhiêu điểm?"),
@@ -516,8 +599,7 @@ object LanguageLearningData {
                     val job = jobs[(scene + variant) % jobs.size]
                     val otherJob = jobs[(scene + variant + 4) % jobs.size]
                     val age = 25 + index
-                    val (_, ageRead) = ageExpression(age)
-                    val ageText = "${hiraganaNumber(age)}さい"
+                    val (ageText, ageRead) = ageExpression(age)
                     when (scene) {
                         0 -> DialogueScenario("Xem ảnh gia đình ${index / 5 + 1}", listOf(
                             e("これはかぞくのしゃしんですか。", "Kore wa kazoku no shashin desu ka.", "Đây là ảnh gia đình bạn phải không?"),

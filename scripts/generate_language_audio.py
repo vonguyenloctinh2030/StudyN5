@@ -115,7 +115,18 @@ def collect_texts() -> list[str]:
             texts.add(f"{job}です。{name}さんは。")
 
     def age_text(age: int) -> str:
-        return "はたち" if age == 20 else f"{hiragana_number(age)}さい"
+        if age == 20:
+            return "はたち"
+        kana = hiragana_number(age)
+        if age == 100:
+            return "ひゃくさい"
+        if age % 10 == 1:
+            return f"{kana.removesuffix('いち')}いっさい"
+        if age % 10 == 8:
+            return f"{kana.removesuffix('はち')}はっさい"
+        if age % 10 == 0:
+            return f"{kana.removesuffix('じゅう')}じゅっさい"
+        return f"{kana}さい"
 
     def people_text(people: int) -> str:
         if people == 1:
