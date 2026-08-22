@@ -31,6 +31,8 @@ data class LanguageExample(val japanese: String, val romaji: String, val meaning
 
 data class DialogueScenario(val title: String, val lines: List<LanguageExample>)
 
+data class VocabularyLibraryItem(val group: String, val entry: VocabularyEntry)
+
 object LanguageLearningData {
     private fun v(
         j: String,
@@ -254,6 +256,63 @@ object LanguageLearningData {
         GrammarPattern("Phân biệt gia đình mình/người khác", "ちち ↔ おとうさん", "Dùng ちち, はは… khi nói về gia đình mình; dùng おとうさん, おかあさん… khi nói với hoặc về gia đình người khác.", listOf(e("ちちはいしゃです。", "Chichi wa isha desu.", "Bố tôi là bác sĩ."), e("おとうさんはいしゃですか。", "Otousan wa isha desu ka.", "Bố bạn là bác sĩ phải không?"))),
         GrammarPattern("Nói nơi đang ở", "N は địa điểm に います", "に đánh dấu nơi một người đang ở.", listOf(e("りょうしんはベトナムにいます。", "Ryoushin wa Betonamu ni imasu.", "Bố mẹ tôi ở Việt Nam."), e("あねはにほんにいます。", "Ane wa Nihon ni imasu.", "Chị tôi ở Nhật Bản."))),
     )
+
+    private val foundationVocabulary = listOf(
+        v("は", "wa", "trợ từ đánh dấu chủ đề", "Từ cơ bản", "わたしはティンです。", "Watashi wa Tinh desu.", "Tôi là Tính."),
+        v("が", "ga", "trợ từ đánh dấu chủ thể hoặc đối tượng của khả năng", "Từ cơ bản", "にほんごができます。", "Nihon-go ga dekimasu.", "Tôi biết tiếng Nhật."),
+        v("の", "no", "của; nối hai danh từ", "Từ cơ bản", "わたしのなまえはティンです。", "Watashi no namae wa Tinh desu.", "Tên tôi là Tính."),
+        v("か", "ka", "trợ từ đặt cuối câu hỏi", "Từ cơ bản", "がくせいですか。", "Gakusei desu ka.", "Bạn là sinh viên phải không?"),
+        v("も", "mo", "cũng", "Từ cơ bản", "わたしもエンジニアです。", "Watashi mo enjinia desu.", "Tôi cũng là kỹ sư."),
+        v("を", "o", "trợ từ đánh dấu đối tượng của hành động", "Từ cơ bản", "にほんごをべんきょうします。", "Nihon-go o benkyou shimasu.", "Tôi học tiếng Nhật."),
+        v("と", "to", "và; nối các danh từ", "Từ cơ bản", "ちちと ははがいます。", "Chichi to haha ga imasu.", "Tôi có bố và mẹ."),
+        v("で", "de", "tại, bằng; hoặc nối hai vế miêu tả", "Từ cơ bản", "ちちはかいしゃいんで、はははきょうしです。", "Chichi wa kaishain de, haha wa kyoushi desu.", "Bố tôi là nhân viên công ty và mẹ tôi là giáo viên."),
+        v("から", "kara", "từ; xuất phát từ", "Từ cơ bản", "ベトナムからです。", "Betonamu kara desu.", "Tôi đến từ Việt Nam."),
+        v("に", "ni", "ở, đến; đánh dấu địa điểm hoặc đích", "Từ cơ bản", "とうきょうにいます。", "Toukyou ni imasu.", "Tôi ở Tokyo."),
+        v("です", "desu", "là; đuôi câu lịch sự", "Từ cơ bản", "エンジニアです。", "Enjinia desu.", "Tôi là kỹ sư."),
+        v("じゃないです", "ja nai desu", "không phải", "Từ cơ bản", "がくせいじゃないです。", "Gakusei ja nai desu.", "Tôi không phải là sinh viên."),
+        v("お", "o", "tiền tố lịch sự", "Từ cơ bản", "おなまえはなんですか。", "Onamae wa nan desu ka.", "Bạn tên là gì?"),
+        v("さん", "san", "anh/chị/bạn…; hậu tố lịch sự sau tên", "Từ cơ bản", "たなかさんはせんせいです。", "Tanaka-san wa sensei desu.", "Anh/chị Tanaka là giáo viên."),
+        v("あなた", "anata", "bạn", "Từ cơ bản", "あなたのかぞくはなんにんですか。", "Anata no kazoku wa nan-nin desu ka.", "Gia đình bạn có bao nhiêu người?"),
+        v("なに／なん", "nani / nan", "gì", "Từ cơ bản", "おしごとはなんですか。", "Oshigoto wa nan desu ka.", "Bạn làm nghề gì?"),
+        v("どこ", "doko", "ở đâu", "Từ cơ bản", "どこにすんでいますか。", "Doko ni sunde imasu ka.", "Bạn sống ở đâu?"),
+        v("どちら", "dochira", "đâu, phía nào; cách nói lịch sự", "Từ cơ bản", "どちらからですか。", "Dochira kara desu ka.", "Bạn đến từ đâu?"),
+        v("だれ", "dare", "ai", "Từ cơ bản", "このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
+        v("これ", "kore", "cái này", "Từ cơ bản", "これはかぞくのしゃしんです。", "Kore wa kazoku no shashin desu.", "Đây là ảnh gia đình."),
+        v("この", "kono", "… này; đứng trước danh từ", "Từ cơ bản", "このひとはわたしのあねです。", "Kono hito wa watashi no ane desu.", "Người này là chị tôi."),
+        v("ひと", "hito", "người", "Từ cơ bản", "このひとはだれですか。", "Kono hito wa dare desu ka.", "Người này là ai?"),
+    )
+
+    val vocabularyGroups = listOf(
+        "Tất cả",
+        "Chào hỏi & giới thiệu",
+        "Nghề nghiệp",
+        "Ngôn ngữ & khả năng",
+        "Quốc gia & quốc tịch",
+        "Gia đình",
+        "Số đếm",
+        "Từ cơ bản",
+    )
+
+    val vocabularyLibrary: List<VocabularyLibraryItem> by lazy {
+        val basicJapanese = setOf("わたし", "なん", "どちら", "から", "と", "だれ", "います")
+        val imported = lessons.flatMap { lesson ->
+            lesson.vocabulary.map { entry ->
+                val group = when {
+                    entry.japanese in basicJapanese -> "Từ cơ bản"
+                    lesson.id == 1 -> "Chào hỏi & giới thiệu"
+                    lesson.id == 2 && entry.category == "Nghề nghiệp" -> "Nghề nghiệp"
+                    lesson.id == 2 && entry.category in setOf("Ngôn ngữ", "Khả năng", "Mức độ") -> "Ngôn ngữ & khả năng"
+                    lesson.id == 2 && entry.category in setOf("Quốc gia", "Quốc tịch") -> "Quốc gia & quốc tịch"
+                    lesson.id == 3 -> "Số đếm"
+                    lesson.id == 4 && entry.category !in setOf("Trợ từ", "Từ để hỏi", "Tồn tại") -> "Gia đình"
+                    else -> "Từ cơ bản"
+                }
+                VocabularyLibraryItem(group, entry)
+            }
+        }
+        (foundationVocabulary.map { VocabularyLibraryItem("Từ cơ bản", it) } + imported)
+            .distinctBy { it.entry.japanese }
+    }
 
     fun quickPractice(lesson: LanguageLesson): List<VocabularyEntry> =
         List(25) { lesson.vocabulary[(it * 7 + lesson.id) % lesson.vocabulary.size] }

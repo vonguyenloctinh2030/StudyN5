@@ -31,6 +31,7 @@ import com.studyn5.kana.ui.practice.PracticeViewModel
 import com.studyn5.kana.ui.pronunciation.PronunciationScreen
 import com.studyn5.kana.ui.special.SpecialSoundsScreen
 import com.studyn5.kana.ui.theme.KanaMasterTheme
+import com.studyn5.kana.ui.vocabulary.VocabularyLibraryScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -78,7 +79,7 @@ private fun AppNavigation(
     BackHandler(enabled = route !is Screen.Home) {
         route = when (route) {
             is Screen.Detail -> Screen.List
-            is Screen.List, is Screen.Pronunciation, is Screen.SpecialSounds, is Screen.LanguageLearning -> Screen.Home
+            is Screen.List, is Screen.Pronunciation, is Screen.SpecialSounds, is Screen.LanguageLearning, is Screen.VocabularyLibrary -> Screen.Home
             is Screen.Practice -> {
                 if (practiceViewModel.mode.value == "play") {
                     practiceViewModel.backToSelect()
@@ -112,6 +113,7 @@ private fun AppNavigation(
             onOpenPronunciation = { route = Screen.Pronunciation },
             onOpenSpecialSounds = { route = Screen.SpecialSounds },
             onOpenLanguageLearning = { route = Screen.LanguageLearning },
+            onOpenVocabulary = { route = Screen.VocabularyLibrary },
         )
 
         is Screen.List -> KanaListScreen(
@@ -160,6 +162,11 @@ private fun AppNavigation(
             onSpeak = onSpeakJapanese,
             onSpeakDialogue = onSpeakJapaneseSequence,
         )
+
+        is Screen.VocabularyLibrary -> VocabularyLibraryScreen(
+            onBack = { route = Screen.Home },
+            onSpeak = onSpeakJapanese,
+        )
     }
 }
 
@@ -172,4 +179,5 @@ private sealed class Screen {
     data object Pronunciation : Screen()
     data object SpecialSounds : Screen()
     data object LanguageLearning : Screen()
+    data object VocabularyLibrary : Screen()
 }

@@ -108,7 +108,7 @@ private fun Header(title: String, subtitle: String? = null, onBack: () -> Unit, 
 private fun LanguageLessonList(onBack: () -> Unit, onOpen: (LanguageLesson) -> Unit) {
     KanaBackground(Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize().padding(horizontal = 18.dp)) {
-            Header("Từ vựng & Ngữ pháp", "Học theo bài · mở rộng theo tiến độ", onBack)
+            Header("Bài học", "Từ vựng · ngữ pháp · luyện tập · hội thoại", onBack)
             LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 items(LanguageLearningData.lessons, key = LanguageLesson::id) { lesson -> LessonRow(lesson) { onOpen(lesson) } }
                 item { ComingLessonRow(LanguageLearningData.lessons.size + 1) }

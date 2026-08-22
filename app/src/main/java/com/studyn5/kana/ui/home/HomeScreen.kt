@@ -51,12 +51,15 @@ fun HomeScreen(
     onOpenPronunciation: () -> Unit,
     onOpenSpecialSounds: () -> Unit,
     onOpenLanguageLearning: () -> Unit,
+    onOpenVocabulary: () -> Unit,
 ) {
     val items = listOf(
         HomeItem("あ", "Hiragana", "46 chữ cái nền tảng", MaterialTheme.colorScheme.primary) { onOpenList(KanaType.HIRAGANA) },
         HomeItem("ア", "Katakana", "46 chữ phiên âm", KanaRed) { onOpenList(KanaType.KATAKANA) },
         HomeItem("♪", "Phát âm", "Nghe và ghi nhớ", KanaJade, onOpenPronunciation),
         HomeItem("が", "Âm đặc biệt", "Đục · ghép · dài · ngắt", Color(0xFFB87432), onOpenSpecialSounds),
+        HomeItem("学", "Bài học", "Từ vựng · ngữ pháp · hội thoại", MaterialTheme.colorScheme.primary, onOpenLanguageLearning),
+        HomeItem("語", "Từ vựng", "Tìm kiếm và học theo nhóm", Color(0xFF7358B8), onOpenVocabulary),
     )
 
     KanaBackground(Modifier.fillMaxSize()) {
@@ -87,9 +90,6 @@ fun HomeScreen(
                 Spacer(Modifier.height(12.dp))
             }
 
-            LanguageLearningCard(onOpenLanguageLearning)
-            Spacer(Modifier.height(12.dp))
-
             MainActionCard(
                 symbol = "練",
                 title = "Luyện tập",
@@ -109,25 +109,6 @@ fun HomeScreen(
             AppInformation()
             Spacer(Modifier.height(12.dp))
         }
-    }
-}
-
-@Composable
-private fun LanguageLearningCard(onClick: () -> Unit) {
-    Row(
-        Modifier.fillMaxWidth().height(94.dp).shadow(1.dp, KanaCardShape).clip(KanaCardShape)
-            .background(MaterialTheme.colorScheme.surface).border(2.dp, KanaRed, KanaCardShape)
-            .clickable(onClick = onClick).padding(horizontal = 17.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(Modifier.size(53.dp).clip(KanaSmallShape).background(KanaRed.copy(alpha = .1f)), contentAlignment = Alignment.Center) {
-            Text("語", fontFamily = KanaFontFamily, fontSize = 29.sp, color = KanaRed, fontWeight = FontWeight.Bold)
-        }
-        Column(Modifier.weight(1f).padding(horizontal = 14.dp)) {
-            Text("Từ vựng & Ngữ pháp", fontSize = 17.sp, fontWeight = FontWeight.ExtraBold)
-            Text("Chào hỏi · giới thiệu · số đếm · gia đình", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-        Text("›", color = KanaRed, fontSize = 29.sp)
     }
 }
 
