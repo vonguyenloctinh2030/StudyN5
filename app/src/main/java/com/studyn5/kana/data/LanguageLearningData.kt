@@ -68,6 +68,7 @@ object LanguageLearningData {
             LanguageLesson(2, "Quốc gia, nghề nghiệp & ngôn ngữ", "Nói về quê quán, công việc và khả năng", "国", identityWords, identityGrammar),
             LanguageLesson(3, "Số đếm 1–100", "Đếm số, tuổi và số người", "百", numberWords, numberGrammar),
             LanguageLesson(4, "Gia đình, tuổi & nơi sống", "Hỏi và giới thiệu đầy đủ về gia đình", "家", familyWords, familyGrammar),
+            LanguageLesson(5, "Đồ ăn, thức uống & sở thích", "Nói món yêu thích và thói quen ăn sáng", "食", foodWords, foodGrammar),
         )
     }
 
@@ -331,6 +332,76 @@ object LanguageLearningData {
         GrammarPattern("Nhận xét ngoại hình", "N は tính từ です／ですね", "ですね tạo lời nhận xét mềm và mời người nghe đồng tình. Không thêm お trước かわいい.", listOf(e("おにいさんはかっこいいですね。", "Oniisan wa kakkoii desu ne.", "Anh trai bạn trông phong độ nhỉ."), e("むすめさんはかわいいですね。", "Musume-san wa kawaii desu ne.", "Con gái bạn đáng yêu nhỉ."), e("おねえさんはきれいですね。", "Oneesan wa kirei desu ne.", "Chị gái bạn đẹp nhỉ.")), qa("おとうとはどんなひとですか。", "Otouto wa donna hito desu ka.", "Em trai bạn là người thế nào?", "わかくて、かっこいいです。", "Wakakute, kakkoii desu.", "Em ấy trẻ và phong độ.")),
     )
 
+    private val foodWords = listOf(
+        v("たべもの", "tabemono", "đồ ăn, thức ăn", "Khái niệm", "すきなたべものはなんですか。", "Suki na tabemono wa nan desu ka.", "Món ăn bạn thích là gì?", reference = "食べ物"),
+        v("のみもの", "nomimono", "đồ uống", "Khái niệm", "のみものはなにがいいですか。", "Nomimono wa nani ga ii desu ka.", "Bạn muốn đồ uống gì?", reference = "飲み物"),
+        v("にく", "niku", "thịt", "Đồ ăn", "わたしはにくがすきです。", "Watashi wa niku ga suki desu.", "Tôi thích thịt.", reference = "肉"),
+        v("さかな", "sakana", "cá", "Đồ ăn", "さかなをたべます。", "Sakana o tabemasu.", "Tôi ăn cá.", reference = "魚"),
+        v("やさい", "yasai", "rau củ", "Đồ ăn", "まいにちやさいをたべます。", "Mainichi yasai o tabemasu.", "Tôi ăn rau mỗi ngày.", reference = "野菜"),
+        v("くだもの", "kudamono", "trái cây", "Đồ ăn", "あさ、くだものをたべます。", "Asa, kudamono o tabemasu.", "Buổi sáng tôi ăn trái cây.", reference = "果物"),
+        v("たまご", "tamago", "trứng", "Đồ ăn", "あさごはんにたまごをたべます。", "Asagohan ni tamago o tabemasu.", "Tôi ăn trứng vào bữa sáng.", reference = "卵"),
+        v("パン", "pan", "bánh mì", "Đồ ăn", "あさごはんはパンです。", "Asagohan wa pan desu.", "Bữa sáng của tôi là bánh mì."),
+        v("ごはん", "gohan", "cơm; bữa ăn", "Đồ ăn", "ごはんをたべます。", "Gohan o tabemasu.", "Tôi ăn cơm.", reference = "ご飯"),
+        v("みそしる", "misoshiru", "canh miso", "Đồ ăn", "ごはんをたべます。みそしるをのみます。", "Gohan o tabemasu. Misoshiru o nomimasu.", "Tôi ăn cơm và uống canh miso.", reference = "味噌汁"),
+        v("すし", "sushi", "sushi", "Đồ ăn", "すしがだいすきです。", "Sushi ga daisuki desu.", "Tôi rất thích sushi.", reference = "寿司"),
+        v("そば", "soba", "mì soba", "Đồ ăn", "ひるにそばをたべます。", "Hiru ni soba o tabemasu.", "Buổi trưa tôi ăn mì soba."),
+        v("うどん", "udon", "mì udon", "Đồ ăn", "うどんはおいしいです。", "Udon wa oishii desu.", "Mì udon ngon."),
+        v("ラーメン", "raamen", "mì ramen", "Đồ ăn", "ラーメンをよくたべます。", "Raamen o yoku tabemasu.", "Tôi thường ăn ramen."),
+        v("カレー", "karee", "cơm cà ri", "Đồ ăn", "きょうはカレーをたべます。", "Kyou wa karee o tabemasu.", "Hôm nay tôi ăn cà ri."),
+        v("ピザ", "piza", "pizza", "Đồ ăn", "ピザがすきです。", "Piza ga suki desu.", "Tôi thích pizza."),
+        v("ハンバーガー", "hanbaagaa", "hamburger", "Đồ ăn", "ハンバーガーをたべます。", "Hanbaagaa o tabemasu.", "Tôi ăn hamburger."),
+        v("ハンバーグ", "hanbaagu", "thịt băm áp chảo kiểu Nhật", "Đồ ăn", "ハンバーグがすきです。", "Hanbaagu ga suki desu.", "Tôi thích hamburger steak."),
+        v("サンドイッチ", "sandoicchi", "bánh sandwich", "Đồ ăn", "あさ、サンドイッチをたべます。", "Asa, sandoicchi o tabemasu.", "Buổi sáng tôi ăn sandwich."),
+        v("ぎょうざ", "gyouza", "há cảo, bánh xếp Nhật", "Đồ ăn", "ぎょうざをください。", "Gyouza o kudasai.", "Cho tôi há cảo."),
+        v("やきにく", "yakiniku", "thịt nướng", "Đồ ăn", "やきにくがだいすきです。", "Yakiniku ga daisuki desu.", "Tôi rất thích thịt nướng.", reference = "焼き肉"),
+        v("からあげ", "karaage", "gà chiên kiểu Nhật", "Đồ ăn", "からあげをたべます。", "Karaage o tabemasu.", "Tôi ăn gà chiên.", reference = "唐揚げ"),
+        v("フライドポテト", "furaido poteto", "khoai tây chiên", "Đồ ăn", "フライドポテトはすきじゃないです。", "Furaido poteto wa suki ja nai desu.", "Tôi không thích khoai tây chiên."),
+        v("おにぎり", "onigiri", "cơm nắm", "Đồ ăn", "おにぎりをふたつたべます。", "Onigiri o futatsu tabemasu.", "Tôi ăn hai cơm nắm."),
+        v("てんぷら", "tenpura", "tempura", "Đồ ăn", "てんぷらはどうですか。", "Tenpura wa dou desu ka.", "Tempura thì sao?", reference = "天ぷら"),
+        v("とんかつ", "tonkatsu", "thịt heo chiên xù", "Đồ ăn", "とんかつをおすすめします。", "Tonkatsu o osusume shimasu.", "Tôi đề xuất món tonkatsu."),
+        v("ケーキ", "keeki", "bánh ngọt", "Đồ ăn", "ケーキをときどきたべます。", "Keeki o tokidoki tabemasu.", "Thỉnh thoảng tôi ăn bánh ngọt."),
+        v("アイスクリーム", "aisu kuriimu", "kem", "Đồ ăn", "アイスクリームがすきです。", "Aisu kuriimu ga suki desu.", "Tôi thích kem."),
+        v("コーヒー", "koohii", "cà phê", "Thức uống", "コーヒーをのみます。", "Koohii o nomimasu.", "Tôi uống cà phê."),
+        v("こうちゃ", "koucha", "trà đen", "Thức uống", "こうちゃはいかがですか。", "Koucha wa ikaga desu ka.", "Bạn dùng trà đen nhé?", reference = "紅茶"),
+        v("ぎゅうにゅう", "gyuunyuu", "sữa bò", "Thức uống", "あさ、ぎゅうにゅうをのみます。", "Asa, gyuunyuu o nomimasu.", "Buổi sáng tôi uống sữa.", reference = "牛乳"),
+        v("おちゃ", "ocha", "trà xanh; trà", "Thức uống", "おちゃをどうぞ。", "Ocha o douzo.", "Mời bạn dùng trà.", reference = "お茶"),
+        v("ジュース", "juusu", "nước ép; nước trái cây", "Thức uống", "オレンジジュースをのみます。", "Orenji juusu o nomimasu.", "Tôi uống nước cam."),
+        v("みず", "mizu", "nước", "Thức uống", "みずをください。", "Mizu o kudasai.", "Cho tôi nước.", reference = "水"),
+        v("ワイン", "wain", "rượu vang", "Thức uống", "ワインはのみません。", "Wain wa nomimasen.", "Tôi không uống rượu vang."),
+        v("すき", "suki", "thích", "Sở thích", "なにがすきですか。", "Nani ga suki desu ka.", "Bạn thích gì?", reference = "好き"),
+        v("だいすき", "daisuki", "rất thích", "Sở thích", "すしがだいすきです。", "Sushi ga daisuki desu.", "Tôi rất thích sushi.", reference = "大好き"),
+        v("すきじゃない", "suki ja nai", "không thích", "Sở thích", "さかなはすきじゃないです。", "Sakana wa suki ja nai desu.", "Tôi không thích cá.", reference = "好きじゃない"),
+        v("なに", "nani", "gì", "Từ để hỏi", "なにをたべますか。", "Nani o tabemasu ka.", "Bạn ăn gì?", reference = "何"),
+        v("たべます", "tabemasu", "ăn", "Động từ", "パンをたべます。", "Pan o tabemasu.", "Tôi ăn bánh mì.", reference = "食べます"),
+        v("たべません", "tabemasen", "không ăn", "Động từ", "あさはなにもたべません。", "Asa wa nani mo tabemasen.", "Buổi sáng tôi không ăn gì.", reference = "食べません"),
+        v("のみます", "nomimasu", "uống", "Động từ", "おちゃをのみます。", "Ocha o nomimasu.", "Tôi uống trà.", reference = "飲みます"),
+        v("のみません", "nomimasen", "không uống", "Động từ", "コーヒーはのみません。", "Koohii wa nomimasen.", "Tôi không uống cà phê.", reference = "飲みません"),
+        v("すすめます", "susumemasu", "giới thiệu, đề xuất", "Động từ", "ともだちにおちゃをすすめます。", "Tomodachi ni ocha o susumemasu.", "Tôi giới thiệu trà cho bạn.", reference = "勧めます"),
+        v("おすすめ", "osusume", "món/điều được đề xuất", "Giao tiếp", "おすすめはなんですか。", "Osusume wa nan desu ka.", "Món đề xuất là gì?"),
+        v("いつも", "itsumo", "luôn luôn", "Tần suất", "いつもあさごはんをたべます。", "Itsumo asagohan o tabemasu.", "Tôi luôn ăn sáng."),
+        v("よく", "yoku", "thường xuyên", "Tần suất", "パンをよくたべます。", "Pan o yoku tabemasu.", "Tôi thường ăn bánh mì."),
+        v("ときどき", "tokidoki", "thỉnh thoảng", "Tần suất", "ときどきコーヒーをのみます。", "Tokidoki koohii o nomimasu.", "Thỉnh thoảng tôi uống cà phê."),
+        v("あまり", "amari", "không thường; không… lắm", "Tần suất", "あさごはんはあまりたべません。", "Asagohan wa amari tabemasen.", "Tôi không thường ăn sáng."),
+        v("ぜんぜん", "zenzen", "hoàn toàn không", "Tần suất", "ワインはぜんぜんのみません。", "Wain wa zenzen nomimasen.", "Tôi hoàn toàn không uống rượu vang."),
+        v("あさ", "asa", "buổi sáng", "Thói quen", "あさ、みずをのみます。", "Asa, mizu o nomimasu.", "Buổi sáng tôi uống nước.", reference = "朝"),
+        v("あさごはん", "asagohan", "bữa sáng", "Thói quen", "あさごはんはパンとたまごです。", "Asagohan wa pan to tamago desu.", "Bữa sáng là bánh mì và trứng.", reference = "朝ご飯"),
+        v("しゅうかん", "shuukan", "thói quen", "Thói quen", "あさごはんのしゅうかんについてはなします。", "Asagohan no shuukan ni tsuite hanashimasu.", "Tôi nói về thói quen ăn sáng.", reference = "習慣"),
+        v("おねがいします", "onegai shimasu", "xin vui lòng; cho tôi xin", "Giao tiếp", "コーヒーをおねがいします。", "Koohii o onegai shimasu.", "Cho tôi cà phê.", reference = "お願いします"),
+        v("けっこうです", "kekkou desu", "không, cảm ơn; đủ rồi", "Giao tiếp", "いいえ、けっこうです。", "Iie, kekkou desu.", "Không, cảm ơn."),
+    )
+
+    private val foodGrammar = listOf(
+        GrammarPattern("Nói món mình thích", "S は N が すきです", "が đánh dấu đối tượng được thích. すき là tính từ-na, vì vậy không dùng を trong mẫu này.", listOf(e("わたしはにくがすきです。", "Watashi wa niku ga suki desu.", "Tôi thích thịt."), e("マイさんはすしがだいすきです。", "Mai-san wa sushi ga daisuki desu.", "Bạn Mai rất thích sushi.")), qa("なにがすきですか。", "Nani ga suki desu ka.", "Bạn thích gì?", "すしがすきです。", "Sushi ga suki desu.", "Tôi thích sushi.")),
+        GrammarPattern("Nói món không thích", "N は すきじゃないです", "Đưa N làm chủ đề bằng は rồi dùng dạng phủ định すきじゃないです. Có thể nói mềm hơn bằng あまりすきじゃないです.", listOf(e("さかなはすきじゃないです。", "Sakana wa suki ja nai desu.", "Tôi không thích cá."), e("ワインはあまりすきじゃないです。", "Wain wa amari suki ja nai desu.", "Tôi không thích rượu vang lắm.")), qa("さかなはすきですか。", "Sakana wa suki desu ka.", "Bạn thích cá không?", "いいえ、すきじゃないです。", "Iie, suki ja nai desu.", "Không, tôi không thích.")),
+        GrammarPattern("Hỏi và nói ăn gì", "N を たべます／なにを たべますか", "を đánh dấu món được ăn và đọc là ‘o’. Dùng なにを để hỏi ăn gì.", listOf(e("ごはんをたべます。", "Gohan o tabemasu.", "Tôi ăn cơm."), e("あさ、パンをたべます。", "Asa, pan o tabemasu.", "Buổi sáng tôi ăn bánh mì.")), qa("あさごはんになにをたべますか。", "Asagohan ni nani o tabemasu ka.", "Bữa sáng bạn ăn gì?", "パンとたまごをたべます。", "Pan to tamago o tabemasu.", "Tôi ăn bánh mì và trứng.")),
+        GrammarPattern("Hỏi và nói uống gì", "N を のみます／なにを のみますか", "を đánh dấu đồ uống. Có thể thêm thời điểm ở đầu câu.", listOf(e("コーヒーをのみます。", "Koohii o nomimasu.", "Tôi uống cà phê."), e("あさ、ぎゅうにゅうをのみます。", "Asa, gyuunyuu o nomimasu.", "Buổi sáng tôi uống sữa.")), qa("なにをのみますか。", "Nani o nomimasu ka.", "Bạn uống gì?", "おちゃをのみます。", "Ocha o nomimasu.", "Tôi uống trà.")),
+        GrammarPattern("Phủ định động từ lịch sự", "～ます → ～ません", "Đổi đuôi ます thành ません để nói không làm: たべます → たべません, のみます → のみません.", listOf(e("あさはたべません。", "Asa wa tabemasen.", "Buổi sáng tôi không ăn."), e("ワインはのみません。", "Wain wa nomimasen.", "Tôi không uống rượu vang.")), qa("コーヒーをのみますか。", "Koohii o nomimasu ka.", "Bạn có uống cà phê không?", "いいえ、のみません。", "Iie, nomimasen.", "Không, tôi không uống.")),
+        GrammarPattern("Mời đồ uống", "N、のみますか", "Nêu đồ uống rồi hỏi のみますか để mời. Nhận lời bằng はい、おねがいします; từ chối lịch sự bằng いいえ、けっこうです.", listOf(e("コーヒー、のみますか。", "Koohii, nomimasu ka.", "Bạn dùng cà phê không?"), e("はい、おねがいします。", "Hai, onegai shimasu.", "Vâng, cho tôi xin."), e("いいえ、けっこうです。", "Iie, kekkou desu.", "Không, cảm ơn.")), qa("おちゃ、のみますか。", "Ocha, nomimasu ka.", "Bạn dùng trà không?", "はい、おねがいします。", "Hai, onegai shimasu.", "Vâng, cho tôi xin.")),
+        GrammarPattern("Đề xuất món", "N は どうですか／N を おすすめします", "Dùng ～はどうですか để gợi ý nhẹ nhàng; ～をおすすめします để giới thiệu rõ một món.", listOf(e("てんぷらはどうですか。", "Tenpura wa dou desu ka.", "Tempura thì sao?"), e("おちゃをおすすめします。", "Ocha o osusume shimasu.", "Tôi đề xuất trà.")), qa("おすすめはなんですか。", "Osusume wa nan desu ka.", "Bạn đề xuất món gì?", "カレーをおすすめします。", "Karee o osusume shimasu.", "Tôi đề xuất món cà ri.")),
+        GrammarPattern("Nói thói quen ăn sáng", "Tần suất + あさごはんを たべます／たべません", "Đặt いつも, よく, ときどき trước hành động. あまり và ぜんぜん thường đi với dạng phủ định.", listOf(e("いつもあさごはんをたべます。", "Itsumo asagohan o tabemasu.", "Tôi luôn ăn sáng."), e("あさごはんはあまりたべません。", "Asagohan wa amari tabemasen.", "Tôi không thường ăn sáng.")), qa("いつもあさごはんをたべますか。", "Itsumo asagohan o tabemasu ka.", "Bạn luôn ăn sáng chứ?", "はい、いつもたべます。", "Hai, itsumo tabemasu.", "Vâng, tôi luôn ăn.")),
+        GrammarPattern("Nói nhiều món", "N1 と N2 を たべます／のみます", "と nối các danh từ được liệt kê đầy đủ trước を. Đồ ăn và đồ uống nên dùng đúng động từ tương ứng.", listOf(e("パンとたまごをたべます。", "Pan to tamago o tabemasu.", "Tôi ăn bánh mì và trứng."), e("コーヒーとみずをのみます。", "Koohii to mizu o nomimasu.", "Tôi uống cà phê và nước.")), qa("あさごはんはなんですか。", "Asagohan wa nan desu ka.", "Bữa sáng của bạn là gì?", "パンとたまごとぎゅうにゅうです。", "Pan to tamago to gyuunyuu desu.", "Là bánh mì, trứng và sữa.")),
+    )
+
     private val foundationVocabulary = listOf(
         v("は", "wa", "trợ từ đánh dấu chủ đề", "Từ cơ bản", "わたしはティンです。", "Watashi wa Tinh desu.", "Tôi là Tính."),
         v("が", "ga", "trợ từ đánh dấu chủ thể hoặc đối tượng của khả năng", "Từ cơ bản", "にほんごができます。", "Nihon-go ga dekimasu.", "Tôi biết tiếng Nhật."),
@@ -370,6 +441,8 @@ object LanguageLearningData {
         "Mô tả người",
         "Địa điểm & sinh sống",
         "Số đếm",
+        "Đồ ăn & thức uống",
+        "Sở thích & thói quen",
         "Từ cơ bản",
     )
 
@@ -392,6 +465,8 @@ object LanguageLearningData {
                     lesson.id == 4 && entry.category in setOf("Mô tả người", "Người") -> "Mô tả người"
                     lesson.id == 4 && entry.category in setOf("Địa điểm", "Sinh sống", "Cụm hỏi") -> "Địa điểm & sinh sống"
                     lesson.id == 4 && entry.category in setOf("Chung", "Gia đình mình", "Gia đình người khác", "Vợ chồng", "Con cái", "Họ hàng") -> "Gia đình"
+                    lesson.id == 5 && entry.category in setOf("Đồ ăn", "Thức uống") -> "Đồ ăn & thức uống"
+                    lesson.id == 5 && entry.category in setOf("Sở thích", "Động từ", "Tần suất", "Thói quen", "Giao tiếp", "Khái niệm") -> "Sở thích & thói quen"
                     else -> "Từ cơ bản"
                 }
                 VocabularyLibraryItem(group, entry)
@@ -586,6 +661,76 @@ object LanguageLearningData {
                             e("ありがとうございます。あなたは。", "Arigatou gozaimasu. Anata wa?", "Cảm ơn. Còn bạn?"),
                             e("${hiraganaNumber((number - 7).coerceAtLeast(1))}てんでした。", "${japaneseNumber((number - 7).coerceAtLeast(1)).second}-ten deshita.", "Tôi được ${(number - 7).coerceAtLeast(1)} điểm."),
                             e("つぎもがんばりましょう。", "Tsugi mo ganbarimashou.", "Lần sau chúng ta cũng cùng cố gắng nhé."),
+                        ))
+                    }
+                }
+                5 -> {
+                    val foods = listOf(
+                        Triple("すし", "sushi", "sushi"), Triple("やきにく", "yakiniku", "thịt nướng"),
+                        Triple("カレー", "karee", "cà ri"), Triple("ラーメン", "raamen", "ramen"),
+                        Triple("ぎょうざ", "gyouza", "há cảo"), Triple("てんぷら", "tenpura", "tempura"),
+                        Triple("うどん", "udon", "udon"), Triple("ピザ", "piza", "pizza"),
+                        Triple("さかな", "sakana", "cá"), Triple("やさい", "yasai", "rau củ"),
+                    )
+                    val drinks = listOf(
+                        Triple("コーヒー", "koohii", "cà phê"), Triple("おちゃ", "ocha", "trà xanh"),
+                        Triple("こうちゃ", "koucha", "trà đen"), Triple("ぎゅうにゅう", "gyuunyuu", "sữa"),
+                        Triple("ジュース", "juusu", "nước ép"), Triple("みず", "mizu", "nước"),
+                    )
+                    val breakfasts = listOf(
+                        Triple("パンとたまご", "pan to tamago", "bánh mì và trứng"),
+                        Triple("ごはんとみそしる", "gohan to misoshiru", "cơm và canh miso"),
+                        Triple("くだものとぎゅうにゅう", "kudamono to gyuunyuu", "trái cây và sữa"),
+                        Triple("おにぎりとおちゃ", "onigiri to ocha", "cơm nắm và trà"),
+                        Triple("サンドイッチとコーヒー", "sandoicchi to koohii", "sandwich và cà phê"),
+                    )
+                    val food = foods[(scene + variant) % foods.size]
+                    val otherFood = foods[(scene + variant + 3) % foods.size]
+                    val drink = drinks[(scene + variant) % drinks.size]
+                    val otherDrink = drinks[(scene + variant + 2) % drinks.size]
+                    val breakfast = breakfasts[variant % breakfasts.size]
+                    when (scene) {
+                        0 -> DialogueScenario("Món ăn yêu thích ${variant + 1}", listOf(
+                            e("すきなたべものはなんですか。", "Suki na tabemono wa nan desu ka.", "Món ăn bạn thích là gì?"),
+                            e("${food.first}がすきです。${name}さんは。", "${food.second} ga suki desu. $nameRomaji-san wa?", "Tôi thích ${food.third}. Còn bạn $nameRomaji?"),
+                            e("${otherFood.first}がだいすきです。", "${otherFood.second} ga daisuki desu.", "Tôi rất thích ${otherFood.third}."),
+                            e("${food.first}もすきですか。", "${food.second} mo suki desu ka.", "Bạn cũng thích ${food.third} không?"),
+                            e("いいえ、${food.first}はあまりすきじゃないです。", "Iie, ${food.second} wa amari suki ja nai desu.", "Không, tôi không thích ${food.third} lắm."),
+                            e("そうですか。", "Sou desu ka.", "Vậy à."),
+                        ))
+                        1 -> DialogueScenario("Mời đồ uống ${variant + 1}", listOf(
+                            e("${drink.first}、のみますか。", "${drink.second}, nomimasu ka.", "Bạn dùng ${drink.third} không?"),
+                            if (variant % 2 == 0) e("はい、おねがいします。", "Hai, onegai shimasu.", "Vâng, cho tôi xin.")
+                            else e("いいえ、けっこうです。", "Iie, kekkou desu.", "Không, cảm ơn."),
+                            if (variant % 2 == 0) e("はい、どうぞ。", "Hai, douzo.", "Vâng, mời bạn.")
+                            else e("では、${otherDrink.first}はどうですか。", "Dewa, ${otherDrink.second} wa dou desu ka.", "Vậy ${otherDrink.third} thì sao?"),
+                            if (variant % 2 == 0) e("ありがとうございます。", "Arigatou gozaimasu.", "Xin cảm ơn.")
+                            else e("はい、おねがいします。", "Hai, onegai shimasu.", "Vâng, cho tôi xin."),
+                        ))
+                        2 -> DialogueScenario("Thói quen ăn sáng ${variant + 1}", listOf(
+                            e("いつもあさごはんをたべますか。", "Itsumo asagohan o tabemasu ka.", "Bạn luôn ăn sáng chứ?"),
+                            if (variant == 3) e("いいえ、あさごはんはあまりたべません。", "Iie, asagohan wa amari tabemasen.", "Không, tôi không thường ăn sáng.")
+                            else e("はい、いつもたべます。", "Hai, itsumo tabemasu.", "Vâng, tôi luôn ăn."),
+                            e("あさごはんはなんですか。", "Asagohan wa nan desu ka.", "Bữa sáng của bạn là gì?"),
+                            e("${breakfast.first}です。", "${breakfast.second} desu.", "Bữa sáng của tôi là ${breakfast.third}."),
+                            e("なにをのみますか。", "Nani o nomimasu ka.", "Bạn uống gì?"),
+                            e("${drink.first}をのみます。", "${drink.second} o nomimasu.", "Tôi uống ${drink.third}."),
+                        ))
+                        3 -> DialogueScenario("Chọn món được đề xuất ${variant + 1}", listOf(
+                            e("おすすめはなんですか。", "Osusume wa nan desu ka.", "Bạn đề xuất món gì?"),
+                            e("${food.first}をおすすめします。", "${food.second} o osusume shimasu.", "Tôi đề xuất ${food.third}."),
+                            e("${food.first}はどんなたべものですか。", "${food.second} wa donna tabemono desu ka.", "${food.third} là món như thế nào?"),
+                            e("おいしいですよ。", "Oishii desu yo.", "Món đó ngon đấy."),
+                            e("では、${food.first}をおねがいします。", "Dewa, ${food.second} o onegai shimasu.", "Vậy cho tôi ${food.third}."),
+                            e("はい、わかりました。", "Hai, wakarimashita.", "Vâng, tôi hiểu rồi."),
+                        ))
+                        else -> DialogueScenario("Ăn uống cùng bạn ${variant + 1}", listOf(
+                            e("ひるごはんになにをたべますか。", "Hirugohan ni nani o tabemasu ka.", "Bữa trưa bạn ăn gì?"),
+                            e("${food.first}をたべます。いっしょにたべませんか。", "${food.second} o tabemasu. Issho ni tabemasen ka.", "Tôi ăn ${food.third}. Bạn ăn cùng nhé?"),
+                            e("いいですね。わたしも${food.first}がすきです。", "Ii desu ne. Watashi mo ${food.second} ga suki desu.", "Hay đấy. Tôi cũng thích ${food.third}."),
+                            e("のみものはなにがいいですか。", "Nomimono wa nani ga ii desu ka.", "Bạn muốn đồ uống gì?"),
+                            e("${drink.first}をおねがいします。", "${drink.second} o onegai shimasu.", "Cho tôi ${drink.third}."),
+                            e("わかりました。では、いきましょう。", "Wakarimashita. Dewa, ikimashou.", "Tôi hiểu rồi. Vậy chúng ta đi nhé."),
                         ))
                     }
                 }

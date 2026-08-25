@@ -91,6 +91,27 @@ def collect_texts() -> list[str]:
     for city in cities:
         texts.update((f"{city}です。", f"{city}にすんでいます。", f"{city}にいます。"))
 
+    foods = ["すし", "やきにく", "カレー", "ラーメン", "ぎょうざ", "てんぷら", "うどん", "ピザ", "さかな", "やさい"]
+    drinks = ["コーヒー", "おちゃ", "こうちゃ", "ぎゅうにゅう", "ジュース", "みず"]
+    breakfasts = ["パンとたまご", "ごはんとみそしる", "くだものとぎゅうにゅう", "おにぎりとおちゃ", "サンドイッチとコーヒー"]
+    for food in foods:
+        texts.update((
+            f"{food}がだいすきです。", f"{food}もすきですか。",
+            f"いいえ、{food}はあまりすきじゃないです。",
+            f"{food}をおすすめします。", f"{food}はどんなたべものですか。",
+            f"では、{food}をおねがいします。", f"{food}をたべます。いっしょにたべませんか。",
+            f"いいですね。わたしも{food}がすきです。",
+        ))
+        for name in names:
+            texts.add(f"{food}がすきです。{name}さんは。")
+    for drink in drinks:
+        texts.update((
+            f"{drink}、のみますか。", f"では、{drink}はどうですか。",
+            f"{drink}をのみます。", f"{drink}をおねがいします。",
+        ))
+    for breakfast in breakfasts:
+        texts.add(f"{breakfast}です。")
+
     for country, nationality, language in zip(countries, nationalities, country_languages):
         texts.update((
             f"{country}からです。",
