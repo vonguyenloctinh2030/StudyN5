@@ -99,8 +99,8 @@ def collect_texts() -> list[str]:
             f"{food}がだいすきです。", f"{food}もすきですか。",
             f"いいえ、{food}はあまりすきじゃないです。",
             f"{food}をおすすめします。", f"{food}はどんなたべものですか。",
-            f"では、{food}をおねがいします。", f"{food}をたべます。いっしょにたべませんか。",
-            f"いいですね。わたしも{food}がすきです。",
+            f"では、{food}をおねがいします。", f"{food}をたべます。",
+            f"あのみせで{food}をたべます。",
         ))
         for name in names:
             texts.add(f"{food}がすきです。{name}さんは。")
