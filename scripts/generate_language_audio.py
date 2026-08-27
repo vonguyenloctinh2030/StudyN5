@@ -112,6 +112,25 @@ def collect_texts() -> list[str]:
     for breakfast in breakfasts:
         texts.add(f"{breakfast}です。")
 
+    lesson6_foods = ["カレー", "すし", "チーズバーガー", "ホットドッグ", "フライドポテト", "ラーメン", "うどん", "ピザ"]
+    lesson6_drinks = ["コーラ", "オレンジジュース", "コーヒー", "ウーロンちゃ", "みず"]
+    lesson6_places = ["レストラン", "フードコート", "しょくどう", "あのみせ", "このみせ"]
+    for food in lesson6_foods:
+        texts.update((
+            f"{food}がいちばんすきです。", f"そうですか。わたしも{food}がすきです。",
+            f"{food}をたべます。", f"{food}もたべますか。", f"{food}をたべましょう。",
+        ))
+        for other_food in lesson6_foods:
+            texts.add(f"{food}と{other_food}がすきです。")
+    for drink in lesson6_drinks:
+        texts.update((f"{drink}をおねがいします。", f"{drink}をのみます。"))
+    for place in lesson6_places:
+        texts.update((
+            f"{place}でたべませんか。", f"{place}はどうですか。",
+            f"{place}もいいですよ。", f"{place}はおいしいですか。",
+            f"じゃ、{place}でたべましょう。",
+        ))
+
     for country, nationality, language in zip(countries, nationalities, country_languages):
         texts.update((
             f"{country}からです。",
