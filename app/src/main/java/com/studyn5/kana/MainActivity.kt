@@ -18,10 +18,14 @@ import com.studyn5.kana.audio.AudioPlayer
 import com.studyn5.kana.data.Kana
 import com.studyn5.kana.data.KanaData
 import com.studyn5.kana.data.KanaType
+import com.studyn5.kana.data.KanjiData
+import com.studyn5.kana.data.KanjiEntry
 import com.studyn5.kana.data.LessonData
 import com.studyn5.kana.data.PracticeData
 import com.studyn5.kana.ui.detail.KanaDetailScreen
 import com.studyn5.kana.ui.home.HomeScreen
+import com.studyn5.kana.ui.kanji.KanjiDetailScreen
+import com.studyn5.kana.ui.kanji.KanjiListScreen
 import com.studyn5.kana.ui.list.KanaListScreen
 import com.studyn5.kana.ui.lessons.LessonViewModel
 import com.studyn5.kana.ui.lessons.LessonsScreen
@@ -72,6 +76,8 @@ private fun AppNavigation(
     var listType by remember { mutableStateOf(KanaType.HIRAGANA) }
     var selectedList by remember { mutableStateOf<List<Kana>>(emptyList()) }
     var selectedIndex by remember { mutableStateOf(0) }
+    var selectedKanjiList by remember { mutableStateOf<List<KanjiEntry>>(KanjiData.entries) }
+    var selectedKanjiIndex by remember { mutableStateOf(0) }
     val context = LocalContext.current
     val practiceViewModel = remember { PracticeViewModel(PracticeData(context)) }
     val lessonViewModel = remember { LessonViewModel(LessonData(context)) }
@@ -79,7 +85,8 @@ private fun AppNavigation(
     BackHandler(enabled = route !is Screen.Home) {
         route = when (route) {
             is Screen.Detail -> Screen.List
-            is Screen.List, is Screen.Pronunciation, is Screen.SpecialSounds, is Screen.LanguageLearning, is Screen.VocabularyLibrary -> Screen.Home
+            is Screen.KanjiDetail -> Screen.KanjiList
+            is Screen.List, is Screen.KanjiList, is Screen.Pronunciation, is Screen.SpecialSounds, is Screen.LanguageLearning, is Screen.VocabularyLibrary -> Screen.Home
             is Screen.Practice -> {
                 if (practiceViewModel.mode.value == "play") {
                     practiceViewModel.backToSelect()
@@ -114,6 +121,11 @@ private fun AppNavigation(
             onOpenSpecialSounds = { route = Screen.SpecialSounds },
             onOpenLanguageLearning = { route = Screen.LanguageLearning },
             onOpenVocabulary = { route = Screen.VocabularyLibrary },
+            onOpenKanji = {
+                selectedKanjiList = KanjiData.entries
+                selectedKanjiIndex = 0
+                route = Screen.KanjiList
+            },
         )
 
         is Screen.List -> KanaListScreen(
@@ -133,6 +145,24 @@ private fun AppNavigation(
             onBack = { route = Screen.List },
             onPrev = { if (selectedIndex > 0) selectedIndex-- },
             onNext = { if (selectedIndex < selectedList.size - 1) selectedIndex++ },
+        )
+
+        is Screen.KanjiList -> KanjiListScreen(
+            onBack = { route = Screen.Home },
+            onSelect = { kanji ->
+                selectedKanjiList = KanjiData.entries
+                selectedKanjiIndex = selectedKanjiList.indexOf(kanji).coerceAtLeast(0)
+                route = Screen.KanjiDetail
+            },
+        )
+
+        is Screen.KanjiDetail -> KanjiDetailScreen(
+            kanjis = selectedKanjiList,
+            index = selectedKanjiIndex,
+            onBack = { route = Screen.KanjiList },
+            onPrev = { if (selectedKanjiIndex > 0) selectedKanjiIndex-- },
+            onNext = { if (selectedKanjiIndex < selectedKanjiList.size - 1) selectedKanjiIndex++ },
+            onSpeak = onSpeakJapanese,
         )
 
         is Screen.Practice -> PracticeScreen(
@@ -174,6 +204,8 @@ private sealed class Screen {
     data object Home : Screen()
     data object List : Screen()
     data object Detail : Screen()
+    data object KanjiList : Screen()
+    data object KanjiDetail : Screen()
     data object Practice : Screen()
     data object Lessons : Screen()
     data object Pronunciation : Screen()

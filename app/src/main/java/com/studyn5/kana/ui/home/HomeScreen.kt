@@ -52,10 +52,14 @@ fun HomeScreen(
     onOpenSpecialSounds: () -> Unit,
     onOpenLanguageLearning: () -> Unit,
     onOpenVocabulary: () -> Unit,
+    onOpenKanji: () -> Unit,
 ) {
-    val items = listOf(
+    val scriptItems = listOf(
         HomeItem("あ", "Hiragana", "46 chữ cái nền tảng", MaterialTheme.colorScheme.primary) { onOpenList(KanaType.HIRAGANA) },
         HomeItem("ア", "Katakana", "46 chữ phiên âm", KanaRed) { onOpenList(KanaType.KATAKANA) },
+        HomeItem("漢", "Kanji", "42 chữ N5", Color(0xFFB87432), onOpenKanji),
+    )
+    val items = listOf(
         HomeItem("♪", "Phát âm", "Nghe và ghi nhớ", KanaJade, onOpenPronunciation),
         HomeItem("が", "Âm đặc biệt", "Đục · ghép · dài · ngắt", Color(0xFFB87432), onOpenSpecialSounds),
         HomeItem("学", "Bài học", "Từ vựng · ngữ pháp · hội thoại", MaterialTheme.colorScheme.primary, onOpenLanguageLearning),
@@ -80,6 +84,13 @@ fun HomeScreen(
             Spacer(Modifier.height(14.dp))
             LearningOverview()
             Spacer(Modifier.height(22.dp))
+
+            Text("Hệ chữ", fontSize = 16.sp, fontWeight = FontWeight.ExtraBold)
+            Spacer(Modifier.height(10.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                scriptItems.forEach { item -> ScriptHomeCard(item, Modifier.weight(1f)) }
+            }
+            Spacer(Modifier.height(20.dp))
 
             Text("Khám phá", fontSize = 16.sp, fontWeight = FontWeight.ExtraBold)
             Spacer(Modifier.height(10.dp))
@@ -147,10 +158,39 @@ private fun LearningOverview() {
         Text("Đọc · nghe · viết · phản xạ", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
         Spacer(Modifier.height(15.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OverviewChip("92", "chữ cái", Modifier.weight(1f))
+            OverviewChip("134", "ký tự", Modifier.weight(1f))
             OverviewChip("9", "lessons", Modifier.weight(1f))
             OverviewChip("900", "từ luyện", Modifier.weight(1f))
         }
+    }
+}
+
+@Composable
+private fun ScriptHomeCard(item: HomeItem, modifier: Modifier = Modifier) {
+    Column(
+        modifier
+            .height(122.dp)
+            .shadow(1.dp, KanaCardShape)
+            .clip(KanaCardShape)
+            .background(MaterialTheme.colorScheme.surface)
+            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, KanaCardShape)
+            .clickable(onClick = item.action)
+            .padding(horizontal = 7.dp, vertical = 10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Box(Modifier.size(45.dp).clip(CircleShape).background(item.color.copy(alpha = .12f)), contentAlignment = Alignment.Center) {
+            Text(item.symbol, fontSize = 27.sp, fontFamily = KanaFontFamily, color = item.color, fontWeight = FontWeight.Bold)
+        }
+        Spacer(Modifier.height(6.dp))
+        Text(item.title, fontWeight = FontWeight.ExtraBold, fontSize = 12.sp, maxLines = 1)
+        Text(
+            item.description,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            fontSize = 9.sp,
+            lineHeight = 12.sp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 2,
+        )
     }
 }
 

@@ -15,7 +15,10 @@ import edge_tts
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "app/src/main/java/com/studyn5/kana/data/LanguageLearningData.kt"
+SOURCES = (
+    ROOT / "app/src/main/java/com/studyn5/kana/data/LanguageLearningData.kt",
+    ROOT / "app/src/main/java/com/studyn5/kana/data/KanjiData.kt",
+)
 OUTPUT = ROOT / "app/src/main/assets/audio"
 VOICE = "ja-JP-NanamiNeural"
 RATE = "-8%"
@@ -38,7 +41,7 @@ def hiragana_number(number: int) -> str:
 
 
 def collect_texts() -> list[str]:
-    source = SOURCE.read_text(encoding="utf-8")
+    source = "\n".join(path.read_text(encoding="utf-8") for path in SOURCES)
     quoted = re.findall(r'"((?:[^"\\]|\\.)*)"', source)
     texts = {
         value.replace(r'\"', '"')
@@ -128,8 +131,38 @@ def collect_texts() -> list[str]:
         texts.update((
             f"{place}でたべませんか。", f"{place}はどうですか。",
             f"{place}もいいですよ。", f"{place}はおいしいですか。",
-            f"じゃ、{place}でたべましょう。",
+            f"じゃ、{place}でたべましょう。", f"{place}でたべましょう。",
         ))
+        for food in lesson6_foods:
+            texts.update((
+                f"{food}ですか。", f"はい、{place}の{food}はおいしいですよ。",
+                f"{place}はやすいですか。",
+                f"はい、やすいです。でも、{food}はおいしくないです。",
+            ))
+    # Reproduce the 25 generated Lesson 6 dialogues exactly. This avoids the
+    # online TTS fallback when a user plays either one line or the full scene.
+    lesson6_quantities = ["ひとつ", "ふたつ", "みっつ", "よっつ", "いつつ"]
+    lesson6_prices = ["にひゃくはちじゅう", "さんびゃく", "よんひゃく", "ごひゃく", "ろっぴゃく"]
+    for index in range(25):
+        scene, variant = index % 5, index // 5
+        food = lesson6_foods[(scene + variant) % len(lesson6_foods)]
+        drink = lesson6_drinks[(scene + variant) % len(lesson6_drinks)]
+        place = lesson6_places[(scene + variant) % len(lesson6_places)]
+        other_place = lesson6_places[(scene + variant + 2) % len(lesson6_places)]
+        if scene == 1:
+            texts.add(f"{food}を{lesson6_quantities[variant]}と{drink}をひとつください。")
+            texts.add(f"ぜんぶで{lesson6_prices[variant]}えんです。")
+        elif scene == 2:
+            texts.update((
+                f"{place}でたべましょう。", f"{food}ですか。",
+                f"はい、{place}の{food}はおいしいですよ。",
+            ))
+        elif scene == 4:
+            texts.update((
+                f"{place}はやすいですか。",
+                f"はい、やすいです。でも、{food}はおいしくないです。",
+                f"{other_place}はどうですか。", f"じゃ、{other_place}でたべましょう。",
+            ))
 
     for country, nationality, language in zip(countries, nationalities, country_languages):
         texts.update((
